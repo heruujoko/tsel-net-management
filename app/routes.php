@@ -24,9 +24,7 @@ Route::group(array('prefix' => 'home' , 'before' => 'auth') , function(){
 // route admin
 
 Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
-	Route::get('/' , function(){
-
-	});
+	Route::get('/' , 'AdminController@dashboard');
 });
 
 
