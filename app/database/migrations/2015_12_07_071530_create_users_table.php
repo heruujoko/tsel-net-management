@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration {
 			$table->string('bank');
 			$table->string('no_rekening');
 			$table->string('avatar');
+			$table->string('remember_token');
 			$table->timestamps();	
 		});
 	}
