@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('layouts.layout')
 
 @section('breadcrumb')
     <h2>Dashboard</h2>
