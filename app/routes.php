@@ -11,7 +11,22 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
+// home routes
+
+Route::get('/' , 'HomeController@showLogin');
+Route::post('/auth' , 'SessionController@auth');
+Route::get('/logout' , 'SessionController@logout');
+
+Route::group(array('prefix' => 'home' , 'before' => 'auth') , function(){
+	Route::get('/' , 'SessionController@authrole');
 });
+
+// route admin
+
+Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
+	Route::get('/' , function(){
+
+	});
+});
+
+
