@@ -33,7 +33,7 @@
                         No App
                     </div>
                 </li>
-                @include('admin.nav')
+                @include('layout.nav')
             </ul>
 
         </div>
