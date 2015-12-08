@@ -2,7 +2,7 @@
 class MitraController extends \BaseController {
 	public function index()
 	{
-		$data['active'] = 'mitra';
+		$data['active'] = 'data';
 		$data['mitra']	=	Mitra::all();
 		return View::make('admin.mitra.show', $data);
 	}
@@ -23,8 +23,8 @@ class MitraController extends \BaseController {
 	}
 	public function edit($id)
 	{
-		$mitra = find($id);
-		$data['active'] = 'mitra';
+		$data['mitra'] = Mitra::find($id);
+		$data['active'] = 'data';
 		return View::make('admin.mitra.edit', $data);
 
 	}

@@ -1,17 +1,16 @@
 @extends('layouts.layout')
-@section('title', 'Edit Bantek')
+@section('title', 'Edit Tanda Tangan')
 @section('breadcrumb')
-<h2>Bantek</h2>
+<h2>Tanda Tangan</h2>
 <ol class="breadcrumb">
   <li>
-    <strong>Bantek</strong>
+    <strong>Tanda Tangan</strong>
   </li>
   <li class="active">
-    <strong>Edit Bantek</strong>
+    <strong>Edit Tanda Tangan</strong>
   </li>
 </ol>
 @stop
-
 @section('content')
 <div class="row">
   @if(Session::get('error'))
@@ -30,29 +29,25 @@
     <div class="ibox">
       <div class="ibox-content">
         <div class="panel-body">
-          {{ Form::open(array('method' => 'PATCH', 'url' => 'admin/bantek/'.$bantek->id.'' , 'class' => 'form form-horizontal')) }}
-          <div class="col-md-12">
+          {{ Form::open(array('method'=> 'PATCH', 'url' => 'admin/signature/'.$signature->id.'' , 'class' => 'form form-horizontal')) }}
+          <div class="row">
+          <div class="col-md-6">
             <div class="form-group">
-              <label class="control-label col-md-3" for="nama">Nama</label>
+              <label class="control-label col-md-3" for="user_id">User ID</label>
               <div class="col-md-6">
-                <input class="form-control" name="nama" id="nama" value="{{ $bantek->nama }}">
+                <input class="form-control" type="text" name="user_id" id="user_id" value="{{ $signature->user_id }}" required>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3" for="hp">Hp</label>
+              <label class="control-label col-md-3" for="signature_pic">Signature Pic</label>
               <div class="col-md-6">
-                <input class="form-control" name="hp" id="hp" value="{{ $bantek->hp }}">
+                <input class="form-control" type="text" name="signature_pic" id="signature_pic" value="{{ $signature->signature_pic }}" required>
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-md-3" for="perusahaan">Perusahaan</label>
-              <div class="col-md-6">
-                <input class="form-control" name="perusahaan" id="perusahaan" value="{{ $bantek->perusahaan }}">
-              </div>
-            </div>
-            <div class="form-group">
-              {{ Form::submit('Save', array('class'=>'btn btn-primary col-md-offset-3')) }}
-            </div>
+          </div>
+          </div>
+          <div class="form-group">
+            {{ Form::submit('Save', array('class'=>'btn btn-block btn-primary')) }}
           </div>
           {{ Form::close() }}
         </div>

@@ -29,6 +29,34 @@
 @endif
 
 @if($active == 'data')
+    @if(isset($mitra))
+    <li class="active">
+        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse in">
+            <li><a href="/admin/lokasikerja">Lokasi Kerja</a></li>
+            <li class="active"><a href="/admin/mitra">Mitra</a></li>
+            <li><a href="/admin/signature">Tanda Tangan</a></li>
+        </ul>
+    </li>
+    @elseif(isset($signature))
+    <li class="active">
+        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse in">
+            <li><a href="/admin/lokasikerja">Lokasi Kerja</a></li>
+            <li><a href="/admin/mitra">Mitra</a></li>
+            <li class="active"><a href="/admin/signature">Tanda Tangan</a></li>
+        </ul>
+    </li>
+    @elseif(isset($lokasikerja))
+    <li class="active">
+        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse in">
+            <li class="active"><a href="/admin/lokasikerja">Lokasi Kerja</a></li>
+            <li><a href="/admin/mitra">Mitra</a></li>
+            <li><a href="/admin/signature">Tanda Tangan</a></li>
+        </ul>
+    </li>
+    @else
     <li class="active">
         <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
@@ -37,6 +65,7 @@
             <li><a href="/admin/signature">Tanda Tangan</a></li>
         </ul>
     </li>
+    @endif
 @else
     <li class="">
         <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
