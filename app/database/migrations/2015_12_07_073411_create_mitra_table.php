@@ -32,7 +32,7 @@ class CreateMitraTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('mitra');
 	}
 
 }

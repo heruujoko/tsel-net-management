@@ -16,6 +16,7 @@ class CreateTableBantekCluster extends Migration {
 			$table->increments('id');
 			$table->integer('bantek_id');
 			$table->string('lokasi_kerja');
+			$table->timestamps();
 		});
 	}
 
