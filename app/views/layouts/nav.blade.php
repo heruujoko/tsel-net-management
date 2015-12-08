@@ -5,7 +5,7 @@
 @else
     <li class="">
         <a href="{{ URL::to('/admin') }}"><i class="fa fa-dashboard"></i> <span class="nav-label">Dashboard</span> </a>
-    </li>    
+    </li>
 @endif
 
 @if($active == 'users')
@@ -15,17 +15,17 @@
 @else
     <li class="">
         <a href="{{ URL::to('/admin/users') }}"><i class="fa fa-users"></i> <span class="nav-label">Users</span> </a>
-    </li>    
+    </li>
 @endif
 
-@if($active == 'banter')
+@if($active == 'bantek')
     <li class="active">
         <a href="{{ URL::to('/admin/bantek') }}"><i class="fa fa-users"></i> <span class="nav-label">Bantek</span> </a>
     </li>
 @else
     <li class="">
         <a href="{{ URL::to('/admin/bantek') }}"><i class="fa fa-users"></i> <span class="nav-label">Bantek</span> </a>
-    </li>    
+    </li>
 @endif
 
 @if($active == 'data')

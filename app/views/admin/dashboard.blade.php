@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-
+@section('title', 'Dashboard')
 @section('breadcrumb')
     <h2>Dashboard</h2>
     <ol class="breadcrumb">
