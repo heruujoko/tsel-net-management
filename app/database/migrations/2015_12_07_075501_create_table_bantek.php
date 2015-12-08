@@ -17,6 +17,7 @@ class CreateTableBantek extends Migration {
 			$table->string('nama');
 			$table->string('hp');
 			$table->string('perusahaan');
+			$table->timestamps();
 		});
 	}
 

@@ -15,11 +15,11 @@ class BantekController extends \BaseController {
 		$bantek->save();
 
 		Session::flash('success' , 'Data telah disimpan');
-		return Redirect::to('admin.bantek.show');
+		return Redirect::to('admin/bantek');
 	}
 	public function edit($id)
 	{
-		$bantek = Bantek::find($id);
+		$data['bantek'] = Bantek::find($id);
 		$data['active'] = 'bantek';
 		return View::make('admin.bantek.edit', $data);
 	}
@@ -32,7 +32,7 @@ class BantekController extends \BaseController {
 		$bantek->save();
 
 		Session::flash('success' , 'Data telah diperbarui');
-		return Redirect::to('admin.bantek.show');
+		return Redirect::to('admin/bantek');
 
 	}
 	public function destroy($id)
@@ -41,6 +41,6 @@ class BantekController extends \BaseController {
 		$bantek->delete();
 
 		Session::flash('success' , 'Data telah dihapus');
-		return Redirect::to('admin.bantek.show');
+		return Redirect::to('admin/bantek');
 	}
 }
