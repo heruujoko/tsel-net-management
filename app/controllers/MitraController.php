@@ -16,24 +16,37 @@ class MitraController extends \BaseController {
 		$mitra->no_rekening = Input::get('no_rekening');
 		$mitra->nama_rekening = Input::get('nama_rekening');
 		$mitra->bank = Input::get('bank');
+		$mitra->save();
 
 		Session::flash('success', 'Data berhasil disimpan');
-		return Redirect::to('admin.mitra.show');
+		return Redirect::to('admin/mitra');
 	}
 	public function edit($id)
 	{
 		$mitra = find($id);
 		$data['active'] = 'mitra';
-		return View::make('admin.mitra.edit');
+		return View::make('admin.mitra.edit', $data);
 
 	}
 	public function update($id)
 	{
 		$mitra = Mitra::find($id);
+		$mitra->nama = Input::get('nama');
+		$mitra->cluster = Input::get('cluster');
+		$mitra->pic = Input::get('pic');
+		$mitra->hp = Input::get('no_rekening');
+		$mitra->no_rekening = Input::get('nama_rekening');
+		$mitra->bank = Input::get('bank');
+		$mitra->save();
+
+		Session::flash('success', 'Data telah diperbarui');
+		return Redirect::to('admin/mitra');
 	}
 	public function destroy($id)
 	{
 		$mitra = Mitra::find($id);
-
+		$mitra->delete();
+		Session::flash('success', 'Data telah dihapus');
+		return Redirect::to('admin/mitra');
 	}
 }

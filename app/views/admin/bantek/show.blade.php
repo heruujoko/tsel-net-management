@@ -11,6 +11,18 @@
 
 @section('content')
 <div class="row">
+  @if(Session::get('error'))
+        <div class="alert alert-danger alert-dismissable">
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+            {{ Session::get('error') }}
+        </div>
+    @elseif(Session::get('success'))
+        <div class="alert alert-success alert-dismissable">
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+            {{ Session::get('success') }}
+        </div>
+    @else
+    @endif
   <div class="col-lg-12">
     <div class="ibox">
     <div class="ibox-content">
@@ -46,8 +58,8 @@
                                           Action <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                          <li><a href="{{ URL::to('/') }}/admin/{{ $bantek->id }}/edit">Edit</a></li>
-                                          <li><a href="{{ URL::to('/') }}/admin/{{ $bantek->id }}/delete">Delete</a></li>
+                                          <li><a href="{{ URL::to('/') }}/admin/bantek/{{ $bantek->id }}/edit">Edit</a></li>
+                                          <li><a href="{{ URL::to('/') }}/admin/bantek/{{ $bantek->id }}/delete">Delete</a></li>
                                         </ul>
                                       </div>
                                   </td>
@@ -62,13 +74,13 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="nama">Nama</label>
                                 <div class="col-md-6">
-                                    <input class="form-control datepicker" name="nama" id="nama" required autofocus>
+                                    <input class="form-control" name="nama" id="nama" required autofocus>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="hp">Hp</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" name="nama_pemohon" id="hp" required>
+                                    <input class="form-control" name="hp" id="hp" required>
                                 </div>
                             </div>
                             <div class="form-group">
