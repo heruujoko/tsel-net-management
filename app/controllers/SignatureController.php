@@ -2,15 +2,14 @@
 class SignatureController extends \BaseController {
 	public function index()
 	{
-		$data['active'] = 'signature';
+		$data['active'] = 'data';
 		$data['signature'] = Signature::all();
 		return View::make('admin.signature.show', $data);
 	}
 	public function store()
 	{
-		$current = Auth::user()->id;
 		$signature = new Signature;
-		$signature->user_id = Input::get($current);
+		$signature->user_id = Input::get('user_id');
 		$signature->signature_pic = Input::get('signature_pic');
 		$signature->save();
 
@@ -19,15 +18,14 @@ class SignatureController extends \BaseController {
 	}
 	public function edit($id)
 	{
-		$signature = Signature::find($id);
-		$data['active'] = 'signature';
+		$data['signature'] = Signature::find($id);
+		$data['active'] = 'data';
 		Return View::make('admin.signature.edit', $data);
 	}
 	public function update($id)
 	{
-		$current = Auth::user()->id;
 		$signature = Signature::find($id);
-		$signature->user_id = Input::get($current);
+		$signature->user_id = Input::get('user_id');
 		$signature->signature_pic = Input::get('signature_pic');
 		$signature->save();
 
