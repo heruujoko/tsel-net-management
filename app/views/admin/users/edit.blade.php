@@ -99,7 +99,15 @@
               <div class="form-group">
                 <label class="control-label col-md-3" for="lokasi">Lokasi Kerja</label>
                 <div class="col-md-6">
-                  <input class="form-control" name="lokasi" id="lokasi" value="{{ $user->lokasi_kerja }}" required>
+                  <select class="form-control" name="lokasi" id="lokasi" required>  
+                  @foreach($lokasi as $lok)
+                    @if($lok->id == $user->lokasi_kerja_id)
+                      <option selected value="{{ $lok->id }}">{{ $lok->nama }}</option>
+                    @else
+                      <option value="{{ $lok->id }}">{{ $lok->nama }}</option>
+                    @endif  
+                  @endforeach
+                  </select>
                 </div>
               </div>
               <div class="form-group">

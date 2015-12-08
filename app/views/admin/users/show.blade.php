@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('title', 'Users')
 @section('breadcrumb')
-    <h2>Bantek</h2>
+    <h2>Users</h2>
     <ol class="breadcrumb">
         <li class="active">
             <strong>Users</strong>
@@ -42,6 +42,7 @@
                                 <th>Nama</th>
                                 <th>jabatan</th>
                                 <th>Cluster</th>
+                                <th>Lokasi</th>
                                 <th>Bank</th>
                                 <th>No Rekening</th>
                                 <th>Action</th>
@@ -54,6 +55,7 @@
                                     <td>{{ $user->nama }}</td>
                                     <td>{{ $user->jabatan }}</td>
                                     <td>{{ $user->cluster }}</td>
+                                    <td>{{ $user->lokasi->nama }}</td>
                                     <td>{{ $user->bank }}</td>
                                     <td>{{ $user->no_rekening }}</td>
                                     <td>
@@ -130,7 +132,11 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="lokasi">Lokasi Kerja</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" name="lokasi" id="lokasi" required>
+                                    <select class="form-control" name="lokasi" id="lokasi" required>
+                                        @foreach($lokasi as $lok)
+                                            <option value="{{ $lok->id }}">{{ $lok->nama }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
