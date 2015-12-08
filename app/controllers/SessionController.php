@@ -18,8 +18,8 @@
 			$role = $current->role;
 			if($role == 'admin'){
 				return Redirect::to('/admin');
-			} else if($role == 'manager'){
-				return Redirect::to('/admin');
+			} else if($role == 'no'){
+				return Redirect::to('/no');
 			} else {
 				Session::flash('error','Corupted user without role.');
 				return Redirect::to('/');	
