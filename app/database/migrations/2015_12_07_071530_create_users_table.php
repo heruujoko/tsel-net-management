@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration {
 			$table->string('jabatan');
 			$table->string('role');
 			$table->string('cluster');
-			$table->text('lokasi_kerja');
+			$table->integer('lokasi_kerja_id');
 			$table->string('bank');
 			$table->string('no_rekening');
 			$table->string('avatar');

@@ -4,6 +4,7 @@ class UserController extends \BaseController {
 	{
 		$data['active'] = 'users';
 		$data['users'] = User::all();
+		$data['lokasi'] = LokasiKerja::all();
 		return View::make('admin.users.show', $data);
 	}
 	public function store()
@@ -16,7 +17,7 @@ class UserController extends \BaseController {
 		$user->jabatan = Input::get('jabatan');
 		$user->cluster = Input::get('cluster');
 		$user->nik = Input::get('nik');
-		$user->lokasi_kerja = Input::get('lokasi');
+		$user->lokasi_kerja_id = Input::get('lokasi');
 		$user->bank = Input::get('bank');
 		$user->no_rekening = Input::get('rekening');
 		$user->save();
@@ -27,6 +28,7 @@ class UserController extends \BaseController {
 	public function edit($id)
 	{
 		$data['user'] = User::find($id);
+		$data['lokasi'] = LokasiKerja::all();
 		$data['active'] = 'users';
 		return View::make('admin.users.edit', $data);
 	}
@@ -42,7 +44,7 @@ class UserController extends \BaseController {
 		$user->jabatan = Input::get('jabatan');
 		$user->cluster = Input::get('cluster');
 		$user->nik = Input::get('nik');
-		$user->lokasi_kerja = Input::get('lokasi');
+		$user->lokasi_kerja_id = Input::get('lokasi');
 		$user->bank = Input::get('bank');
 		$user->no_rekening = Input::get('rekening');
 		$user->save();
