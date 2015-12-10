@@ -21,6 +21,7 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "moment": "~2.10.6",
-    "numeral": "~1.5.3"
+    "numeral": "~1.5.3",
+    "chosen-bootstrap": "~1.1.0"
   }
 }

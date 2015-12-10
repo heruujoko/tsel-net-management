@@ -11,7 +11,8 @@ class SetupTableSeeder extends Seeder {
         	'password' => Hash::make('12345'),
         	'nama' => 'Admin Network App',
         	'jabatan' => 'admin',
-        	'role' => 'admin'
+        	'role' => 'admin',
+            'lokasi_kerja_id' => 1
         ));
 
         LokasiKerja::create(array(
