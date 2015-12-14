@@ -24,6 +24,8 @@ class CreateTableOss extends Migration {
 			$table->text('transport');
 			$table->text('jarak');
 			$table->integer('harga');
+			$table->text('kode_rks');
+			$table->text('deskripsi_rks');
 			$table->integer('harga_rks');
 			$table->integer('harga_fee');
 			$table->integer('bantek');

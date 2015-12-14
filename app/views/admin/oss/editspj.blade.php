@@ -6,8 +6,11 @@
         <li class="">
             <strong>On Site Support</strong>
         </li>
-        <li class="active">
+        <li class="">
             <strong>SPJ Bantek</strong>
+        </li>
+        <li class="active">
+            <strong>Edit</strong>
         </li>
     </ol>
 @stop
@@ -44,55 +47,12 @@
     @endif
   <div class="col-lg-12">
     <div class="ibox">
-    <div class="ibox-content">
-        <div class="panel-options">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#tab-1">List OSS</a></li>
-                <li><a data-toggle="tab" href="#tab-2">Create OSS</a></li>
-            </ul>
-        </div>
-        <div class="panel-body">
-            <div class="tab-content">
-                <div id="tab-1" class="tab-pane active">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Tanggal</th>
-                                <th>Nama Site</th>
-                                <th>ID Site</th>
-                                <th>Dikerjakan</th>
-                                <th>Harga</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($oss as $ossd)
-                                <tr>
-                                    <td>{{ $ossd->tanggal }}</td>
-                                    <td>{{ $ossd->sites->sitelocation }}</td>
-                                    <td>{{ $ossd->sites->btsname }}</td>
-                                    <td>{{ $ossd->dikerjakan->nama }}</td>
-                                    <td class="price">{{ $ossd->harga }}</td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          Action <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                          <li><a href="{{ URL::to('/') }}/admin/oss/spj/{{ $ossd->id }}/details">Details</a></li>
-                                          <li><a href="{{ URL::to('/') }}/admin/oss/spj/{{ $ossd->id }}/edit">Edit</a></li>
-                                          <li><a onclick="popupdelete('{{ $ossd->id }}')">Delete</a></li>
-                                        </ul>
-                                      </div>
-                                  </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div id="tab-2" class="tab-pane">
-                    {{ Form::open(array('url' => URL::to('/').'/admin/oss/spj' , 'class' => 'form form-horizontal')) }}
-                        <div class="col-md-10">
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Edit Data</h2>
+                    {{ Form::open(array('url' => URL::to('/').'/admin/oss/spj/'.$oss->id.'/update' , 'class' => 'form form-horizontal')) }}
+                    <div class="col-md-10">
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="namasite">Nama Site</label>
                                 <div class="col-md-6">
@@ -110,7 +70,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="tanggal">Tanggal</label>
                                 <div class="col-md-6">
-                                    <input class="datepicker form-control" data-date-format="mm/dd/yyyy" name="tanggal" required>
+                                    <input class="datepicker form-control" data-date-format="mm/dd/yyyy" name="tanggal" value="{{ $oss->tanggal }}" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -118,7 +78,11 @@
                                 <div class="col-md-6">
                                     <select class="chosen form-control" name="bantek" required>
                                         @foreach($bantek as $b)
-                                            <option value="{{ $b->id }}">{{ $b->nama }}</option>
+                                            @if($b->id == $oss->banteks->id )
+                                                <option selected value="{{ $b->id }}">{{ $b->nama }}</option>
+                                            @else
+                                                <option value="{{ $b->id }}">{{ $b->nama }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -126,60 +90,89 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="action">Berangkat / Mulai</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="datepicker form-control" name="mulai" required>
+                                    <input type="text" class="datepicker form-control" name="mulai" value="{{ $oss->mulai }}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="action">Kembali / Selesai</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="datepicker form-control" name="selesai" required>
+                                    <input type="text" class="datepicker form-control" name="selesai" value="{{ $oss->selesai }}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="permasalahan">Kode RKS</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="kode_rks">
+                                    <input type="text" class="form-control" name="kode_rks" value="{{ $oss->kode_rks }}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="permasalahan">Deksripsi RKS</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="deskripsi_rks">
+                                    <input type="text" class="form-control" name="deskripsi_rks" value="{{ $oss->deskripsi_rks }}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="permasalahan">Permasalahan</label>
                                 <div class="col-md-6">
-                                    <textarea class="form-control" name="permasalahan" id="permasalahan" required></textarea>
+                                    <textarea class="form-control" name="permasalahan" id="permasalahan" required>{{ $oss->permasalahan }}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="action">Action</label>
                                 <div class="col-md-6">
-                                    <textarea class="form-control" name="action" id="action" required></textarea>
+                                    <textarea class="form-control" name="action" id="action" required>{{ $oss->action }}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="transport">Transportasi</label>
                                 <div class="col-md-6">
                                     <select class="chosen form-control" id="transport" name="transport">
-                                        <option value="no">Tidak Ada</option>
-                                        <option value="darat">Darat</option>
-                                        <option value="laut">Laut</option>
-                                        <option value="udara">Udara</option>
+                                        @if($oss->transport == 'no')
+                                            <option selected value="no">Tidak Ada</option>
+                                            <option value="darat">Darat</option>
+                                            <option value="laut">Laut</option>
+                                            <option value="udara">Udara</option>
+                                        @elseif($oss->transport == 'darat')
+                                            <option value="no">Tidak Ada</option>
+                                            <option selected value="darat">Darat</option>
+                                            <option value="laut">Laut</option>
+                                            <option value="udara">Udara</option>
+                                        @elseif($oss->transport == 'laut')
+                                            <option value="no">Tidak Ada</option>
+                                            <option value="darat">Darat</option>
+                                            <option selected value="laut">Laut</option>
+                                            <option value="udara">Udara</option>
+                                        @elseif($oss->transport == 'udara')
+                                            <option value="no">Tidak Ada</option>
+                                            <option value="darat">Darat</option>
+                                            <option value="laut">Laut</option>
+                                            <option selected value="udara">Udara</option>
+                                        @else
+                                            <option value="no">Tidak Ada</option>
+                                            <option value="darat">Darat</option>
+                                            <option value="laut">Laut</option>
+                                            <option value="udara">Udara</option>
+                                        @endif
                                     </select>
-                                    <button type="button" class="btn btn-primary btn-sm" onclick="showbiaya()">
+                                    <!-- <button type="button" class="btn btn-primary btn-sm" onclick="showbiaya()">
                                     Tambah Biaya Transport
-                                </button>
+                                </button> -->
                                 </div>
                             </div>
                             <div class="form-group" id="formbiaya">
                                 <label class="control-label col-md-3" for="">Biaya Transport</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="col-md-6 form-control" name="kode_sl_trans" id="biayatrans" placeholder="Kode Shopping List">
-                                    <input type="text" class="col-md-6 form-control" name="deskripsi_sl_trans" id="biayatrans" placeholder="Deskripsi">
-                                    <input type="text" class="col-md-6 form-control" name="satuan_sl_trans" id="biayatrans" placeholder="Satuan">
-                                    <input type="text" class="col-md-6 form-control" name="harga_sl_trans" id="biayatrans" placeholder="Biaya Transport">
+                                    @if(isset($transport))
+                                        <input type="text" class="col-md-6 form-control" name="kode_sl_trans" id="biayatrans" value="{{ $transport->kode }}" placeholder="Kode Shopping List">
+                                        <input type="text" class="col-md-6 form-control" name="deskripsi_sl_trans" id="biayatrans" value="{{ $transport->deskripsi }}" placeholder="Deskripsi">
+                                        <input type="text" class="col-md-6 form-control" name="satuan_sl_trans" id="biayatrans" value="{{ $transport->satuan }}" placeholder="Satuan">
+                                        <input type="text" class="col-md-6 form-control" name="harga_sl_trans" id="biayatrans" value="{{ $transport->harga }}" placeholder="Biaya Transport">
+                                    @else
+                                        <input type="text" class="col-md-6 form-control" name="kode_sl_trans" id="biayatrans" placeholder="Kode Shopping List">
+                                        <input type="text" class="col-md-6 form-control" name="deskripsi_sl_trans" id="biayatrans" placeholder="Deskripsi">
+                                        <input type="text" class="col-md-6 form-control" name="satuan_sl_trans" id="biayatrans" placeholder="Satuan">
+                                        <input type="text" class="col-md-6 form-control" name="harga_sl_trans" id="biayatrans" placeholder="Biaya Transport">
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
@@ -187,7 +180,13 @@
                                 <div class="col-md-6">
                                     <select multiple="" class="chosen form-control" id="shoplist" name="shoplist[]">
                                         @foreach($shoplists as $shop)
-                                            <option value="{{ $shop->id }}">{{ $shop->kode }} - {{ $shop->deskripsi }}</option>
+                                            @foreach($oss->shoplists as $osl)
+                                                @if($osl->kode == $shop->kode) 
+                                                    <option selected value="{{ $shop->id }}">{{ $shop->kode }} - {{ $shop->deskripsi }}</option>
+                                                @else
+                                                    <option value="{{ $shop->id }}">{{ $shop->kode }} - {{ $shop->deskripsi }}</option>
+                                                @endif
+                                            @endforeach
                                         @endforeach
                                     </select>
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal7">
@@ -200,7 +199,11 @@
                                 <div class="col-md-6">
                                     <select class="chosen form-control" id="mengetahui" name="mengetahui">
                                         @foreach($userno as $no)
-                                            <option value="{{ $no->id }}">{{ $no->nama }}</option>
+                                            @if($no->kode == $oss->user_mengetahui)
+                                                <option selected value="{{ $no->id }}">{{ $no->nama }}</option>
+                                            @else
+                                                <option value="{{ $no->id }}">{{ $no->nama }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -217,7 +220,13 @@
                                 <div class="col-md-6">
                                     <select multiple="" class="chosen form-control" id="menyetujui" name="menyetujui[]">
                                         @foreach($userno as $no)
-                                            <option value="{{ $no->id }}">{{ $no->nama }}</option>
+                                            @foreach($oss->menyetujui as $stj)
+                                                @if($stj->id == $no->id)
+                                                    <option selected value="{{ $no->id }}">{{ $no->nama }}</option>
+                                                @else
+                                                    <option value="{{ $no->id }}">{{ $no->nama }}</option>
+                                                @endif
+                                            @endforeach
                                         @endforeach
                                     </select>
                                 </div>
@@ -226,15 +235,12 @@
                               {{ Form::submit('Save', array('class'=>'btn btn-primary col-md-offset-3')) }}
                             </div>
                         </div>
-                    {{ Form::close() }}
+                    {{ Form::close() }}    
                 </div>
             </div>
         </div>
     </div>
 </div>
-  </div>
-</div>
-
 
 <!-- modal section -->
 
@@ -316,19 +322,21 @@
     <script src="{{ URL::to('/') }}/bower_components/numeral/numeral.js"></script>
     <script type="text/javascript" src="{{ URL::to('/') }}/bower_components/moment/moment.js"></script>
     <script type="text/javascript">
-        $('#formbiaya').hide();
-        $('.datepicker').datepicker({
-            
+        $('.time').each(function(){
+            var Tformat = moment($(this).val()).format('L');
+            $(this).val(Tformat);
+            $('.datepicker').datepicker({
+                
+            });
         });
-
-        $('.chosen').chosen({
-            width: "100%",
-        });
-
         $('.price').each(function(){
             var Pformat = numeral($(this).text()).format('0,0');
             $(this).text('Rp '+Pformat);
         });
+        $('.chosen').chosen({
+            width: "100%",
+        });
+
         function newShoplist(){
             var formData = {
                 'kode' : $('#ajaxkode').val(),
@@ -369,18 +377,6 @@
                     console.log(msg);
                 }
             })
-        }
-
-        function popupdelete(id){
-            console.log('click');
-            var choice = confirm('Anda yakin akan menghapus ?');
-            if(choice){
-                window.location = '{{ URL::to('/') }}'+'/admin/oss/spj/'+id+'/delete';
-            }
-        }
-
-        function showbiaya(){
-            $('#formbiaya').show();
         }
     </script>
 @stop
