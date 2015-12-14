@@ -20,9 +20,6 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	// method destroy bantek(id)
 	Route::get('/bantek/{id}/delete', 'BantekController@destroy');
 
-	Route::get('/oss/material' , 'OSSController@showmaterial');
-	Route::post('/oss/material' , 'OSSController@storematerial');
-
 	Route::resource('/mitra', 'MitraController', array('except' => array('show', 'create', 'destroy')));
 	// method destroy mitra(id)
 	Route::get('/mitra/{id}/delete', 'MitraController@destroy');
@@ -34,6 +31,20 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::resource('/lokasikerja', 'LokasiController', array('except' => array('show', 'create', 'destroy')));
 	// method destroy lokasi(id)
 	Route::get('/lokasikerja/{id}/delete', 'LokasiController@destroy');
+
+	Route::get('/oss/material' , 'OSSController@showmaterial');
+	Route::post('/oss/material' , 'OSSController@storematerial');
+	Route::get('/oss/material/{id}/details' , 'OSSController@detailmaterial');
+	Route::get('/oss/material/{id}/edit' , 'OSSController@editmaterial');
+	Route::post('/oss/material/{id}/update' , 'OSSController@updatematerial');
+	Route::get('/oss/material/{id}/delete' , 'OSSController@deletematerial');
+
+	Route::get('/oss/spj' , 'OSSController@showspj');
+	Route::post('/oss/spj' , 'OSSController@storespj');
+	Route::get('/oss/spj/{id}/details' , 'OSSController@detailspj');
+	Route::get('/oss/spj/{id}/edit' , 'OSSController@editspj');
+	Route::post('/oss/spj/{id}/update' , 'OSSController@updatespj');
+	Route::get('/oss/spj/{id}/delete' , 'OSSController@deletespj');
 });
 
 //route ajax form

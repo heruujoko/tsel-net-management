@@ -19,7 +19,14 @@ class CreateTableOss extends Migration {
 			$table->integer('site'); // relation with mastertp
 			$table->text('permasalahan');
 			$table->text('action');
+			$table->date('mulai');
+			$table->date('selesai');
+			$table->text('transport');
+			$table->text('jarak');
 			$table->integer('harga');
+			$table->integer('harga_rks');
+			$table->integer('harga_fee');
+			$table->integer('bantek');
 			$table->integer('user_mengetahui'); //relation with user
 			$table->integer('user_mengerjakan'); //relation with user
 			// $table->integer('menyetujui'); //relation with signature

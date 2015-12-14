@@ -18,6 +18,7 @@ class CreateTableShoplist extends Migration {
 			$table->string('deskripsi');
 			$table->string('satuan');
 			$table->integer('harga');
+			$table->string('type');
 			$table->timestamps();
 		});
 	}

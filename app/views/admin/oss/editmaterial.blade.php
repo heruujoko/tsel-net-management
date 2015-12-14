@@ -6,8 +6,11 @@
         <li class="">
             <strong>On Site Support</strong>
         </li>
-        <li class="active">
+        <li class="">
             <strong>Material</strong>
+        </li>
+        <li class="active">
+            <strong>Edit</strong>
         </li>
     </ol>
 @stop
@@ -44,61 +47,22 @@
     @endif
   <div class="col-lg-12">
     <div class="ibox">
-    <div class="ibox-content">
-        <div class="panel-options">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#tab-1">List OSS</a></li>
-                <li><a data-toggle="tab" href="#tab-2">Create OSS</a></li>
-            </ul>
-        </div>
-        <div class="panel-body">
-            <div class="tab-content">
-                <div id="tab-1" class="tab-pane active">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Tanggal</th>
-                                <th>Nama Site</th>
-                                <th>ID Site</th>
-                                <th>Dikerjakan</th>
-                                <th>Harga</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($oss as $ossd)
-                                <tr>
-                                    <td>{{ $ossd->tanggal }}</td>
-                                    <td>{{ $ossd->sites->sitelocation }}</td>
-                                    <td>{{ $ossd->sites->btsname }}</td>
-                                    <td>{{ $ossd->dikerjakan->nama }}</td>
-                                    <td class="price">{{ $ossd->harga }}</td>
-                                    <td>
-                                      <div class="btn-group">
-                                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          Action <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                          <li><a href="{{ URL::to('/') }}/admin/oss/material/{{ $ossd->id }}/details">Details</a></li>
-                                          <li><a href="{{ URL::to('/') }}/admin/oss/material/{{ $ossd->id }}/edit">Edit</a></li>
-                                          <li><a onclick="popupdelete('{{ $ossd->id }}')">Delete</a></li>
-                                        </ul>
-                                      </div>
-                                  </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div id="tab-2" class="tab-pane">
-                    {{ Form::open(array('url' => URL::to('/').'/admin/oss/material' , 'class' => 'form form-horizontal')) }}
-                        <div class="col-md-6">
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Edit Data</h2>
+                    {{ Form::open(array('url' => URL::to('/').'/admin/oss/material/'.$oss->id.'/update' , 'class' => 'form form-horizontal')) }}
+                        <div class="col-md-10">
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="namasite">Nama Site</label>
                                 <div class="col-md-6">
                                     <select class="chosen" name="namasite" id="namasite">
                                         @foreach($sites as $site)
-                                            <option value="{{ $site->id }}">{{ $site->sitelocation }}</option>
+                                            @if($oss->sites->id == $site->id)
+                                                <option selected value="{{ $site->id }}">{{ $site->sitelocation }}</option>
+                                            @else
+                                                <option value="{{ $site->id }}">{{ $site->sitelocation }}</option>
+                                            @endif    
                                         @endforeach
                                     </select>
 
@@ -110,32 +74,33 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="tanggal">Tanggal</label>
                                 <div class="col-md-6">
-                                    <input class="datepicker form-control" data-date-format="mm/dd/yyyy" name="tanggal">
+                                    <input class="time datepicker form-control" data-date-format="mm/dd/yyyy" value="{{ $oss->tanggal }}" name="tanggal">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="permasalahan">Permasalahan</label>
                                 <div class="col-md-6">
-                                    <textarea class="form-control" name="permasalahan" id="permasalahan" required></textarea>
+                                    <textarea class="form-control" name="permasalahan" id="permasalahan" required>{{ $oss->permasalahan }}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="action">Action</label>
                                 <div class="col-md-6">
-                                    <textarea class="form-control" name="action" id="action" required></textarea>
+                                    <textarea class="form-control" name="action" id="action" required>{{ $oss->action }}</textarea>
                                 </div>
                             </div>
-                            <div class="form-group">
-                              {{ Form::submit('Save', array('class'=>'btn btn-primary col-md-offset-3')) }}
-                            </div>
-                        </div>
-                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="shoplist">Shopping List</label>
                                 <div class="col-md-6">
                                     <select multiple="" class="chosen form-control" id="shoplist" name="shoplist[]">
                                         @foreach($shoplists as $shop)
-                                            <option value="{{ $shop->id }}">{{ $shop->kode }} - {{ $shop->deskripsi }}</option>
+                                            @foreach($oss->shoplists as $sl)
+                                                @if($sl->id == $shop->id)
+                                                    <option selected value="{{ $shop->id }}">{{ $shop->kode }}</option>
+                                                @else
+                                                    <option value="{{ $shop->id }}">{{ $shop->kode }} - {{ $shop->deskripsi }}</option>
+                                                @endif
+                                            @endforeach
                                         @endforeach
                                     </select>
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal7">
@@ -144,11 +109,22 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-md-3">Harga</label>        
+                                <div class="col-md-6">
+                                    <label class="control-label price">{{ $oss->harga }}</label>
+                                    <p>Harga berubah saat di save.</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label col-md-3" for="mengetahui">Mengetahui</label>
                                 <div class="col-md-6">
                                     <select class="chosen form-control" id="mengetahui" name="mengetahui">
                                         @foreach($userno as $no)
-                                            <option value="{{ $no->id }}">{{ $no->nama }}</option>
+                                            @if($no->id == $oss->mengetahui->id)
+                                                <option selected value="{{ $no->id }}">{{ $no->nama }}</option>
+                                            @else
+                                                <option value="{{ $no->id }}">{{ $no->nama }}</option>
+                                            @endif    
                                         @endforeach
                                     </select>
                                 </div>
@@ -165,21 +141,26 @@
                                 <div class="col-md-6">
                                     <select multiple="" class="chosen form-control" id="menyetujui" name="menyetujui[]">
                                         @foreach($userno as $no)
-                                            <option value="{{ $no->id }}">{{ $no->nama }}</option>
+                                            @foreach($oss->menyetujui as $setuju)
+                                                @if($no->id == $setuju->id)
+                                                    <option selected value="{{ $no->id }}">{{ $no->nama }}</option>
+                                                @else
+                                                    <option value="{{ $no->id }}">{{ $no->nama }}</option>
+                                                @endif
+                                            @endforeach
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                    {{ Form::close() }}
+                            <div class="form-group">
+                              {{ Form::submit('Save', array('class'=>'btn btn-primary col-md-offset-3')) }}
+                            </div>
+                        </div>    
                 </div>
             </div>
         </div>
     </div>
 </div>
-  </div>
-</div>
-
 
 <!-- modal section -->
 
@@ -261,18 +242,21 @@
     <script src="{{ URL::to('/') }}/bower_components/numeral/numeral.js"></script>
     <script type="text/javascript" src="{{ URL::to('/') }}/bower_components/moment/moment.js"></script>
     <script type="text/javascript">
-        $('.datepicker').datepicker({
-            
+        $('.time').each(function(){
+            var Tformat = moment($(this).val()).format('L');
+            $(this).val(Tformat);
+            $('.datepicker').datepicker({
+                
+            });
         });
-
-        $('.chosen').chosen({
-            width: "100%",
-        });
-
         $('.price').each(function(){
             var Pformat = numeral($(this).text()).format('0,0');
             $(this).text('Rp '+Pformat);
         });
+        $('.chosen').chosen({
+            width: "100%",
+        });
+
         function newShoplist(){
             var formData = {
                 'kode' : $('#ajaxkode').val(),
@@ -313,14 +297,6 @@
                     console.log(msg);
                 }
             })
-        }
-
-        function popupdelete(id){
-            console.log('click');
-            var choice = confirm('Anda yakin akan menghapus ?');
-            if(choice){
-                window.location = '{{ URL::to('/') }}'+'/admin/oss/material/'+id+'/delete';
-            }
         }
     </script>
 @stop

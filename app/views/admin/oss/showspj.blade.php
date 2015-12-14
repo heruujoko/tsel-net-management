@@ -7,7 +7,7 @@
             <strong>On Site Support</strong>
         </li>
         <li class="active">
-            <strong>Material</strong>
+            <strong>SPJ Bantek</strong>
         </li>
     </ol>
 @stop
@@ -91,8 +91,8 @@
                     </table>
                 </div>
                 <div id="tab-2" class="tab-pane">
-                    {{ Form::open(array('url' => URL::to('/').'/admin/oss/material' , 'class' => 'form form-horizontal')) }}
-                        <div class="col-md-6">
+                    {{ Form::open(array('url' => URL::to('/').'/admin/oss/spj' , 'class' => 'form form-horizontal')) }}
+                        <div class="col-md-10">
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="namasite">Nama Site</label>
                                 <div class="col-md-6">
@@ -110,26 +110,54 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="tanggal">Tanggal</label>
                                 <div class="col-md-6">
-                                    <input class="datepicker form-control" data-date-format="mm/dd/yyyy" name="tanggal">
+                                    <input class="datepicker form-control" data-date-format="mm/dd/yyyy" name="tanggal" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" for="permasalahan">Permasalahan</label>
+                                <label class="control-label col-md-3" for="permasalahan">Nama Bantek</label>
                                 <div class="col-md-6">
-                                    <textarea class="form-control" name="permasalahan" id="permasalahan" required></textarea>
+                                    <select class="chosen form-control" name="bantek" required>
+                                        @foreach($bantek as $b)
+                                            <option value="{{ $b->id }}">{{ $b->nama }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" for="action">Action</label>
+                                <label class="control-label col-md-3" for="action">Berangkat / Mulai</label>
                                 <div class="col-md-6">
-                                    <textarea class="form-control" name="action" id="action" required></textarea>
+                                    <input type="text" class="datepicker form-control" name="mulai" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                              {{ Form::submit('Save', array('class'=>'btn btn-primary col-md-offset-3')) }}
+                                <label class="control-label col-md-3" for="action">Kembali / Selesai</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="datepicker form-control" name="selesai" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="transport">Transportasi</label>
+                                <div class="col-md-6">
+                                    <select class="chosen form-control" id="transport" name="transport">
+                                        <option value="no">Tidak Ada</option>
+                                        <option value="darat">Darat</option>
+                                        <option value="laut">Laut</option>
+                                        <option value="udara">Udara</option>
+                                    </select>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="showbiaya()">
+                                    Tambah Biaya Transport
+                                </button>
+                                </div>
+                            </div>
+                            <div class="form-group" id="formbiaya">
+                                <label class="control-label col-md-3" for="">Biaya Transport</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="col-md-6 form-control" name="kode_sl_trans" id="biayatrans" placeholder="Kode Shopping List">
+                                    <input type="text" class="col-md-6 form-control" name="deskripsi_sl_trans" id="biayatrans" placeholder="Deskripsi">
+                                    <input type="text" class="col-md-6 form-control" name="satuan_sl_trans" id="biayatrans" placeholder="Satuan">
+                                    <input type="text" class="col-md-6 form-control" name="harga_sl_trans" id="biayatrans" placeholder="Biaya Transport">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="shoplist">Shopping List</label>
                                 <div class="col-md-6">
@@ -169,6 +197,9 @@
                                         @endforeach
                                     </select>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                              {{ Form::submit('Save', array('class'=>'btn btn-primary col-md-offset-3')) }}
                             </div>
                         </div>
                     {{ Form::close() }}
@@ -261,6 +292,7 @@
     <script src="{{ URL::to('/') }}/bower_components/numeral/numeral.js"></script>
     <script type="text/javascript" src="{{ URL::to('/') }}/bower_components/moment/moment.js"></script>
     <script type="text/javascript">
+        $('#formbiaya').hide();
         $('.datepicker').datepicker({
             
         });
@@ -321,6 +353,10 @@
             if(choice){
                 window.location = '{{ URL::to('/') }}'+'/admin/oss/material/'+id+'/delete';
             }
+        }
+
+        function showbiaya(){
+            $('#formbiaya').show();
         }
     </script>
 @stop
