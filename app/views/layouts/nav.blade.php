@@ -18,6 +18,34 @@
     </li>
 @endif
 
+@if($active == 'oss')
+    @if(isset($material))
+    <li class="active">
+        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">OSS</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse in">
+            <li class="active"><a href="/admin/oss/material">OSS Material</a></li>
+            <li><a href="/admin/oss/spj">OSS SPJ Bantek</a></li>
+        </ul>
+    </li>
+    @elseif(isset($spj))
+    <li class="active">
+        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse in">
+            <li><a href="/admin/oss/material">OSS Material</a></li>
+            <li class="active"><a href="/admin/oss/spj">OSS SPJ Bantek</a></li>
+        </ul>
+    </li>
+    @endif
+@else
+    <li class="">
+        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse ">
+            <li><a href="/admin/oss/material">OSS Material</a></li>
+            <li><a href="/admin/oss/spj">OSS SPJ Bantek</a></li>
+        </ul>
+    </li>    
+@endif
+
 @if($active == 'bantek')
     <li class="active">
         <a href="{{ URL::to('/admin/bantek') }}"><i class="fa fa-users"></i> <span class="nav-label">Bantek</span> </a>
