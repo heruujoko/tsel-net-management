@@ -345,6 +345,13 @@
 			return Redirect::to('/admin/oss/spj');
 		}
 
+		public function deletespj($id){
+			$oss = OSS::find($id)->delete();
+			$rel = OSShop::where('oss_id','=',$id)->delete();
+			Session::flash('success' , 'Data telah dihapus.');
+			return Redirect::to('/admin/oss/spj');	
+		}
+
 	}
 
 ?>
