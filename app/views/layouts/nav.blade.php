@@ -38,12 +38,22 @@
     @endif
 @else
     <li class="">
-        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
+        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">OSS</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse ">
             <li><a href="/admin/oss/material">OSS Material</a></li>
             <li><a href="/admin/oss/spj">OSS SPJ Bantek</a></li>
         </ul>
     </li>    
+@endif
+
+@if($active == 'fpl')
+    <li class="active">
+        <a href="{{ URL::to('/admin/fpl') }}"><i class="fa fa-briefcase"></i> <span class="nav-label">FPL</span> </a>
+    </li>
+@else
+    <li class="">
+        <a href="{{ URL::to('/admin/fpl') }}"><i class="fa fa-briefcase"></i> <span class="nav-label">FPL</span> </a>
+    </li>
 @endif
 
 @if($active == 'bantek')

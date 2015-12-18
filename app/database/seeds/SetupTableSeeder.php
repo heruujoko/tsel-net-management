@@ -15,6 +15,24 @@ class SetupTableSeeder extends Seeder {
             'lokasi_kerja_id' => 1
         ));
 
+        User::create(array(
+            'email' => 'heruujoko@yahoo.com',
+            'password' => Hash::make('12345'),
+            'nama' => 'Heru Joko',
+            'jabatan' => 'Manager No',
+            'role' => 'no',
+            'lokasi_kerja_id' => 1
+        ));
+
+        User::create(array(
+            'email' => 'heruujoko@tsel-no.com',
+            'password' => Hash::make('12345'),
+            'nama' => 'Joko',
+            'jabatan' => 'Operational NO',
+            'role' => 'no',
+            'lokasi_kerja_id' => 2
+        ));
+
         LokasiKerja::create(array(
         	'nama' => 'Palu'
         ));
@@ -22,6 +40,8 @@ class SetupTableSeeder extends Seeder {
         LokasiKerja::create(array(
         	'nama' => 'Toli-toli'
         ));
+
+        
     }
 
 }
