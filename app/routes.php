@@ -48,7 +48,7 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 
 	Route::resource('/fpl', 'FPLController', array('except' => array('show', 'create', 'destroy')));
 	// method destroy lokasi(id)
-	Route::get('/fpl/{id}/delete', 'LokasiController@destroy');
+	Route::get('/fpl/{id}/delete', 'FPLController@destroy');
 });
 
 //route ajax form

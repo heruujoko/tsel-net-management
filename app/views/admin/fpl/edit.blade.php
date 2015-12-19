@@ -111,7 +111,19 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">TRX ID</label>
                             <div class="col-md-6">
-                                <input class="form-control" name="trx_id">
+                                <input class="form-control" name="trx_id" value="{{ $fpl->trx_id }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Periode TRX ID</label>
+                            <div class="col-md-6">
+                                <input class="form-control" name="periode_trx_id" value="{{ $fpl->periode_trx_id }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">No Acc</label>
+                            <div class="col-md-6">
+                                <input class="form-control" name="no_acc" value="{{ $fpl->no_acc }}">
                             </div>
                         </div>
                         <div class="form-group">
