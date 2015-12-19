@@ -45,9 +45,17 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::get('/oss/spj/{id}/edit' , 'OSSController@editspj');
 	Route::post('/oss/spj/{id}/update' , 'OSSController@updatespj');
 	Route::get('/oss/spj/{id}/delete' , 'OSSController@deletespj');
+
+	Route::resource('/fpl', 'FPLController', array('except' => array('show', 'create', 'destroy')));
+	// method destroy lokasi(id)
+	Route::get('/fpl/{id}/delete', 'FPLController@destroy');
 });
 
 //route ajax form
 
 Route::post('/ajax/mastertp/create' , 'MastertpController@storefromajax');
 Route::post('/ajax/shoplist/create' , 'ShoplistController@storefromajax');
+Route::post('/ajax/fpl/perbaikan/create' , 'FPLPerbaikanController@storefromajax');
+Route::post('/ajax/fpl/pembelian/create' , 'FPLPembelianController@storefromajax');
+Route::post('/ajax/fpl/kebutuhan/create' , 'FPLKebutuhanController@storefromajax');
+Route::post('/ajax/fpl/spec/create' , 'FPLSpecController@storefromajax');
