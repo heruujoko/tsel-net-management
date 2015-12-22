@@ -47,8 +47,12 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::get('/oss/spj/{id}/delete' , 'OSSController@deletespj');
 
 	Route::resource('/fpl', 'FPLController', array('except' => array('show', 'create', 'destroy')));
-	// method destroy lokasi(id)
+	// method destroy fpl(id)
 	Route::get('/fpl/{id}/delete', 'FPLController@destroy');
+
+	Route::resource('/spph', 'SPPHController', array('except' => array('show', 'create', 'destroy')));
+	// method destroy spph(id)
+	Route::get('/spph/{id}/delete', 'SPPHController@destroy');
 });
 
 //route ajax form
