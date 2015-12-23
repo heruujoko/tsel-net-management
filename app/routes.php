@@ -53,6 +53,10 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::resource('/spph', 'SPPHController', array('except' => array('show', 'create', 'destroy')));
 	// method destroy spph(id)
 	Route::get('/spph/{id}/delete', 'SPPHController@destroy');
+
+	Route::resource('/surattugas', 'SuratTugasController', array('except' => array('show', 'create', 'destroy')));
+	// method destroy surattugas(id)
+	Route::get('/surattugas/{id}/delete', 'SuratTugasController@destroy');
 });
 
 //route ajax form
@@ -63,3 +67,5 @@ Route::post('/ajax/fpl/perbaikan/create' , 'FPLPerbaikanController@storefromajax
 Route::post('/ajax/fpl/pembelian/create' , 'FPLPembelianController@storefromajax');
 Route::post('/ajax/fpl/kebutuhan/create' , 'FPLKebutuhanController@storefromajax');
 Route::post('/ajax/fpl/spec/create' , 'FPLSpecController@storefromajax');
+Route::post('/ajax/st/activity/create' , 'STActivityController@storefromajax');
+Route::post('/ajax/bantek/create' , 'BantekController@storefromajax');
