@@ -43,4 +43,14 @@ class BantekController extends \BaseController {
 		Session::flash('success' , 'Data telah dihapus');
 		return Redirect::to('admin/bantek');
 	}
+
+	public function storefromajax()
+	{
+		$bantek = new Bantek;
+		$bantek->nama = Input::get('nama');
+		$bantek->hp = Input::get('hp');
+		$bantek->perusahaan = Input::get('perusahaan');
+		$bantek->save();
+		return Response::json($bantek);
+	}
 }
