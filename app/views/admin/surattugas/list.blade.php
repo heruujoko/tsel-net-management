@@ -341,7 +341,7 @@
             console.log('click');
             var choice = confirm('Anda yakin akan menghapus ?');
             if(choice){
-                window.location = '{{ URL::to('/') }}'+'/admin/spph/'+id+'/delete';
+                window.location = '{{ URL::to('/') }}'+'/admin/surattugas/'+id+'/delete';
             }
         }
     </script>

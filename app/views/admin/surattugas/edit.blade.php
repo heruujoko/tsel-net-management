@@ -52,7 +52,8 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Bantek</label>
                             <div class="col-md-6">
-                                <select multiple class="chosen form-control">
+                                <select multiple class="chosen form-control" name="bantek[]">
+                                    @if(count($surat->banteks) > 0)
                                     @foreach($bantek as $b)
                                         @foreach($surat->banteks as $sb)
                                             @if($b->id == $sb->id )
@@ -62,20 +63,43 @@
                                             @endif
                                         @endforeach
                                     @endforeach
+                                    @else
+                                        @foreach($bantek as $b)
+                                            <option value="{{ $b->id }}">{{ $b->nama }} - {{ $b->perusahaan }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3">Activity</label>
+                            <label class="control-label col-md-3">Activity</label>
                             <div class="col-md-6">
-                                <div id="list-activity"></div>
-                                <input type="hidden" name="activity" id="activity">
+                                <div id="list-activity">
+                                    @foreach($surat->activities as $act)
+                                        <p id='ac-{{ $act->id }}'>{{ $act->activity }}<a onclick="hapusActivity('{{ $act->id }}')"> hapus</a></p>
+                                    @endforeach
+                                </div>
+                                <input type="hidden" name="activity" id="activity" value="{{ $activity_ids }}">
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal7">
                                     Tambah activity baru
                                     </button>
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal8">
                                     Tambah site baru
                                 </button>        
+                            </div>
+                        </div>    
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Menyetujui</label>
+                            <div class="col-md-6">
+                                <select class="form-control chosen" name="menyetujui">
+                                    @foreach($user_no as $no)
+                                        @if($no->id == $surat->setuju->id )
+                                            <option selected value="{{ $no->id }}">{{ $no->nama }} - {{ $no->jabatan }}</option>
+                                        @else
+                                            <option value="{{ $no->id }}">{{ $no->nama }} - {{ $no->jabatan }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -88,6 +112,109 @@
         </div>
     </div>
 </div>
+</div>
+
+<div class="modal inmodal fade in" id="myModal6" tabindex="-1" role="dialog" aria-hidden="true" style="padding-left: 0px;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Bantek</h4>
+            </div>
+            <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label">Nama</label>
+                        <input type="text" class="form-control" id="ajaxbantek-nama">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">HP</label>
+                        <input type="text" class="form-control" id="ajaxbantek-hp">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Perusahaan</label>
+                        <input type="text" class="form-control" id="ajaxbantek-perusahaan">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                <button onclick="newBantek()" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal fade in" id="myModal7" tabindex="-1" role="dialog" aria-hidden="true" style="padding-left: 0px;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Tambah Activity Baru</h4>
+            </div>
+            <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label">Nama Site</label>
+                        <div class="">
+                            <select class="form-control" id="ajaxactivity-site">
+                                @foreach($sites as $site)
+                                    <option value="{{ $site->id }}">{{ $site->sitelocation }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Mulai</label>
+                        <div class="">
+                            <input class="form-control datepicker" id="ajaxactivity-mulai">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Selesai</label>
+                        <div class="">
+                            <input class="form-control datepicker" id="ajaxactivity-selesai">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Activity</label>
+                        <div class="">
+                            <input class="form-control" id="ajaxactivity-activity">
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                <button onclick="newActivity()" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal fade in" id="myModal8" tabindex="-1" role="dialog" aria-hidden="true" style="padding-left: 0px;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Tambah Site Baru</h4>
+            </div>
+            <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label">Nama Site</label>
+                        <div class="">
+                            <input class="form-control" for="ajaxnamasite" id="ajaxnamasite" name="ajaxnamasite">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Nama BTS</label>
+                        <div class="">
+                            <input class="form-control" for="ajaxnamabts" id="ajaxnamabts" name="ajaxnamabts">
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                <button onclick="newMastertp()" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>
 @stop
 
