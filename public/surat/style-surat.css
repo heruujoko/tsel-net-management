@@ -1,0 +1,113 @@
+@charset "utf-8";
+@import 'bootstrap.min.css';
+
+.wrap {
+	margin:0 auto;
+	max-width:720px;
+	min-height:700px;
+	margin-top:10px;
+	margin-bottom:20px;
+}
+.border {
+	border:solid 2px black;
+	width: 100%;
+	height: auto;
+}
+.kop {
+	 height:70px;
+}
+.kop-kiri {
+	height:100%;
+	background-size:contain;
+	width:60%;
+	background-repeat:no-repeat;
+	background-image:url('tsel.jpg');
+}
+.kop-kanan {
+	height:50%;
+	background-size:contain;
+	width:40%;
+	border:solid 1px #000000;
+	color: black;
+	padding: 7px;
+}
+
+.head {
+	font-weight: bold;
+	margin:0;
+	padding:0;
+	font-size: 20px;
+	text-align: center;
+	color:white;
+	background-color: black;
+	width: 100%;
+	min-height: 75px;
+}
+.isinya {
+	text-align: justify;
+	padding: 5px;
+	width:100%;
+	height:auto;
+}
+.tbl {
+	margin:0 auto;
+}
+.tbl td {
+	padding:4px;
+}
+.tbl-2 {
+	width:95%;
+	margin:0 auto;
+}
+.tbl-2 th {
+	text-align: center !important;
+}
+.tbl-2 td {
+	padding: 5px;
+}
+.keterangan {
+	margin-left: 30px;
+	width:100%;
+	min-height: 100px;
+}
+
+/* ===== signature css ===== */
+
+.signature {
+	width: 100%;
+	min-height: 100px;
+	margin-top: 10px;
+}
+.tbl-signature {
+	width: 100%;
+}
+.tbl-signature th {
+	background-color: black;
+	color: white;
+	text-align: center;
+}
+
+.tbl-signature td{
+	padding:10px;
+}
+.content-signature {
+	text-align: center;
+	border:solid 2px black;
+	width: 100%;
+	height: auto;
+}
+.confirm-signature {
+	margin-top:5px;
+	width: 100%;
+	border: 2px solid black;
+	min-height: 100px;
+}
+.confirm-signature table{
+	width: 100%;
+	text-align: center;
+}
+.confirm-signature table tr td p {
+	font-weight: bold;
+	padding:0 !important;
+	margin:0 !important;
+}

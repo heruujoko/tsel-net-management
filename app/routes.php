@@ -28,3 +28,10 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	// method destroy lokasi(id)
 	Route::get('/lokasikerja/{id}/delete', 'LokasiController@destroy');
 });
+
+// template surat
+Route::group(array('prefix'=>'surat'), function(){
+	Route::get('/oss_bantek', function(){
+		return View::make('templatesurat.oss_bantek');
+	});
+});
