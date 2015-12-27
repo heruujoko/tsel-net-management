@@ -84,6 +84,18 @@
 				}
 			}
 
+			//delete unused
+			$nowact = array();
+			foreach ($st->activities as $key) {
+				array_push($nowact , $key->id);
+			}
+			$act = explode(",",$activities);
+
+			$diff_act = array_diff($nowact , $act);
+			foreach ($diff_act as $key) {
+				STActivity::where('id','=',$key)->delete();
+			}
+
 			STActivity::where('st_id','=','')->delete();	
 			Session::flash('success' , 'Data telah ubah.');
 			return Redirect::to('/admin/surattugas');	

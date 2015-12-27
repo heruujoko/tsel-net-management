@@ -95,14 +95,29 @@
 			$data['active'] = 'fpl';
 			$data['user_no'] = User::where('role' , '=', 'no')->get();
 			$data['fpl'] = FPL::find($id);
+			$perbaikanids = '';
+			foreach ($data['fpl']->perbaikans as $key) {
+				$perbaikanids .= $key->id.',';	
+			}
+			$data['perbaikanids'] = $perbaikanids;
+			$pembelianids = '';
+			foreach ($data['fpl']->pembelians as $key) {
+				$pembelianids .= $key->id.',';	
+			}
+			$data['pembelianids'] = $pembelianids;
+			$kebutuhanids = '';
+			foreach ($data['fpl']->kebutuhans as $key) {
+				$kebutuhanids .= $key->id.',';	
+			}
+			$data['kebutuhanids'] = $kebutuhanids;
+			$specids = '';
+			foreach ($data['fpl']->specs as $key) {
+				$specids .= $key->id.',';	
+			}
+			$data['specids'] = $specids;
 			return View::make('admin.fpl.edit' , $data);
 		}
 		public function update($id){
-
-			FPLSpec::where('fpl_id','=','')->delete();
-			FPLKebutuhan::where('fpl_id','=','')->delete();
-			FPLPembelian::where('fpl_id','=','')->delete();
-			FPLPerbaikan::where('fpl_id' , '=' , '')->delete();
 
 			$fpl = FPL::find($id);
 			$fpl->id_pemohon = Auth::user()->id;
@@ -117,7 +132,6 @@
 			$fpl->user_menyetujui = Input::get('menyetujui');
 			$fpl->save();
 
-			FPLPerbaikan::where('fpl_id' , '=' , $id)->delete();
 			$listperbaikan = Input::get('ids_perbaikan');
 			if($listperbaikan != ''){
 				$listperbaikan = substr($listperbaikan, 0, -1);
@@ -131,7 +145,18 @@
 				}
 			}	
 
-			FPLPembelian::where('fpl_id','=',$id)->delete();
+			//delete unused
+			$nowperbaikan = array();
+			foreach ($fpl->perbaikans as $key) {
+				array_push($nowperbaikan , $key->id);
+			}
+			$perbaikan = explode(",",$listperbaikan);
+
+			$diff_perbaikan = array_diff($nowperbaikan , $perbaikan);
+			foreach ($diff_perbaikan as $key) {
+				FPLPerbaikan::where('id','=',$key)->delete();
+			}
+
 			$listpembelian = Input::get('ids_pembelian');
 			if($listpembelian != ''){
 				$listpembelian = substr($listpembelian, 0, -1);
@@ -145,7 +170,18 @@
 				}
 			}
 
-			FPLKebutuhan::where('fpl_id','=',$id)->delete();
+			//delete unused
+			$nowpembelian = array();
+			foreach ($fpl->pembelians as $key) {
+				array_push($nowpembelian , $key->id);
+			}
+			$pembelian = explode(",",$listpembelian);
+
+			$diff_pembelian = array_diff($nowpembelian , $pembelian);
+			foreach ($diff_pembelian as $key) {
+				FPLPembelian::where('id','=',$key)->delete();
+			}
+
 			$listkebutuhan = Input::get('ids_kebutuhan');
 			if($listkebutuhan != ''){
 				$listkebutuhan = substr($listkebutuhan, 0, -1);
@@ -159,7 +195,18 @@
 				}
 			}
 
-			FPLSpec::where('fpl_id','=',$id)->delete();
+			//delete unused
+			$nowkebutuhan = array();
+			foreach ($fpl->kebutuhans as $key) {
+				array_push($nowkebutuhan , $key->id);
+			}
+			$kebutuhan = explode(",",$listkebutuhan);
+
+			$diff_kebutuhan = array_diff($nowkebutuhan , $kebutuhan);
+			foreach ($diff_kebutuhan as $key) {
+				FPLKebutuhan::where('id','=',$key)->delete();
+			}
+
 			$listspec = Input::get('ids_spec');
 			if($listspec != ''){
 				$listspec = substr($listspec, 0, -1);
@@ -173,6 +220,18 @@
 				}
 			}
 
+			//delete unused
+			$nowspec = array();
+			foreach ($fpl->specs as $key) {
+				array_push($nowspec , $key->id);
+			}
+			$spec = explode(",",$listspec);
+
+			$diff_spec = array_diff($nowspec , $spec);
+			foreach ($diff_spec as $key) {
+				FPLSpec::where('id','=',$key)->delete();
+			}
+
 			$mengetahui = Input::get('mengetahui');
 			MengetahuiFPL::where('fpl_id','=',$id)->delete();
 			for ($j=0; $j < count($mengetahui); $j++) { 
@@ -181,6 +240,12 @@
 				$stj->user_id = $mengetahui[$j];
 				$stj->save();	
 			}
+
+			// FPLSpec::where('fpl_id','=','')->delete();
+			// FPLKebutuhan::where('fpl_id','=','')->delete();
+			// FPLPembelian::where('fpl_id','=','')->delete();
+			// FPLPerbaikan::where('fpl_id' , '=' , '')->delete();
+
 			Session::flash('success' , 'Data telah diubah.');
 			return Redirect::to('/admin/fpl');
 		}

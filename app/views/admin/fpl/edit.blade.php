@@ -88,7 +88,7 @@
                                         <p id="b-{{ $keb->id }}">{{ $keb->details }} <a onclick="hapusPerbaikan('{{ $keb->id }}')">hapus</a></p>
                                     @endforeach                
                                 </div>
-                            <input type="hidden" name="ids_perbaikan" id="ids_perbaikan">
+                            <input type="hidden" name="ids_perbaikan" id="ids_perbaikan" value="{{ $perbaikanids }}">
                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal6">
                                 Tambah baru
                             </button>
@@ -102,7 +102,7 @@
                                     <p id="bl-{{ $keb->id }}">{{ $keb->details }} <a onclick="hapusPembelian('{{ $keb->id }}')">hapus</a></p>
                                 @endforeach                      
                             </div>
-                            <input type="hidden" name="ids_pembelian" id="ids_pembelian">
+                            <input type="hidden" name="ids_pembelian" id="ids_pembelian" value="{{ $pembelianids }}">
                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal7">
                                 Tambah baru
                             </button>
@@ -134,7 +134,7 @@
                                         <p id="k-{{ $keb->id }}">{{ $keb->details }} <a onclick="hapusKebutuhan('{{ $keb->id }}')">hapus</a></p>
                                     @endforeach                    
                                 </div>
-                                <input type="hidden" name="ids_kebutuhan" id="ids_kebutuhan">
+                                <input type="hidden" name="ids_kebutuhan" id="ids_kebutuhan" value="{{ $kebutuhanids }}">
                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal8">
                                     Tambah baru
                                 </button>
@@ -148,7 +148,7 @@
                                         <p id="s-{{ $keb->id }}">{{ $keb->details }} <a onclick="hapusSpec('{{ $keb->id }}')">hapus</a></p>
                                     @endforeach                
                                 </div>
-                                <input type="hidden" name="ids_spec" id="ids_spec">
+                                <input type="hidden" name="ids_spec" id="ids_spec" value="{{ $specids }}">
                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal9">
                                     Tambah baru
                                 </button>
