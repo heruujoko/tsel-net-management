@@ -118,6 +118,30 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                              <label class="control-label col-md-3" for="jabatan">Level Jabatan</label>
+                              <div class="col-md-6">
+                                <select class="form-control chosen" name="level_jabatan">
+                                    <option value="manager">Manager</option>
+                                    <option value="spv">SPV</option>
+                                    <option value="staff">Staff</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox col-md-3 col-md-offset-3">
+                                  <label>
+                                      <input type="checkbox" name="is_manager_utama"> <strong>Adalah Manager Utama</strong>   
+                                  </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox col-md-3 col-md-offset-3">
+                                  <label>
+                                      <input type="checkbox" name="can_be_poh"> <strong>Dapat Menjadi POH</strong> 
+                                  </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label col-md-3" for="cluster">Cluster</label>
                                 <div class="col-md-6">
                                     <input class="form-control" name="cluster" id="cluster" required>

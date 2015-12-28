@@ -20,6 +20,9 @@ class UserController extends \BaseController {
 		$user->lokasi_kerja_id = Input::get('lokasi');
 		$user->bank = Input::get('bank');
 		$user->no_rekening = Input::get('rekening');
+		$user->level_jabatan = Input::get('level_jabatan');
+		$user->is_manager_utama = Input::has('is_manager_utama');
+		$user->can_be_poh = Input::has('can_be_poh');
 		$user->save();
 
 		Session::flash('success' , 'Data telah disimpan');
@@ -47,6 +50,9 @@ class UserController extends \BaseController {
 		$user->lokasi_kerja_id = Input::get('lokasi');
 		$user->bank = Input::get('bank');
 		$user->no_rekening = Input::get('rekening');
+		$user->level_jabatan = Input::get('level_jabatan');
+		$user->is_manager_utama = Input::has('is_manager_utama');
+		$user->can_be_poh = Input::has('can_be_poh');
 		$user->save();
 
 		Session::flash('success' , 'Data telah diperbarui');

@@ -19,6 +19,9 @@ class CreateUsersTable extends Migration {
 			$table->string('nama');
 			$table->string('nik');
 			$table->string('jabatan');
+			$table->string('level_jabatan');
+			$table->boolean('is_manager_utama');
+			$table->boolean('can_be_poh');
 			$table->string('role');
 			$table->string('cluster');
 			$table->integer('lokasi_kerja_id');
