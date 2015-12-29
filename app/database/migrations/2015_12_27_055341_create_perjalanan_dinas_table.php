@@ -14,7 +14,7 @@ class CreatePerjalananDinasTable extends Migration {
 	{
 		Schema::create('perjalanan_dinas' , function($table){
 			$table->increments('id');
-			$table->string('nama');
+			$table->integer('user_id');
 			$table->string('kota_tujuan');
 			$table->text('kegiatan');
 			$table->date('tanggal_berangkat');

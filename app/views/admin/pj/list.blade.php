@@ -67,7 +67,7 @@
                             @foreach($pjs as $pj)
                                 <tr>
                                     <td>{{ $pj->id }}</td>
-                                    <td>{{ $pj->nama }}</td>
+                                    <td>{{ $pj->user->nama }}</td>
                                     <td>{{ $pj->kota_tujuan }}</td>
                                     <td>{{ $pj->tanggal_berangkat }}</td>
                                     <td>{{ $pj->tanggal_kembali }}</td>
@@ -95,7 +95,11 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="nama">Nama</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" name="nama" id="nama" required>
+                                    <select class="form-control chosen" name="nama" id="nama" required>
+                                        @foreach($users as $us)
+                                            <option value="{{ $us->id }}">{{ $us->nama }} - {{ $us->jabatan }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -133,8 +137,8 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="jenis_uhpd">Jenis UHPD</label>
                                 <div class="col-md-6">
-                                    <input type="radio" name="jenis_uhpd" value="full"> Full
-                                    <input type="radio" name="jenis_uhpd" value="mobil operasional"> Mobil Operasional
+                                    <input type="radio" name="jenis_uhpd" value="darat"> Darat
+                                    <input type="radio" name="jenis_uhpd" value="udara"> Udara
                                     <input type="radio" name="jenis_uhpd" value="sebagian"> Sebagian
                                 </div>
                             </div>

@@ -53,7 +53,15 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="nama">Nama</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" name="nama" id="nama" value="{{ $pj->nama }}" required>
+                                    <select class="form-control chosen" name="nama" id="nama" required>
+                                        @foreach($users as $us)
+                                            @if($pj->user->id == $us->id)
+                                                <option selected value="{{ $us->id }}">{{ $us->nama }} - {{ $us->jabatan }}</option>
+                                            @else
+                                                <option value="{{ $us->id }}">{{ $us->nama }} - {{ $us->jabatan }}</option>
+                                            @endif    
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -103,15 +111,15 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="jenis_uhpd">Jenis UHPD</label>
                                 <div class="col-md-6">
-                                    @if($pj->jenis_uhpd == 'full')
-                                        <input type="radio" name="jenis_uhpd" value="full" checked=""> Full
+                                    @if($pj->jenis_uhpd == 'darat')
+                                        <input type="radio" name="jenis_uhpd" value="darat" checked=""> Darat
                                     @else
-                                        <input type="radio" name="jenis_uhpd" value="full"> Full
+                                        <input type="radio" name="jenis_uhpd" value="darat"> Darat
                                     @endif
-                                    @if($pj->jenis_uhpd == 'mobil operasional')
-                                        <input type="radio" name="jenis_uhpd" value="mobil operasional" checked=""> Mobil Operasional
+                                    @if($pj->jenis_uhpd == 'udara')
+                                        <input type="radio" name="jenis_uhpd" value="udara" checked=""> Udara
                                     @else
-                                        <input type="radio" name="jenis_uhpd" value="mobil operasional"> Mobil Operasional
+                                        <input type="radio" name="jenis_uhpd" value="udara"> Udara
                                     @endif
                                     @if($pj->jenis_uhpd == 'sebagian')
                                         <input type="radio" name="jenis_uhpd" value="sebagian" checked=""> Sebagian
