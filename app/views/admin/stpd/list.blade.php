@@ -1,10 +1,10 @@
 @extends('layouts.layout')
-@section('title', 'Perjalanan Dinas')
+@section('title', 'STPD')
 @section('breadcrumb')
-    <h2>Perjalanan Dinas</h2>
+    <h2>STPD</h2>
     <ol class="breadcrumb">
         <li class="active">
-            <strong>Perjalanan Dinas</strong>
+            <strong>STPD</strong>
         </li>
     </ol>
 @stop
@@ -44,8 +44,8 @@
     <div class="ibox-content">
         <div class="panel-options">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#tab-1">List Perjalanan Dinas</a></li>
-                <li><a data-toggle="tab" href="#tab-2">Create Perjalanan Dinas</a></li>
+                <li class="active"><a data-toggle="tab" href="#tab-1">List STPD</a></li>
+                <li><a data-toggle="tab" href="#tab-2">Create STPD</a></li>
             </ul>
         </div>
         <div class="panel-body">
@@ -59,28 +59,28 @@
                                 <th>Tujuan</th>
                                 <th>Berangkat</th>
                                 <th>Kembali</th>
-                                <th>Files</th>
+                                <th>Jumlah UHPD</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($pjs as $pj)
+                            @foreach($stpd as $pd)
                                 <tr>
-                                    <td>{{ $pj->id }}</td>
-                                    <td>{{ $pj->user->nama }}</td>
-                                    <td>{{ $pj->kota_tujuan }}</td>
-                                    <td>{{ $pj->tanggal_berangkat }}</td>
-                                    <td>{{ $pj->tanggal_kembali }}</td>
-                                    <td></td>
+                                    <td>{{ $pd->id }}</td>
+                                    <td>{{ $pd->user->nama }}</td>
+                                    <td>{{ $pd->tujuan_penugasan }}</td>
+                                    <td>{{ $pd->tanggal_berangkat }}</td>
+                                    <td>{{ $pd->tanggal_kembali }}</td>
+                                    <td class="price">{{ $pd->jumlah }}</td>
                                     <td>
                                       <div class="btn-group">
                                         <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Action <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                          <li><a href="{{ URL::to('/') }}/admin/perjalanandinas/{{ $pj->id }}/details">Details</a></li>
-                                          <li><a href="{{ URL::to('/') }}/admin/perjalanandinas/{{ $pj->id }}/edit">Edit</a></li>
-                                          <li><a onclick="popupdelete('{{ $pj->id }}')">Delete</a></li>
+                                          <li><a href="{{ URL::to('/') }}/admin/stpd/{{ $pd->id }}/details">Details</a></li>
+                                          <li><a href="{{ URL::to('/') }}/admin/stpd/{{ $pd->id }}/edit">Edit</a></li>
+                                          <li><a onclick="popupdelete('{{ $pd->id }}')">Delete</a></li>
                                         </ul>
                                       </div>
                                     </td>
@@ -90,88 +90,81 @@
                     </table>
                 </div>
                 <div id="tab-2" class="tab-pane">
-                    {{ Form::open(array('url' => 'admin/perjalanandinas' , 'class' => 'form form-horizontal')) }}
+                    {{ Form::open(array('url' => 'admin/stpd' , 'class' => 'form form-horizontal')) }}
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="nama">Nama</label>
                                 <div class="col-md-6">
-                                    <select class="form-control chosen" name="nama" id="nama" required>
-                                        @foreach($users as $us)
-                                            <option value="{{ $us->id }}">{{ $us->nama }} - {{ $us->jabatan }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="hidden" name="nama" value="{{ Auth::user()->id }}">
+                                    <label>{{ Auth::user()->nama }}</label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" for="tujuan">Kota Tujuan</label>
+                                <label class="control-label col-md-3" for="tujuan_penugasan">Tujuan Penugasan</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" name="tujuan" id="tujuan" required>
+                                    <input type="text" name="tujuan_penugasan" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="tanggal_berangkat">Tanggal Berangkat</label>
+                                <div class="col-md-6">
+                                    <input type="text" name="tanggal_berangkat" class="form-control datepicker">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="tanggal_kembali">Tanggal Kembali</label>
+                                <div class="col-md-6">
+                                    <input type="text" name="tanggal_kembali" class="form-control datepicker">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="kelas_kendaraan">Kelas Kendaraan</label>
+                                <div class="col-md-6">
+                                    <select name="kelas_kendaraan" class="chosen form-control">
+                                        <option value="darat">Darat</option>
+                                        <option value="laut">Laut</option>
+                                        <option value="udara">Udara</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="kegiatan">Kegiatan</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" name="kegiatan" id="kegiatan" required>
+                                    <textarea name="kegiatan" class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" for="pergi">Tanggal Pergi</label>
+                                <label class="control-label col-md-3" for="uhpd">Jenis UHPD</label>
                                 <div class="col-md-6">
-                                    <input class="form-control datepicker" name="pergi" id="pergi" required>
+                                    <input type="radio" value="darat" name="uhpd"> Darat
+                                    <input type="radio" value="sebagian" name="uhpd"> Sebagian
+                                    <input type="radio" value="udara" name="uhpd"> Udara 
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" for="kembali">Tanggal Kembali</label>
-                                <div class="col-md-6">
-                                    <input class="form-control datepicker" name="kembali" id="kembali" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3" for="kendaraan">Kendaraan</label>
-                                <div class="col-md-6">
-                                    <input type="radio" name="kendaraan" value="darat"> Darat
-                                    <input type="radio" name="kendaraan" value="laut"> Laut
-                                    <input type="radio" name="kendaraan" value="udara"> Udara
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3" for="jenis_uhpd">Jenis UHPD</label>
-                                <div class="col-md-6">
-                                    <input type="radio" name="jenis_uhpd" value="darat"> Darat
-                                    <input type="radio" name="jenis_uhpd" value="udara"> Udara
-                                    <input type="radio" name="jenis_uhpd" value="sebagian"> Sebagian
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3" for="trans_bandara">Transport Bandara</label>
+                                <label class="control-label col-md-3" for="trans_bandara">Bantuan Transport Udara</label>
                                 <div class="col-md-6">
                                     <input type="text" name="trans_bandara" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" for="">Biaya Hotel</label>
+                                <label class="control-label col-md-3" for="menugaskan">Menugaskan</label>
                                 <div class="col-md-6">
-                                    <input type="text" name="hotel_perhari" class="form-control" placeholder="biaya perhari">
-                                    <input type="text" name="hotel_hari" class="form-control" placeholder="lama dalam hari">
+                                    <select class="form-control chosen" name="menugaskan">
+                                    @foreach($user_no as $no)
+                                        <option value="{{ $no->id }}">{{ $no->nama }} - {{ $no->jabatan }}</option>
+                                    @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" for="">Biaya Pesawat</label>
+                                <label class="control-label col-md-3" for="mengetahui">Mengetahui</label>
                                 <div class="col-md-6">
-                                    <input type="text" name="pesawat_biaya" class="form-control" placeholder="biaya pesawat">
-                                    <input type="text" name="pesawat_kota" class="form-control" placeholder="kota tujuan">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3" for="">Biaya Lain</label>
-                                <div class="col-md-6">
-                                    <div id="list_biaya_lain">
-                                        
-                                    </div>
-                                    <input type="hidden" name="ids_lain" id="ids_lain">    
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal6">
-                                        Tambah baru
-                                    </button>
+                                    <select class="form-control chosen" name="mengetahui">
+                                    @foreach($user_no as $no)
+                                        <option value="{{ $no->id }}">{{ $no->nama }} - {{ $no->jabatan }}</option>
+                                    @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -222,43 +215,17 @@
         $('.datepicker').datepicker({
             
         });
+        $('.chosen').chosen({});
+        $('.price').each(function(){
+            var Pformat = numeral($(this).text()).format('0,0');
+            $(this).text('Rp '+Pformat);
+        });
         function popupdelete(id){
             console.log('click');
             var choice = confirm('Anda yakin akan menghapus ?');
             if(choice){
-                window.location = '{{ URL::to('/') }}'+'/admin/perjalanandinas/'+id+'/delete';
+                window.location = '{{ URL::to('/') }}'+'/admin/stpd/'+id+'/delete';
             }
-        }
-
-        function hapusLain(id){
-            var str = $('#ids_lain').val();
-            var res = str.replace(id+',' , '');
-            $('#ids_lain').val(res);
-            $('#pjl-'+id).hide();
-
-        }
-        function newLain(){
-            var formData = {
-                'details'  : $('#ajaxpj-keterangan').val(),
-                'biaya'  : $('#ajaxpj-biaya').val()
-            };
-
-            $.ajax({
-                url: "{{ URL::to('/') }}/ajax/pj/lain/create",
-                method: "POST",
-                data: formData,
-                success : function(output){
-                    console.log(output);
-                    $('#myModal6').modal('toggle');
-                    // window.location.reload();
-                    $('#list_biaya_lain').append("<p id='pjl-"+output.id+"'>"+output.detail+" <a onclick=\"hapusLain('"+output.id+"')\">hapus</a></p>");
-                    var spec = $('#ids_lain').val();
-                    $('#ids_lain').val(spec+output.id+',');
-                },
-                error: function(msg){
-                    console.log(msg);
-                }
-            })
         }
     </script>
 @stop

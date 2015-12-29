@@ -61,6 +61,10 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::resource('/perjalanandinas', 'PerjalananDinasController', array('except' => array('show', 'create', 'destroy')));
 	// method destroy perjalanandinas(id)
 	Route::get('/perjalanandinas/{id}/delete', 'PerjalananDinasController@destroy');
+
+	Route::resource('/stpd', 'STPDController', array('except' => array('show', 'create', 'destroy')));
+	// method destroy STPD(id)
+	Route::get('/stpd/{id}/delete', 'STPDController@destroy');
 });
 
 

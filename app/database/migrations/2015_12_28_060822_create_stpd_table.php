@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePerjalananDinasTable extends Migration {
+class CreateStpdTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,21 +12,22 @@ class CreatePerjalananDinasTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('perjalanan_dinas' , function($table){
+		Schema::create('stpd' , function($table){
 			$table->increments('id');
 			$table->integer('user_id');
-			$table->string('kota_tujuan');
-			$table->text('kegiatan');
+			$table->string('tujuan_penugasan');
 			$table->date('tanggal_berangkat');
 			$table->date('tanggal_kembali');
 			$table->string('kendaraan');
+			$table->text('kegiatan');
 			$table->string('jenis_uhpd');
-			$table->integer('jumlah_uhpd');
-			$table->integer('transport_bandara');
-			$table->integer('hari_hotel');
-			$table->integer('biaya_hotel');
-			$table->string('tujuan_pesawat');
-			$table->integer('biaya_pesawat');
+			$table->integer('uhpd');
+			$table->integer('trans_bandara');
+			$table->integer('jumlah');
+			$table->date('tanggal_stpd');
+			$table->integer('user_menugaskan');
+			$table->integer('user_mengetahui');
+			$table->integer('pd_id');
 			$table->timestamps();
 		});
 	}
@@ -38,7 +39,7 @@ class CreatePerjalananDinasTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('perjalanan_dinas');
+		Schema::drop('stpd');
 	}
 
 }

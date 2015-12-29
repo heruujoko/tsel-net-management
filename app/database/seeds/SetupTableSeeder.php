@@ -11,6 +11,9 @@ class SetupTableSeeder extends Seeder {
         	'password' => Hash::make('12345'),
         	'nama' => 'Admin Network App',
         	'jabatan' => 'admin',
+            'level_jabatan' => 'manager',
+            'is_manager_utama' => false,
+            'can_be_poh' => true,
         	'role' => 'admin',
             'lokasi_kerja_id' => 1
         ));
@@ -19,7 +22,10 @@ class SetupTableSeeder extends Seeder {
             'email' => 'heruujoko@yahoo.com',
             'password' => Hash::make('12345'),
             'nama' => 'Heru Joko',
-            'jabatan' => 'Manager No',
+            'jabatan' => 'SPV NO',
+            'level_jabatan' => 'spv',
+            'is_manager_utama' => false,
+            'can_be_poh' => true,
             'role' => 'no',
             'lokasi_kerja_id' => 1
         ));
@@ -29,6 +35,9 @@ class SetupTableSeeder extends Seeder {
             'password' => Hash::make('12345'),
             'nama' => 'Joko',
             'jabatan' => 'Operational NO',
+            'level_jabatan' => 'staff',
+            'is_manager_utama' => false,
+            'can_be_poh' => false,
             'role' => 'no',
             'lokasi_kerja_id' => 2
         ));
@@ -41,6 +50,10 @@ class SetupTableSeeder extends Seeder {
         	'nama' => 'Toli-toli'
         ));
 
+        Mastertp::create(array(
+            'sitelocation' => 'Palu',
+            'btsname' => 'PLW-01'
+        ));
         
     }
 

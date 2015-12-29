@@ -85,6 +85,50 @@
               </div>
             </div>
             <div class="form-group">
+              <label class="control-label col-md-3" for="jabatan">Level Jabatan</label>
+              <div class="col-md-6">
+                <select class="form-control chosen" name="level_jabatan">
+                  @if($user->level_jabatan == 'manager')
+                    <option value="manager" selected>Manager</option>
+                  @else
+                    <option value="manager">Manager</option>
+                  @endif
+                  @if($user->level_jabatan == 'spv')
+                    <option value="spv" selected>SPV</option>
+                  @else
+                    <option value="spv">SPV</option>
+                  @endif
+                  @if($user->level_jabatan == 'staff')
+                    <option value="staff" selected>Staff</option>
+                  @else
+                    <option value="staff">Staff</option>
+                  @endif
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox col-md-3 col-md-offset-3">
+                  <label>
+                    @if($user->is_manager_utama)
+                      <input type="checkbox" name="is_manager_utama" checked> <strong>Adalah Manager Utama</strong> 
+                    @else
+                      <input type="checkbox" name="is_manager_utama"> <strong>Adalah Manager Utama</strong> 
+                    @endif  
+                  </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox col-md-3 col-md-offset-3">
+                  <label>
+                    @if($user->can_be_poh)
+                      <input type="checkbox" name="can_be_poh" checked> <strong>Dapat Menjadi POH</strong> 
+                    @else
+                      <input type="checkbox" name="can_be_poh"> <strong>Dapat Menjadi POH</strong> 
+                    @endif  
+                  </label>
+                </div>
+            </div>
+            <div class="form-group">
               <label class="control-label col-md-3" for="cluster">Cluster</label>
               <div class="col-md-6">
                 <input class="form-control" name="cluster" id="cluster" value="{{ $user->cluster }}" required>
@@ -110,6 +154,7 @@
                   </select>
                 </div>
               </div>
+              
               <div class="form-group">
                 <label class="control-label col-md-3" for="bank">Bank</label>
                   <div class="col-md-6">

@@ -1,10 +1,10 @@
 @extends('layouts.layout')
-@section('title', 'Perjalanan Dinas')
+@section('title', 'STPD')
 @section('breadcrumb')
-    <h2>Perjalanan Dinas</h2>
+    <h2>STPD</h2>
     <ol class="breadcrumb">
         <li class="">
-            <p>Perjalanan Dinas</p>
+            <p>STPD</p>
         </li>
         <li class="active">
             <strong>edit</strong>
@@ -48,122 +48,118 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-10">
-                        {{ Form::open(array('method'=> 'PATCH', 'url' => 'admin/perjalanandinas/'.$pj->id.'' , 'class' => 'form form-horizontal')) }}
+                        {{ Form::open(array('method'=> 'PATCH', 'url' => 'admin/stpd/'.$stpd->id.'' , 'class' => 'form form-horizontal')) }}
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="nama">Nama</label>
                                 <div class="col-md-6">
-                                    <select class="form-control chosen" name="nama" id="nama" required>
-                                        @foreach($users as $us)
-                                            @if($pj->user->id == $us->id)
-                                                <option selected value="{{ $us->id }}">{{ $us->nama }} - {{ $us->jabatan }}</option>
-                                            @else
-                                                <option value="{{ $us->id }}">{{ $us->nama }} - {{ $us->jabatan }}</option>
-                                            @endif    
-                                        @endforeach
-                                    </select>
+                                    <input type="hidden" name="nama" value="{{ $stpd->user->id }}">
+                                    <label>{{ $stpd->user->nama }}</label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" for="tujuan">Kota Tujuan</label>
+                                <label class="control-label col-md-3" for="tujuan_penugasan">Tujuan Penugasan</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" name="tujuan" id="tujuan" value="{{ $pj->kota_tujuan }}" required>
+                                    <input type="text" name="tujuan_penugasan" class="form-control" value="{{ $stpd->tujuan_penugasan }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="tanggal_berangkat">Tanggal Berangkat</label>
+                                <div class="col-md-6">
+                                    <input type="text" name="tanggal_berangkat" class="form-control datepicker time" value="{{ $stpd->tanggal_berangkat }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="tanggal_kembali">Tanggal Kembali</label>
+                                <div class="col-md-6">
+                                    <input type="text" name="tanggal_kembali" class="form-control datepicker time" value="{{ $stpd->tanggal_kembali }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="kelas_kendaraan">Kelas Kendaraan</label>
+                                <div class="col-md-6">
+                                    <select name="kelas_kendaraan" class="chosen form-control">
+                                        @if($stpd->kendaraan == 'darat')
+                                            <option value="darat" selected>Darat</option>
+                                        @else
+                                            <option value="darat">Darat</option>
+                                        @endif
+                                        @if($stpd->kendaraan == 'laut')
+                                            <option value="laut" selected>Laut</option>
+                                        @else
+                                            <option value="laut">Laut</option>
+                                        @endif
+                                        @if($stpd->kendaraan == 'udara')
+                                            <option value="udara" selected>Udara</option>
+                                        @else
+                                            <option value="udara">Udara</option>
+                                        @endif
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="kegiatan">Kegiatan</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" name="kegiatan" id="kegiatan" value="{{ $pj->kegiatan }}" required>
+                                    <textarea name="kegiatan" class="form-control">{{ $stpd->kegiatan }}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" for="pergi">Tanggal Pergi</label>
+                                <label class="control-label col-md-3" for="uhpd">Jenis UHPD</label>
                                 <div class="col-md-6">
-                                    <input class="form-control datepicker time" name="pergi" id="pergi" value="{{ $pj->tanggal_berangkat }}" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3" for="kembali">Tanggal Kembali</label>
-                                <div class="col-md-6">
-                                    <input class="form-control datepicker time" name="kembali" id="kembali" value="{{ $pj->tanggal_kembali }}" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3" for="kendaraan">Kendaraan</label>
-                                <div class="col-md-6">
-                                    @if($pj->kendaraan == 'darat')
-                                        <input type="radio" name="kendaraan" value="darat" checked=""> Darat
+                                    @if($stpd->jenis_uhpd == 'darat')
+                                        <input type="radio" value="darat" name="uhpd" checked> Darat
                                     @else
-                                        <input type="radio" name="kendaraan" value="darat"> Darat
+                                        <input type="radio" value="darat" name="uhpd"> Darat
                                     @endif
-                                    @if($pj->kendaraan == 'laut')
-                                        <input type="radio" name="kendaraan" value="laut" checked=""> Laut
+                                    @if($stpd->jenis_uhpd == 'sebagian')
+                                        <input type="radio" value="sebagian" name="uhpd" checked> Sebagian
                                     @else
-                                        <input type="radio" name="kendaraan" value="laut"> Laut
+                                        <input type="radio" value="sebagian" name="uhpd"> Sebagian
                                     @endif
-                                    @if($pj->kendaraan == 'udara')
-                                        <input type="radio" name="kendaraan" value="udara" checked=""> Udara
+                                    @if($stpd->jenis_uhpd == 'udara')
+                                        <input type="radio" value="udara" name="uhpd" checked> Udara
                                     @else
-                                        <input type="radio" name="kendaraan" value="udara"> Udara
+                                        <input type="radio" value="udara" name="uhpd"> Udara
                                     @endif
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" for="jenis_uhpd">Jenis UHPD</label>
+                                <label class="control-label col-md-3" for="trans_bandara">Bantuan Transport Udara</label>
                                 <div class="col-md-6">
-                                    @if($pj->jenis_uhpd == 'darat')
-                                        <input type="radio" name="jenis_uhpd" value="darat" checked=""> Darat
-                                    @else
-                                        <input type="radio" name="jenis_uhpd" value="darat"> Darat
-                                    @endif
-                                    @if($pj->jenis_uhpd == 'udara')
-                                        <input type="radio" name="jenis_uhpd" value="udara" checked=""> Udara
-                                    @else
-                                        <input type="radio" name="jenis_uhpd" value="udara"> Udara
-                                    @endif
-                                    @if($pj->jenis_uhpd == 'sebagian')
-                                        <input type="radio" name="jenis_uhpd" value="sebagian" checked=""> Sebagian
-                                    @else
-                                        <input type="radio" name="jenis_uhpd" value="sebagian"> Sebagian
-                                    @endif
+                                    <input type="text" name="trans_bandara" class="form-control" value="{{ $stpd->trans_bandara }}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" for="trans_bandara">Transport Bandara</label>
+                                <label class="control-label col-md-3" for="menugaskan">Menugaskan</label>
                                 <div class="col-md-6">
-                                    <input type="text" name="trans_bandara" class="form-control" value="{{ $pj->transport_bandara }}">
+                                    <select class="form-control chosen" name="menugaskan">
+                                    @foreach($user_no as $no)
+                                        @if($stpd->menugaskan->id == $no->id)
+                                            <option value="{{ $no->id }}" selected>{{ $no->nama }} - {{ $no->jabatan }}</option>
+                                        @else
+                                            <option value="{{ $no->id }}">{{ $no->nama }} - {{ $no->jabatan }}</option>
+                                        @endif
+                                    @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" for="">Biaya Hotel</label>
+                                <label class="control-label col-md-3" for="mengetahui">Mengetahui</label>
                                 <div class="col-md-6">
-                                    <input type="text" name="hotel_perhari" class="form-control" placeholder="biaya perhari" value="{{ $pj->biaya_hotel }}">
-                                    <input type="text" name="hotel_hari" class="form-control" placeholder="lama dalam hari" value="{{ $pj->hari_hotel }}">
+                                    <select class="form-control chosen" name="mengetahui">
+                                    @foreach($user_no as $no)
+                                        @if($stpd->mengetahui->id == $no->id)
+                                            <option value="{{ $no->id }}" selected>{{ $no->nama }} - {{ $no->jabatan }}</option>
+                                        @else
+                                            <option value="{{ $no->id }}">{{ $no->nama }} - {{ $no->jabatan }}</option>
+                                        @endif
+                                    @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" for="">Biaya Pesawat</label>
-                                <div class="col-md-6">
-                                    <input type="text" name="pesawat_biaya" class="form-control" placeholder="biaya pesawat" value="{{ $pj->biaya_pesawat }}">
-                                    <input type="text" name="pesawat_kota" class="form-control" placeholder="kota tujuan" value="{{ $pj->tujuan_pesawat }}">
-                                </div>
+                              {{ Form::submit('Save', array('class'=>'btn btn-primary col-md-offset-3')) }}
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3" for="">Biaya Lain</label>
-                                <div class="col-md-6">
-                                    <div id="list_biaya_lain">
-                                        @foreach($pj->lainlain as $lain)
-                                            <p id='pjl-{{ $lain->id }}'>{{ $lain->detail }} <a onclick="hapusLain('{{ $lain->id }}')">hapus</a></p>
-                                        @endforeach
-                                    </div>
-                                    <input type="hidden" name="ids_lain" id="ids_lain" value="{{ $lain_ids }}">    
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal6">
-                                        Tambah baru
-                                    </button>
-                                </div>
-                            </div>    
-                        <div class="form-group">
-                          {{ Form::submit('Save', array('class'=>'btn btn-primary col-md-offset-3')) }}
                         </div>
                         {{ Form::close() }}   
                     </div>
