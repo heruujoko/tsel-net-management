@@ -4,13 +4,13 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="{{ URL::to('/') }}/surat/style-surat.css" rel="stylesheet" type="text/css">
-	<title>OSS BANTEK</title>
+	<title>OSS MATERIAL</title>
 </head>
 <body>
 	<div class="wrap">
 		<div class="kop">
 			<div class="kop-kiri pull-left"></div>
-			<div class="kop-kanan pull-right"> No. OSS : 174/Primatama-LWK/IV/2015 </div>
+			<div class="kop-kanan pull-right"> No. OSS : 222/KISEL-TLI/VII/2015 </div>
 		</div>
 		<div class="border">
 			<div class="head">
@@ -18,8 +18,8 @@
 				<span class="text-center">CORRECTIVE - ON SITE SUPPORT (OSS)</span>
 			</div>
 			<div class="isinya">
-				Pada hari ini <b>Kamis</b> tanggal <b>Sepuluh</b> bulan <b>Desember</b> tahun <b>Dua Ribu Lima Belas</b> (10-12-2015)
-				<b>PT.Telkomsel</b> memberikan perintah kepada <b>PT. Primatama</b> untuk melakukan  pekerjaan On Site
+				Pada hari ini <b>Rabu</b> tanggal <b>Dua Puluh Sembilan</b> bulan <b>Juli</b> tahun <b>Dua Ribu Lima Belas</b> (10-12-2015)
+				<b>PT.Telkomsel</b> memberikan perintah kepada <b>PT. KISEL</b> untuk melakukan  pekerjaan On Site
 				Support dengan rincian sebagai berikut :
 			</div>
 			<div class"row">
@@ -27,14 +27,14 @@
 					<tr>
 						<td width="149">Nama Site</td>
 						<td width="3">:</td>
-						<td width="195">-</td>
+						<td width="195">Palasa</td>
 						<td width="100">ID Site  </td>
-						<td width="132">: -</td>
+						<td width="132">: PGI011</td>
 					</tr>
 					<tr>
 						<td>Request Dari</td>
 						<td>:</td>
-						<td colspan="3">Fahri</td>
+						<td colspan="3">RTPO TOLITOLI</td>
 					</tr>
 					<tr>
 						<td>Jam Request</td>
@@ -70,8 +70,8 @@
 					<tr>
 						<td>PIC Pekerjaan</td>
 						<td>:</td>
-						<td>Hendra</td>
-						<td colspan="2">HP : 082111477771</td>
+						<td>Basri Marhabang</td>
+						<td colspan="2">HP : 082192622222</td>
 					</tr>
 					<tr>
 						<td>Type Gangguan</td>
@@ -100,15 +100,15 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>Biaya supporting troubleshooting luar cluster a.n Rusli Jaya</td>
-							<td>Pembayaran supporting troubleshooting luar cluster</td>
-							<td>Pembayaran Troubleshooting luar cluster</td>
-							<td>RKS 2.3.2.7</td>
-							<td>Rp 150.000</td>
+							<td>Genset Backbone startup failed</td>
+							<td>Penggantian Part Electrical Pump</td>
+							<td>Penggantian & material Electrical Pump merk Perkins 40 KVA</td>
+							<td>MEL.1.III.1</td>
+							<td>Rp.12.650.000,- (Sistem Reimburtsment)</td>
 						</tr>
 					</tbody>
 				</table>
-				<p class="keterangan">	Status/Kondisi Akhir : OK/NOK  Ket. :</p>
+				<p class="keterangan">	Status/Kondisi Akhir : OK/NOK     Ket. :</p>
 			</div><!-- /.row -->
 		</div><!-- /.border -->
 		<div class="signature">
@@ -128,15 +128,15 @@
 										<td><b>Diketahui</b></td>
 									</tr>
 									<tr>
-										<td height="50"><img src="" width="30%" height="100%"></td>
+										<td height="50"><img src="" height="100%"></td>
 										<td>&nbsp;</td>
 									</tr>
 									<tr>
-										<td height="23"><b><u>Fahri</u></b></td>
+										<td height="23"><b><u>Nathaniel Rombo</u></b></td>
 										<td><b><u>Habibi M Tau</u></b></td>
 									</tr>
 									<tr>
-										<td height="23">Spv. RTP Operation Luwuk</td>
+										<td height="23">Spv. RTP Operation Tolitoli</td>
 										<td>Mgr. Network Service Palu</td>
 									</tr>
 								</table>
@@ -159,10 +159,9 @@
 									</tr>
 									<tr>
 										<td height="50">&nbsp;</td>
-
 									</tr>
 									<tr>
-										<td height="23"><u><b>Hendra C. P.</b></u></td>
+										<td height="23"><u><b>Basri Marhabang</b></u></td>
 									</tr>
 									<tr>
 										<td height="23">Koordinator</td>
@@ -178,13 +177,18 @@
 					<div class="confirm-signature">
 						<table border="0">
 							<tr>
-								<td valign="top" height="100">Disetuji</td>
+								<td valign="top" height="100" colspan="2">Disetuji</td>
 							</tr>
 							<tr>
-								<td>
-								<p class="text-capitalize"><u>Edi Sucipto</u></p>
-								<p class="text-capitalize"> Manager Network Operation</p>
-								<p class="text-capitalize"> Support Sulawesi </p>
+								<td class="text-left">
+									<p class="text-capitalize"><u>Ronald Limoa</u></p>
+									<p class="text-capitalize"> Manager Core and Power</p>
+									<p class="text-capitalize"> Performance Assurance Sulawesi </p>
+								</td>
+								<td class="text-left">
+									<p class="text-capitalize"><u>Edi Sucipto</u></p>
+									<p class="text-capitalize"> Manager Network Operation</p>
+									<p class="text-capitalize"> Support Sulawesi </p>
 								</td>
 							</tr>
 						</table>

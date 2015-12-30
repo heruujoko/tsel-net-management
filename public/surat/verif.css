@@ -1,0 +1,117 @@
+@charset "utf-8";
+@import 'bootstrap.min.css';
+
+body {
+  font-family: Tahoma;
+}
+.wrap {
+  margin-left: auto;
+  margin-right: auto;
+  width:1000px;
+  min-height: 300px;
+}
+.wrap .row {
+  margin:0;
+  padding:10px;
+  border: 2px solid black;
+}
+.logo {
+  width:280px;
+  min-height: 100px;
+  background-repeat:no-repeat;
+  background-image:url('tsel.jpg');
+  margin-bottom: -30px;
+}
+.tbl, .tbl-2 {
+  width: 100%;
+}
+.tbl tr td,
+.tbl-2 tr td,
+.tbl thead tr th {
+  padding: 4px;
+}
+.no-padding{
+  padding:0 !important;
+}
+.no-margin {
+  margin:0 !important;
+}
+.underline {
+  border-bottom: 2px solid black;
+}
+.no-border {
+  border: 0px !important;
+}
+.bg-black {
+  background-color: black;
+  color: white;
+}
+.border-left {
+  border-left: 2px solid black;
+}
+.kotak {
+  width: 30px;
+  height: 20px;
+  text-align: center;
+  border: 2px solid black;
+}
+.kotak-x {
+  font-weight: bold;
+  width: 30px;
+  height: 20px;
+  text-align: center;
+  border: 2px solid black;
+}
+.kotak-x::before {
+  content: "X";
+}
+
+.kotak-2 {
+  width: 110px;
+  height: 25px;
+  text-align: center;
+  border: 2px solid black;
+}
+.kotak-x-2 {
+  font-weight: bold;
+  width: 110px;
+  height: 25px;
+  text-align: center;
+  border: 2px solid black;
+}
+.kotak-x-2::before {
+  content: "X";
+}
+
+.tengah {
+  text-align: center !important;
+}
+.wrap2 {
+  margin-left: auto;
+  margin-right: auto;
+  width:1000px;
+  height: auto;
+  border-bottom: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  text-align: center;
+}
+.wrap2 thead tr th {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+
+}
+.wrap2 tbody tr td {
+  padding:5px;
+}
+
+tr td.sign {
+  width: 20%;
+  vertical-align: top !important;
+  border:2px solid black;
+  text-align: center;
+  height: auto;
+}
