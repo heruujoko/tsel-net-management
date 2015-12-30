@@ -9,11 +9,6 @@
 			return View::make('admin.fpl.list' , $data);
 		}
 		public function store(){
-			
-			FPLSpec::where('fpl_id','=','')->delete();
-			FPLKebutuhan::where('fpl_id','=','')->delete();
-			FPLPembelian::where('fpl_id','=','')->delete();
-			FPLPerbaikan::where('fpl_id' , '=' , '')->delete();
 
 			$fpl = new FPL;
 			$fpl->id_pemohon = Auth::user()->id;
@@ -22,7 +17,7 @@
 			$fpl->no_ref_ga = Input::get('ref_ga');
 			$fpl->pic = Input::get('pic');
 			$fpl->trx_id = Input::get('trx_id');
-			$fpl->periode_trx_id = Input::get('periode_trx_id');
+			$fpl->periode_trx_id = Carbon::parse("01-".Input::get('periode_trx_id'));
 			$fpl->no_acc = Input::get('no_acc');
 			$fpl->jumlah_dan_estimasi = Input::get('jumlah_estimasi');
 			$fpl->user_menyetujui = Input::get('menyetujui');
@@ -126,7 +121,7 @@
 			$fpl->no_ref_ga = Input::get('ref_ga');
 			$fpl->pic = Input::get('pic');
 			$fpl->trx_id = Input::get('trx_id');
-			$fpl->periode_trx_id = Input::get('periode_trx_id');
+			$fpl->periode_trx_id = Carbon::parse("01-".Input::get('periode_trx_id'));
 			$fpl->no_acc = Input::get('no_acc');
 			$fpl->jumlah_dan_estimasi = Input::get('jumlah_estimasi');
 			$fpl->user_menyetujui = Input::get('menyetujui');

@@ -25,6 +25,11 @@
             color: #fff;
             background-color: #1ab394;
         }
+        .datepicker table tr td span.active:hover, .datepicker table tr td span.active:hover:hover, .datepicker table tr td span.active.disabled:hover, .datepicker table tr td span.active.disabled:hover:hover, .datepicker table tr td span.active:focus, .datepicker table tr td span.active:hover:focus, .datepicker table tr td span.active.disabled:focus, .datepicker table tr td span.active.disabled:hover:focus, .datepicker table tr td span.active:active, .datepicker table tr td span.active:hover:active, .datepicker table tr td span.active.disabled:active, .datepicker table tr td span.active.disabled:hover:active, .datepicker table tr td span.active.active, .datepicker table tr td span.active:hover.active, .datepicker table tr td span.active.disabled.active, .datepicker table tr td span.active.disabled:hover.active, .open .dropdown-toggle.datepicker table tr td span.active, .open .dropdown-toggle.datepicker table tr td span.active:hover, .open .dropdown-toggle.datepicker table tr td span.active.disabled, .open .dropdown-toggle.datepicker table tr td span.active.disabled:hover {
+            color: #fff;
+            background-color: #1ab394;
+            border-color: #285e8e;
+        }
     </style>
 @stop
 
@@ -117,7 +122,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Periode TRX ID</label>
                             <div class="col-md-6">
-                                <input class="form-control" name="periode_trx_id" value="{{ $fpl->periode_trx_id }}">
+                                <input class="form-control time monthPicker" id="mo" name="periode_trx_id" value="{{ $fpl->periode_trx_id }}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -301,8 +306,19 @@
         $('.time').each(function(){
             var Tformat = moment($(this).val()).format('L');
             $(this).val(Tformat);
+            
+        }).promise().done(function(){
+            var mof = $('#mo').val();
+            var mofmo = moment(mof, "MM/DD/YYYY");
+            var month_val = mofmo.format('MM')+"-"+mofmo.format('YYYY');
+            $('#mo').val(month_val);
             $('.datepicker').datepicker({
                 
+            });
+            $(".monthPicker").datepicker({ 
+                format: "mm-yyyy",
+                startView: "months", 
+                minViewMode: "months"
             });
         });
         $('.chosen').chosen();
