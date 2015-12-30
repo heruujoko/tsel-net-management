@@ -8,6 +8,7 @@
     <link href="{{ URL::to('/') }}/themes/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="{{ URL::to('/') }}/themes/css/animate.css" rel="stylesheet">
     <link href="{{ URL::to('/') }}/themes/css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ URL::to('/') }}/favicon.ico" />
     @section('css')
     @show
 </head>

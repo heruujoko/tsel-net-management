@@ -1,0 +1,22 @@
+@charset "utf-8";
+@import 'bootstrap.min.css';
+
+html,body {
+  font-family: Tahoma;
+}
+
+.container {
+  width: 800px !important;
+  background-color: white;
+  min-height: 900px;
+}
+
+.content {
+  margin-left: 90px;
+  margin-right: 30px;
+  margin-top: 130px;
+}
+
+.indent {
+  text-indent: 50px;
+}

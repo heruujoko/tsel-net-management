@@ -34,4 +34,30 @@ Route::group(array('prefix'=>'surat'), function(){
 	Route::get('/oss_bantek', function(){
 		return View::make('templatesurat.oss_bantek');
 	});
+	Route::get('/oss_material', function(){
+		return View::make('templatesurat.oss_material');
+	});
+	// bantek dengan biaya transport
+	Route::get('/oss_bantek_2', function(){
+		return View::make('templatesurat.oss_bantek_2');
+	});
+	Route::get('/fpl', function(){
+		return View::make('templatesurat.fpl');
+	});
+	Route::get('/rekapan_fpl', function(){
+		return View::make('templatesurat.fpl_rekapan');
+	});
+	Route::get('/spph', function(){
+		return View::make('templatesurat.spph');
+	});
+	Route::get('surat_tugas', function(){
+		return View::make('templatesurat.surat_tugas');
+	});
+	Route::get('/stpd', function(){
+		return View::make('templatesurat.STPD');
+	});
+	Route::get('/verification', function(){
+		return View::make('templatesurat.verification');
+	});
+
 });
