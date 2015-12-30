@@ -23,6 +23,7 @@
             background-color: #1ab394;
         }
     </style>
+    <script src="{{ URL::to('/') }}/counter/countdown.js"></script>
 @stop
 
 @section('content')
@@ -61,6 +62,7 @@
                                 <th>TRX ID</th>
                                 <th>No Account</th>
                                 <th>Periode TRX ID</th>
+                                <th>Timer</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -74,6 +76,21 @@
                                     <td>{{ $fp->trx_id }}</td>
                                     <td>{{ $fp->no_acc }}</td>
                                     <td>{{ $fp->periode_trx_id }}</td>
+                                    <td>
+                                        @if(Carbon::parse($fp->periode_trx_id)->diffInMonths(Carbon::now()) <= 2)
+                                        <script type="application/javascript">
+                                        var myCountdown1 = new Countdown({
+                                            time: 86400 * {{ Carbon::parse($fp->periode_trx_id)->addMonth(2)->diffInDays(Carbon::now()) }}, // 86400 seconds = 1 day
+                                            width:80, 
+                                            height:40,  
+                                            rangeHi:"day",
+                                            rangeLo:"hour",
+                                            style:"flip"    // <- no comma on last item!
+                                        });
+                                        </script>
+                                        @else
+                                        @endif
+                                    </td>
                                     <td>
                                       <div class="btn-group">
                                         <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -158,7 +175,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3">Periode TRX ID</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" name="periode_trx_id" placeholder="mm/yy">
+                                    <input class="form-control monthPicker" name="periode_trx_id" placeholder="mm/yy">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -458,5 +475,11 @@
                 window.location = '{{ URL::to('/') }}'+'/admin/fpl/'+id+'/delete';
             }
         }
+
+        $(".monthPicker").datepicker({ 
+            format: "mm-yyyy",
+            startView: "months", 
+            minViewMode: "months"
+        });
     </script>
 @stop

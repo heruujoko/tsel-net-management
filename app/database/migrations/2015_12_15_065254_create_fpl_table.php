@@ -22,7 +22,7 @@ class CreateFplTable extends Migration {
 			//perbaikan & pemeliharaan pake reference table PerbaikanFPL
 			//pemeblian FPL pake reference PembelianFPL
 			$table->string('trx_id')->nullable();
-			$table->string('periode_trx_id')->nullable();
+			$table->date('periode_trx_id')->nullable();
 			$table->string('no_acc')->nullable();
 			//alasan kebutuhan pakai reference tabel KebutuhanFPL
 			//spek pakai referensi tabel SpecFPL
