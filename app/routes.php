@@ -65,6 +65,10 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::resource('/stpd', 'STPDController', array('except' => array('show', 'create', 'destroy')));
 	// method destroy STPD(id)
 	Route::get('/stpd/{id}/delete', 'STPDController@destroy');
+
+	Route::resource('/versheet', 'VersheetController', array('except' => array('show', 'create', 'destroy')));
+	// method destroy Versheet(id)
+	Route::get('/versheet/{id}/delete', 'VersheetController@destroy');
 });
 
 

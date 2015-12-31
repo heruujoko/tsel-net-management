@@ -54,6 +54,44 @@ class SetupTableSeeder extends Seeder {
             'sitelocation' => 'Palu',
             'btsname' => 'PLW-01'
         ));
+
+        VersheetType::create(array(
+            'doc_name' => 'FPJP',        
+        ));
+
+        VersheetType::create(array(
+            'doc_name' => 'PO',        
+        ));
+
+        VersheetType::create(array(
+            'doc_name' => 'Invoice',        
+        )); 
+
+        VersheetType::create(array(
+            'doc_name' => 'Kwitansi',        
+        ));
+
+        VersheetType::create(array(
+            'doc_name' => 'Faktur Pajak',        
+        ));
+
+        VersheetType::create(array(
+            'doc_name' => 'BAST',        
+        ));
+
+        VersheetType::create(array(
+            'doc_name' => 'Berita Acara',        
+        ));
+
+        VersheetType::create(array(
+            'doc_name' => 'PKS / BAK / BAN',        
+        ));
+
+        VersheetType::create(array(
+            'doc_name' => 'Rekapitulasi',        
+        ));
+
+
         
     }
 

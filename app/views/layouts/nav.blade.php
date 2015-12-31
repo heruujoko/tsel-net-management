@@ -96,6 +96,16 @@
     </li>
 @endif
 
+@if($active == 'versheet')
+    <li class="active">
+        <a href="{{ URL::to('/admin/versheet') }}"><i class="fa fa-envelope"></i> <span class="nav-label">Verification Sheet</span> </a>
+    </li>
+@else
+    <li class="">
+        <a href="{{ URL::to('/admin/versheet') }}"><i class="fa fa-envelope"></i> <span class="nav-label">Verification Sheet</span> </a>
+    </li>
+@endif
+
 @if($active == 'bantek')
     <li class="active">
         <a href="{{ URL::to('/admin/bantek') }}"><i class="fa fa-users"></i> <span class="nav-label">Bantek</span> </a>
