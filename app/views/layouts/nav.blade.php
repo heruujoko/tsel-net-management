@@ -78,11 +78,11 @@
 
 @if($active == 'pj')
     <li class="active">
-        <a href="{{ URL::to('/admin/perjalanandinas') }}"><i class="fa fa-envelope"></i> <span class="nav-label">Perjalanan Dinas</span> </a>
+        <a href="{{ URL::to('/admin/perjalanandinas') }}"><i class="fa fa-plane"></i> <span class="nav-label">Perjalanan Dinas</span> </a>
     </li>
 @else
     <li class="">
-        <a href="{{ URL::to('/admin/perjalanandinas') }}"><i class="fa fa-envelope"></i> <span class="nav-label">Perjalanan Dinas</span> </a>
+        <a href="{{ URL::to('/admin/perjalanandinas') }}"><i class="fa fa-plane"></i> <span class="nav-label">Perjalanan Dinas</span> </a>
     </li>
 @endif
 
@@ -98,11 +98,21 @@
 
 @if($active == 'versheet')
     <li class="active">
-        <a href="{{ URL::to('/admin/versheet') }}"><i class="fa fa-envelope"></i> <span class="nav-label">Verification Sheet</span> </a>
+        <a href="{{ URL::to('/admin/versheet') }}"><i class="fa fa-newspaper-o"></i> <span class="nav-label">Verification Sheet</span> </a>
     </li>
 @else
     <li class="">
-        <a href="{{ URL::to('/admin/versheet') }}"><i class="fa fa-envelope"></i> <span class="nav-label">Verification Sheet</span> </a>
+        <a href="{{ URL::to('/admin/versheet') }}"><i class="fa fa-newspaper-o"></i> <span class="nav-label">Verification Sheet</span> </a>
+    </li>
+@endif
+
+@if($active == 'fpjp')
+    <li class="active">
+        <a href="{{ URL::to('/admin/fpjp') }}"><i class="fa fa-clipboard"></i> <span class="nav-label">FPJP</span> </a>
+    </li>
+@else
+    <li class="">
+        <a href="{{ URL::to('/admin/fpjp') }}"><i class="fa fa-clipboard"></i> <span class="nav-label">FPJP</span> </a>
     </li>
 @endif
 

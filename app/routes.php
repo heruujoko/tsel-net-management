@@ -69,6 +69,10 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::resource('/versheet', 'VersheetController', array('except' => array('show', 'create', 'destroy')));
 	// method destroy Versheet(id)
 	Route::get('/versheet/{id}/delete', 'VersheetController@destroy');
+
+	Route::resource('/fpjp', 'FPJPController', array('except' => array('show', 'create', 'destroy')));
+	// method destroy FPJP(id)
+	Route::get('/fpjp/{id}/delete', 'FPJPController@destroy');
 });
 
 
@@ -115,3 +119,4 @@ Route::post('/ajax/fpl/spec/create' , 'FPLSpecController@storefromajax');
 Route::post('/ajax/st/activity/create' , 'STActivityController@storefromajax');
 Route::post('/ajax/bantek/create' , 'BantekController@storefromajax');
 Route::post('/ajax/pj/lain/create' , 'PJLainController@storefromajax');
+Route::post('/ajax/fpjp/uraian/create' , 'FPJPUraianController@storefromajax');
