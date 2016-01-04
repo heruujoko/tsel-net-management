@@ -18,7 +18,6 @@
 
 		public function dikerjakan(){
 			return $this->HasOne('User', 'id', 'user_mengerjakan');	
-
 		}
 
 		public function shoplists(){

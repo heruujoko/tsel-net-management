@@ -57,6 +57,30 @@
 			return View::make('admin.oss.detailmaterial' , $data);
 		}
 
+		public function printmaterial($id){
+			$oss = OSS::find($id);
+			$data['oss'] = $oss;
+			$data['sites'] = $oss->sites;
+			$panjang = count($oss->shoplists);
+			$br = 0;
+			if($panjang > 2){
+				$br = 160;
+				if($panjang < 6){
+					$sel = $panjang - 3;
+					$br = $br - (30*$sel);
+				} else {
+					$br = 303;
+					$sel = $panjang - 6;
+					$br = $br - (30*$sel);
+				}
+			} else {
+
+			}
+			$data['br'] = $br;
+			$pdf = PDF::loadView('templatesurat.oss_material' , $data);
+			return $pdf->setPaper('a4')->stream();
+		}
+
 		public function editmaterial($id){
 			$data['active'] = 'oss';
 			$data['material'] = true;

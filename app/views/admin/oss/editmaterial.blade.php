@@ -93,14 +93,9 @@
                                 <label class="control-label col-md-3" for="shoplist">Shopping List</label>
                                 <div class="col-md-6">
                                     <select multiple="" class="chosen form-control" id="shoplist" name="shoplist[]">
+                                        
                                         @foreach($shoplists as $shop)
-                                            @foreach($oss->shoplists as $sl)
-                                                @if($sl->id == $shop->id)
-                                                    <option selected value="{{ $shop->id }}">{{ $shop->kode }}</option>
-                                                @else
-                                                    <option value="{{ $shop->id }}">{{ $shop->kode }} - {{ $shop->deskripsi }}</option>
-                                                @endif
-                                            @endforeach
+                                            <option value="{{$shop->id}}" @foreach($oss->shoplists as $sl) @if($shop->id == $sl->id)selected="selected"@endif @endforeach>{{ $shop->kode }} - {{ $shop->deskripsi }}</option>
                                         @endforeach
                                     </select>
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal7">

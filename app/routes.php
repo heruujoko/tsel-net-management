@@ -36,6 +36,7 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::get('/oss/material' , 'OSSController@showmaterial');
 	Route::post('/oss/material' , 'OSSController@storematerial');
 	Route::get('/oss/material/{id}/details' , 'OSSController@detailmaterial');
+	Route::get('/oss/material/{id}/print' , 'OSSController@printmaterial');
 	Route::get('/oss/material/{id}/edit' , 'OSSController@editmaterial');
 	Route::post('/oss/material/{id}/update' , 'OSSController@updatematerial');
 	Route::get('/oss/material/{id}/delete' , 'OSSController@deletematerial');
