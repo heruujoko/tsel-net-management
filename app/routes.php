@@ -1,6 +1,7 @@
 <?php
 // home routes
-Route::get('/' , 'HomeController@showLogin');
+Route::get('/' , 'HomeController@showScreen');
+Route::get('/login', 'HomeController@showLogin');
 Route::post('/auth' , 'SessionController@auth');
 Route::get('/logout' , 'SessionController@logout');
 

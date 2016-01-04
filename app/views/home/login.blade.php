@@ -22,13 +22,13 @@
     <div class="content animated fadeInDown">
       <h3 class="title font-green">Sign In</h3>
       <p>Network Operation App</p>
-      @if(Session::get('error'))
+      @if(Session::has('error'))
       <div class="alert alert-danger alert-dismissable">
         <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
         {{ Session::get('error') }}
       </div>
       @endif
-      @if(Session::get('info'))
+      @if(Session::has('info'))
       <div class="alert alert-info alert-dismissable">
         <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
         {{ Session::get('info') }}

@@ -4,4 +4,11 @@ class HomeController extends BaseController {
 	{
 		return View::make('home.login');
 	}
+
+	public function showScreen() {
+
+		return View::make('home.screen');
+
+	}
+
 }
