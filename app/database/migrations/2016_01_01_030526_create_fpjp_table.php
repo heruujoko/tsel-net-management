@@ -15,6 +15,7 @@ class CreateFpjpTable extends Migration {
 		Schema::create('fpjp' , function($table){
 			$table->increments('id');
 			$table->integer('user_id');
+			$table->integer('pd_id');
 			$table->date('tanggal');
 			$table->string('departemen');
 			$table->integer('total');

@@ -34,7 +34,7 @@
 				} else {
 					$harian = 230000;
 				}
-			} elseif($stpd->user()->level_jabatan == 'spv'){
+			} elseif($stpd->user->level_jabatan == 'spv'){
 				if($stpd->jenis_uhpd == 'darat'){
 					$harian = 275000;
 				} elseif ($stpd->jenis_uhpd == 'udara') {
@@ -42,7 +42,7 @@
 				} else {
 					$harian = 215000;
 				}
-			} elseif ($stpd->user()->level_jabatan == 'staff') {
+			} elseif ($stpd->user->level_jabatan == 'staff') {
 				if($stpd->jenis_uhpd == 'darat'){
 					$harian = 260000;
 				} elseif ($stpd->jenis_uhpd == 'udara') {
@@ -69,6 +69,7 @@
 			$data['active'] = 'stpd';
 			$data['user_no'] = User::where('role','=','no')->get();
 			$data['stpd'] = STPD::find($id);
+			$data['users'] = User::all();
 			return View::make('admin.stpd.edit' , $data);
 		}
 
@@ -97,7 +98,7 @@
 				} else {
 					$harian = 230000;
 				}
-			} elseif($stpd->user()->level_jabatan == 'spv'){
+			} elseif($stpd->user->level_jabatan == 'spv'){
 				if($stpd->jenis_uhpd == 'darat'){
 					$harian = 275000;
 				} elseif ($stpd->jenis_uhpd == 'udara') {
@@ -105,7 +106,7 @@
 				} else {
 					$harian = 215000;
 				}
-			} elseif ($stpd->user()->level_jabatan == 'staff') {
+			} elseif ($stpd->user->level_jabatan == 'staff') {
 				if($stpd->jenis_uhpd == 'darat'){
 					$harian = 260000;
 				} elseif ($stpd->jenis_uhpd == 'udara') {

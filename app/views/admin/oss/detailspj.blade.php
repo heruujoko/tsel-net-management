@@ -24,7 +24,7 @@
                         <h2>Detail OSS SPJ Bantek</h2>
                     </div>
                     <div class="col-md-2 pull-right">
-                        <a href="#" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                        <a href="/admin/oss/spj/{{ $oss->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
                     </div>
                 </div>
                 <div class="row">
