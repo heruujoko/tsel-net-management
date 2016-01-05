@@ -12,6 +12,10 @@
 			return $this->hasOne('User', 'id', 'user_mengetahui');	
 		}
 
+		public function request(){
+			return $this->hasOne('User', 'id', 'user_id');	
+		}
+
 		public function banteks(){
 			return $this->hasOne('Bantek', 'id', 'bantek');	
 		}

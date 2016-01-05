@@ -44,6 +44,7 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::get('/oss/spj' , 'OSSController@showspj');
 	Route::post('/oss/spj' , 'OSSController@storespj');
 	Route::get('/oss/spj/{id}/details' , 'OSSController@detailspj');
+	Route::get('/oss/spj/{id}/print' , 'OSSController@printspj');
 	Route::get('/oss/spj/{id}/edit' , 'OSSController@editspj');
 	Route::post('/oss/spj/{id}/update' , 'OSSController@updatespj');
 	Route::get('/oss/spj/{id}/delete' , 'OSSController@deletespj');

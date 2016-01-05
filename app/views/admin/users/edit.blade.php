@@ -129,11 +129,25 @@
                 </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3" for="cluster">Cluster</label>
+              <label class="control-label col-md-3" for="cluster">Mitra</label>
               <div class="col-md-6">
-                <input class="form-control" name="cluster" id="cluster" value="{{ $user->cluster }}" required>
-              </div>
-            </div>
+                <select class="form-control chosen" name="mitra">
+                  @if($user->mitra == '')
+                    @foreach($mitras as $m)
+                    <option value="{{ $m->id }}">{{ $m->nama }}</option>
+                    @endforeach
+                  @else
+                  @foreach($mitras as $m)
+                    @if($m->id == $user->mitra)
+                      <option selected value="{{ $m->id }}">{{ $m->nama }}</option>
+                    @else
+                      <option value="{{ $m->id }}">{{ $m->nama }}</option>
+                    @endif
+                  @endforeach
+                  @endif
+                  </select>
+                  </div>
+                  </div>
             <div class="form-group">
               <label class="control-label col-md-3" for="nik">NIK</label>
                 <div class="col-md-6">

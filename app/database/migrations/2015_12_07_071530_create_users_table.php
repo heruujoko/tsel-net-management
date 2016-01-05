@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration {
 			$table->boolean('can_be_poh');
 			$table->string('role');
 			$table->string('cluster');
+			$table->integer('mitra');
 			$table->integer('lokasi_kerja_id');
 			$table->string('bank');
 			$table->string('no_rekening');

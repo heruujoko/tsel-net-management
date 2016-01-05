@@ -111,7 +111,7 @@
                                     @if($sl->type == 'transport')
                                     <tr>
                                         <td></td>
-                                        @if($sl->harga >= 500000)
+                                        @if($sl->harga > 500000)
                                             <td class="">Fee (10%)</td>
                                             <td class="price">{{ (10/100)*$sl->harga }}</td>
                                         @else
