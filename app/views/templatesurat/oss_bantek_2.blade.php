@@ -3,9 +3,196 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="{{ URL::to('/') }}/surat/style-surat.css" rel="stylesheet" type="text/css">
 	<title>OSS BANTEK Dengan Biaya Transport</title>
-	</head
+	<style type="text/css">
+		.wrap {
+			margin:0 auto;
+			max-width:720px;
+			min-height:700px;
+			margin-top:0px;
+			margin-bottom:0px;
+		}
+		.border {
+			border:solid 2px black;
+			width: 100%;
+			height: auto;
+		}
+		.kop {
+			 height:70px;
+		}
+		.kop-kiri {
+			height:100px;
+			background-size:contain;
+			width:300px;
+			background-repeat:no-repeat;
+			background-image:url('/surat/tsel.jpg');
+		}
+		.kop-kanan {
+			position: fixed;
+			top: 8px;
+			height:40px;
+			margin-left: 400px;
+			background-size:contain;
+			width:300px;
+			border:solid 1px #000000;
+			color: black;
+			padding: 7px;
+		}
+
+		.head {
+			font-weight: bold;
+			margin:0;
+			padding:0;
+			font-size: 20px;
+			text-align: center;
+			color:white;
+			background-color: black;
+			width: 100%;
+			min-height: 75px;
+		}
+		.isinya {
+			text-align: justify;
+			padding: 5px;
+			width:100%;
+			height:auto;
+		}
+		.tbl {
+			margin:0 auto;
+		}
+		.tbl tr {
+			line-height: 10px;
+		}
+		.tbl td {
+			padding:4px;
+		}
+		.tbl-2 {
+			width:95%;
+			margin:0 auto;
+			margin-top: 10px;
+		}
+		.tbl-2 th {
+			text-align: center !important;
+		}
+		.tbl-2 td {
+			padding: 5px;
+		}
+		.tbl-2 > tbody > tr > td {
+			padding:2px !important;
+		}
+		.keterangan {
+			margin-left: 30px;
+			width:100%;
+			min-height: 100px;
+		}
+
+		/* ===== signature css ===== */
+
+		.signature {
+			width: 100%;
+			min-height: 100px;
+			@if(count($oss->shoplists) > 5)
+				margin-top: {{ $br }}px;
+			@else
+				margin-top: 10px;	
+			@endif
+		}
+		.tsel {
+			width: 450px;
+			float: left;
+		}
+		.tbl-signature {
+			width: 480px;
+		}
+		.tbl-signature th {
+			background-color: black;
+			color: white;
+			text-align: center;
+		}
+
+		.tbl-signature td{
+			padding:10px;
+		}
+
+		.content-signature {
+			text-align: center;
+			border:solid 2px black;
+			width: 480px;
+			height: auto;
+		}
+
+		.oleh {
+			margin-left: 50px;
+			width: 100px;
+			float: left;
+		}
+
+		.tbl-signature-oleh {
+			width: 200px;
+		}
+		.tbl-signature-oleh th {
+			background-color: black;
+			color: white;
+			text-align: center;
+		}
+
+		.tbl-signature-oleh td{
+			padding:10px;
+		}
+
+		.content-signature-oleh {
+			text-align: center;
+			border:solid 2px black;
+			width: 200px;
+			height: auto;
+		}
+		.confirm-signature {
+			margin-top:5px;
+			width: 100%;
+			border: 2px solid black;
+		}
+		.confirm-signature table{
+			width: 100%;
+			text-align: center;
+		}
+		.confirm-signature table tr td p {
+			font-weight: bold;
+			padding:0 !important;
+			margin:0 !important;
+		}
+		.confirm-wrapper{
+			width: 450px;
+			@if(count($oss->shoplists) < 6)
+				margin-top: {{ $br }}px;
+			@else
+				margin-top: 10px;
+			@endif
+		}
+		.confirm {
+			width: 478px;
+			float: left;
+		}
+		.blank-confirm{
+			float: left;
+			margin-left: 50px;	
+			width: 200px;
+		}
+		label {
+		    display: block;
+		    padding-left: 15px;
+		}
+		input {
+		    width: 13px;
+		    height: 13px;
+		    padding-right: 8px;
+		    padding-top: -5px;
+		    margin:0;
+		    vertical-align: bottom;
+		    position: relative;
+		    top: -1px;
+		    *overflow: hidden;
+		}
+	</style>
+	</head>
 	<body>
 		<div class="wrap">
 			<div class="kop">
@@ -18,8 +205,8 @@
 					<span class="text-center">CORRECTIVE - ON SITE SUPPORT (OSS)</span>
 				</div>
 				<div class="isinya">
-					Pada hari ini <b>Kamis</b> tanggal <b>Sepuluh</b> bulan <b>Desember</b> tahun <b>Dua Ribu Lima Belas</b> (10-12-2015)
-					<b>PT.Telkomsel</b> memberikan perintah kepada <b>PT. Primatama</b> untuk melakukan  pekerjaan On Site
+					Pada hari ini <b>{{ $hari }}</b> tanggal <b>{{ $tanggal }}</b> bulan <b>{{ $bulan }}</b> tahun <b>{{ $tahun }}</b> ({{ $day }})
+					<b>PT.Telkomsel</b> memberikan perintah kepada <b>{{ $oss->request->mitranya->nama }}</b> untuk melakukan  pekerjaan On Site
 					Support dengan rincian sebagai berikut :
 				</div>
 				<div class"row">
@@ -27,14 +214,14 @@
 						<tr>
 							<td width="149">Nama Site</td>
 							<td width="3">:</td>
-							<td width="195">-</td>
-							<td width="100">ID Site  </td>
-							<td width="132">: -</td>
+							<td width="195">{{ $oss->sites->sitelocation }}</td>
+							<td width="80">ID Site  </td>
+							<td width="125">: {{ $oss->sites->btsname }}</td>
 						</tr>
 						<tr>
 							<td>Request Dari</td>
 							<td>:</td>
-							<td colspan="3">Fahri</td>
+							<td colspan="3">{{ $oss->request->nama }}</td>
 						</tr>
 						<tr>
 							<td>Jam Request</td>
@@ -62,27 +249,27 @@
 							<td>Status Penagihan</td>
 							<td>:</td>
 							<td>
-								<label class="checkbox-inline"><input type="checkbox" value="">Charge</label>
-								<label class="checkbox-inline"><input type="checkbox" value="">Tidak di Charge</label>
+								<span class=""><input type="checkbox" value="">Charge</span>
+								<span class=""><input type="checkbox" value="">Tidak di Charge</span>
 							</td>
 							<td colspan="2">(Perlu Persetujuan Telkomsel)</td>
 						</tr>
 						<tr>
 							<td>PIC Pekerjaan</td>
 							<td>:</td>
-							<td>Hendra</td>
-							<td colspan="2">HP : 082111477771</td>
+							<td>{{ $oss->banteks->nama }}</td>
+							<td colspan="2">HP : {{ $oss->banteks->hp}}</td>
 						</tr>
 						<tr>
 							<td>Type Gangguan</td>
 							<td>:</td>
 							<td colspan="3">
-								<label class="checkbox-inline"><input type="checkbox" value="">Power</label>
-								<label class="checkbox-inline"><input type="checkbox" value="">Transmission</label>
-								<label class="checkbox-inline"><input type="checkbox" value="">BBS</label>
-								<label class="checkbox-inline"><input type="checkbox" value="">Sarpen</label>
-								<label class="checkbox-inline"><input type="checkbox" value="">Community</label>
-								<label class="checkbox-inline"><input type="checkbox" value="">Others</label>
+								<span class=""><input type="checkbox" value="">Power</span>
+								<span class=""><input type="checkbox" value="">Transmission</span>
+								<span class=""><input type="checkbox" value="">BBS</span>
+								<span class=""><input type="checkbox" value="">Sarpen</span>
+								<span class=""><input type="checkbox" value="">Community</span>
+								<span class=""><input type="checkbox" value="">Other</span>
 							</td>
 						</tr>
 					</table><!-- /.tbl  -->
@@ -99,26 +286,46 @@
 							</tr>
 						</thead>
 						<tbody>
+							@for($i=0;$i<count($oss->shoplists);$i++)
+								@if($i==0)
+									<tr>
+										<td rowspan="{{ count($oss->shoplists)+2 }}">{{ $oss->permasalahan }}</td>
+										<td rowspan="{{ count($oss->shoplists)+2 }}">{{ $oss->action }}</td>
+										<td>{{ $oss->deskripsi_rks }}</td>
+										<td>{{ $oss->kode_rks }}</td>
+										<td><span class="pull-left">Rp.</span> <span class="pull-right">{{ $oss->harga_rks }}</span></td>
+									</tr>
+									<tr>
+										<td>{{ $oss->shoplists[$i]->deskripsi }}</td>
+										<td>{{ $oss->shoplists[$i]->kode }}</td>
+										<td><span class="pull-left">Rp.</span> <span class="pull-right">{{ $oss->shoplists[$i]->harga }}</span></td>
+									</tr>
+								@elseif($oss->shoplists[$i]->type == 'transport')	
+									<tr>
+										<td>{{ $oss->shoplists[$i]->deskripsi }}</td>
+										<td rowspan="2">{{ $oss->shoplists[$i]->kode }}</td>
+										<td><span class="pull-left">Rp.</span> <span class="pull-right">{{ $oss->shoplists[$i]->harga }}</span></td>
+									</tr>
+									<tr>
+										@if($oss->shoplists[$i]->harga > 500000)
+											<td>Fee (10%)</td>
+											<td>Rp. {{ $oss->shoplists[$i]->harga*(10/100) }}</td>
+										@else
+											<td>Fee (15%)</td>
+											<td>Rp. {{ $oss->shoplists[$i]->harga*(15/100) }}</td>
+										@endif
+									</tr>
+								@else
+									<tr>
+										<td>{{ $oss->shoplists[$i]->deskripsi }}</td>
+										<td>{{ $oss->shoplists[$i]->kode }}</td>
+										<td><span class="pull-left">Rp.</span> <span class="pull-right">{{ $oss->shoplists[$i]->harga }}</span></td>
+									</tr>
+								@endif
+							@endfor
 							<tr>
-								<td rowspan="4">Pembayaran Supporting periode September 2015</td>
-								<td rowspan="4">Troubleshooting</td>
-								<td>Pembayaran Supporting Troubleshooting Cluster Poso – Luwuk periode September 2015</td>
-								<td>RKS 2.3.2.7</td>
-								<td><span class="pull-left">Rp.</span> <span class="pull-right">3.750.000</span></td>
-							</tr>
-							<tr>
-								<td>Jasa transportasi tim corrective on site support (air dan udara) (nilai < 1 jt)</td>
-								<td rowspan="2">OTH.0.I.1</td>
-								<td><span class="pull-left">Rp.</span> <span class="pull-right">140.000</span></td>
-							</tr>
-							<tr>
-								<td>Fee management 15%</td>
-								<td><span class="pull-left">Rp.</span> <span class="pull-right">21.000</span></td>
-							</tr>
-							<tr>
-								<td height="23">Total</td>
-								<td>RKS 2.3.2.7</td>
-								<td><span class="pull-left">Rp.</span> <span class="pull-right">3.911.000</span></td>
+								<td colspan="4">Jumlah</td>
+								<td>Rp. {{ $oss->harga }}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -127,93 +334,103 @@
 			</div><!-- /.border -->
 			<div class="signature">
 				<div class="row">
-					<div class="col-lg-8">
-						<table class="tbl-signature" border="1">
-							<thead>
-								<tr>
-									<th colspan="2">PT. TELKOMSEL</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<table width="100%" class="content-signature">
-										<tr>
-											<td><b>Direquest Oleh</b></td>
-											<td><b>Diketahui</b></td>
-										</tr>
-										<tr>
-											<td height="50"><img src="" width="30%" height="100%"></td>
-											<td>&nbsp;</td>
-										</tr>
-										<tr>
-											<td height="23"><b><u>Fahri</u></b></td>
-											<td><b><u>Habibi M Tau</u></b></td>
-										</tr>
-										<tr>
-											<td height="23">Spv. RTP Operation Luwuk</td>
-											<td>Mgr. Network Service Palu</td>
-										</tr>
-									</table>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="col-lg-4">
-						<table class="tbl-signature" border="1">
-							<thead>
-								<tr>
-									<th colspan="2">PT. Primatama</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<table width="100%" class="content-signature">
-										<tr>
-											<td>Direquest Oleh</td>
-										</tr>
-										<tr>
-											<td height="50">&nbsp;</td>
-										</tr>
-										<tr>
-											<td height="23"><u><b>Hendra C. P.</b></u></td>
-										</tr>
-										<tr>
-											<td height="23">Koordinator</td>
-										</tr>
-									</table>
-								</tr>
-							</tbody>
+				<div class="col-lg-8 tsel">
+					<table class="tbl-signature" border="1">
+						<thead>
+							<tr>
+								<th colspan="2">PT. TELKOMSEL</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<table width="100%" class="content-signature">
+									<tr>
+										<td><b>Direquest Oleh</b></td>
+										<td><b>Diketahui</b></td>
+									</tr>
+									<tr>
+										<td height="25"><img src="" height="100%"></td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td height="0"><b><u>{{ $oss->dikerjakan->nama }}</u></b></td>
+										<td><b><u>{{ $oss->mengetahui->nama }}</u></b></td>
+									</tr>
+									<tr>
+										<td height="0">{{ $oss->dikerjakan->jabatan }}</td>
+										<td>{{ $oss->mengetahui->jabatan }}</td>
+									</tr>
+								</table>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-lg-4 oleh">
+					<table class="tbl-signature-oleh" border="1">
+						<thead>
+							<tr>
+								<th colspan="2">{{ $oss->request->mitranya->nama }}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<table width="100%" class="content-signature-oleh">
+									<tr>
+										<td>Direquest Oleh</td>
+									</tr>
+									<tr>
+										<td height="25">&nbsp;</td>
+									</tr>
+									<tr>
+										<td height=""><u><b>{{ $oss->dikerjakan->nama }}</b></u></td>
+									</tr>
+									<tr>
+										<td height="">{{ $oss->dikerjakan->jabatan }}</td>
+									</tr>
+								</table>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div><!-- /.signature -->
+		<div class="row" style="clear:both;">
+			<div class="col-lg-8 confirm-wrapper">
+					<div class="confirm-signature confirm">
+						<table border="0">
+							<tr>
+								<td valign="top" height="80" colspan="{{count($oss->menyetujui)}}">Disetujui</td>
+							</tr>
+							<tr>
+								@if(count($oss->menyetujui) == 2)
+								<td class="text-left">
+									<p class="text-capitalize"><u>{{ $oss->menyetujui[0]->nama }}</u></p>
+									<p class="text-capitalize">{{ $oss->menyetujui[0]->jabatan }}</p>
+								</td>
+								<td class="text-left">
+									<p class="text-capitalize"><u>{{ $oss->menyetujui[1]->nama }}</u></p>
+									<p class="text-capitalize">{{ $oss->menyetujui[1]->jabatan }}</p>
+								</td>
+								@else
+								<td class="text-left" style="">
+									<p class="text-capitalize"><u>{{ $oss->menyetujui[0]->nama }}</u></p>
+									<p class="text-capitalize">{{ $oss->menyetujui[0]->jabatan }}</p>
+								</td>	
+								@endif
+							</tr>
 						</table>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-lg-8">
-						<div class="confirm-signature">
-							<table border="0">
-								<tr>
-									<td valign="top" height="100">Disetuji</td>
-								</tr>
-								<tr>
-									<td>
-										<p class="text-capitalize"><u>Edi Sucipto</u></p>
-										<p class="text-capitalize"> Manager Network Operation</p>
-										<p class="text-capitalize"> Support Sulawesi </p>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="confirm-signature">
-							<table border="0">
-								<tr>
-									<td valign="top" height="150">Diketahui</td>
-								</tr>
-							</table>
-						</div>
+				<div class="col-lg-4 blank-confirm">
+					<div class="confirm-signature">
+						<table border="0">
+							<tr>
+								<td valign="top" height="112">Diketahui</td>
+							</tr>
+						</table>
 					</div>
 				</div>
-			</div><!-- /.signature -->
+			</div>		
 		</div><!-- /.wrap -->
 	</body>
 	</html>
