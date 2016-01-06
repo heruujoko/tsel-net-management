@@ -76,6 +76,8 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 
 	Route::resource('/fpjp', 'FPJPController', array('except' => array('show', 'create', 'destroy')));
 	// method destroy FPJP(id)
+	Route::get('/fpjp/{id}/details', 'FPJPController@details');
+	Route::get('/fpjp/{id}/print', 'FPJPController@printpdf');
 	Route::get('/fpjp/{id}/delete', 'FPJPController@destroy');
 });
 
@@ -109,6 +111,9 @@ Route::group(array('prefix'=>'surat'), function(){
 	});
 	Route::get('/verification', function(){
 		return View::make('templatesurat.verification');
+	});
+	Route::get('/fpjp', function(){
+		return View::make('templatesurat.fpjp');
 	});
 
 });
