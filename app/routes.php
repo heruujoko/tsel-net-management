@@ -16,7 +16,7 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::resource('/users', 'UserController', array('except' => array('show', 'create', 'destroy')));
 	// method destroy user(id)
 	Route::get('/users/{id}/delete', 'UserController@destroy');
-	
+
 	Route::resource('/bantek', 'BantekController', array('except' => array('show', 'create', 'destroy')));
 	// method destroy bantek(id)
 	Route::get('/bantek/{id}/delete', 'BantekController@destroy');
@@ -72,6 +72,8 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 
 	Route::resource('/versheet', 'VersheetController', array('except' => array('show', 'create', 'destroy')));
 	// method destroy Versheet(id)
+	Route::get('/versheet/{id}/details', 'VersheetController@details');
+	Route::get('/versheet/{id}/print', 'VersheetController@printpdf');
 	Route::get('/versheet/{id}/delete', 'VersheetController@destroy');
 
 	Route::resource('/fpjp', 'FPJPController', array('except' => array('show', 'create', 'destroy')));
