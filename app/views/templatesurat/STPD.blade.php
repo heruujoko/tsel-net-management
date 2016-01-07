@@ -3,7 +3,84 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="{{ URL::to('/') }}/surat/stpd.css" rel="stylesheet" type="text/css">
+  <style>
+    body {
+      font-size: 13px;
+    }
+
+    .wrap {
+      width:770px;
+      min-height: 1200px;
+      margin: 0 auto;
+      margin-top: 10px;
+      margin-bottom: 100px;
+      padding-left:5px;
+      padding-right: 5px;
+    }
+    .logo {
+      height: 70px;
+      width: auto;
+      background-repeat: no-repeat;
+      background-image:url('/surat/tsel.jpg');
+    }
+
+    .headings {
+      text-align: center;
+      width:auto;
+      height:auto;
+    }
+    .headings h4{
+      margin-bottom:0px;
+    }
+    .content {
+      text-align: left;
+    }
+
+    .title-head{
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+
+    .tbl {
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 10px;
+      width: 700px;
+      border: 2px solid black;
+    }
+    .tbl tbody tr {
+      text-align: center;
+      border: 1px solid black;
+    }
+    .tbl thead tr {
+      border: 2px solid black;
+    }
+    .tbl thead tr th{
+      border-right: 2px solid black;
+      text-align: center;
+      font-style: bold;
+      padding: 2px 2px;
+      background-color: #cccccc;
+    }
+    .tbl tbody tr td {
+      padding: 2px 2px;
+    }
+    .tbl tbody tr,
+    .tbl tbody td {
+      border: 1px solid black;
+    }
+    .no-border {
+      border: 0;
+    }
+
+    .right {
+      text-align: right;
+    }
+    .left {
+      text-align: left;
+    }
+  </style>
   <title>STPD</title>
 </head>
 <body>
@@ -11,7 +88,7 @@
     <div class="wrap">
       <div class="logo"></div>
       <div class="headings">
-        <h4 class="text-uppercase"><b>surat tugas perjalanan dinas ( stpd )</b></h4><br>
+        <h4 class="text-uppercase"><b>SURAT TUGAS PERJALANAN DINAS ( STPD )</b></h4><br>
         Nomor STPD : .........<br/>
         Nomor ID Transaksi : .........
       </div>
@@ -22,32 +99,32 @@
           <tr>
             <td width="130" class="text-uppercase">Nama</td>
             <td width="10">:</td>
-            <td>Habibi M Tau</td>
+            <td>{{ $stpd->user->nama }}</td>
           </tr>
           <tr>
             <td width="130" class="text-uppercase">NIK</td>
             <td width="10">:</td>
-            <td>78022</td>
+            <td>{{ $stpd->user->nik }}</td>
           </tr>
           <tr>
             <td width="130" class="text-uppercase">Jabatan</td>
             <td width="10">:</td>
-            <td>Mgr. Network Service Palu</td>
+            <td>{{ $stpd->user->jabatan }}</td>
           </tr>
           <tr>
             <td width="130" class="text-uppercase">Lokasi Kerja</td>
             <td width="10">:</td>
-            <td>GraPARI Palu</td>
+            <td>{{ $stpd->user->lokasi->nama }}</td>
           </tr>
           <tr>
             <td width="130" class="text-uppercase">cost center</td>
             <td width="10">:</td>
-            <td>602-696</td>
+            <td></td>
           </tr>
           <tr>
             <td width="130" class="text-uppercase">budget account</td>
             <td width="10">:</td>
-            <td>550201</td>
+            <td></td>
           </tr>
           <tr>
             <td width="130" class="text-uppercase">activity code</td>
@@ -59,38 +136,26 @@
           <thead>
             <tr>
               <th width="20">No</th>
-              <th width="90">Lokasi Tujuan Penugasan</th>
-              <th width="90">Berangkat / Mulai</th>
-              <th width="90">Kembali / Selesai</th>
-              <th width="70">Kendaraan / Kelas</th>
-              <th width="300">Uraian / Tugas</th>
-              <th width="100">Konfirmasi Kedatangan</th>
-              <th width="100">Konfirmasi Kepulangan</th>
+              <th width="65">Lokasi Tujuan Penugasan</th>
+              <th width="65">Berangkat / Mulai</th>
+              <th width="65">Kembali / Selesai</th>
+              <th width="65">Kendaraan / Kelas</th>
+              <th width="65">Uraian / Tugas</th>
+              <th width="65">Konfirmasi Kedatangan</th>
+              <th width="65">Konfirmasi Kepulangan</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
-              <td>Malang</td>
-              <td>14-Nov-15</td>
-              <td>7-Nov-15</td>
-              <td>Udara</td>
-              <td>Kick Off Siaga NARU 2016 ICT Operation Region Sulawesi</td>
+              <td>{{ $stpd->tujuan_penugasan }}</td>
+              <td>{{ $stpd->tanggal_berangkat }}</td>
+              <td>{{ $stpd->tanggal_kembali }}</td>
+              <td>{{ $stpd->kendaraan }}</td>
+              <td>{{ $stpd->kegiatan }}</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
             </tr>
-            @for($i=1 ; $i<=6 ; $i++)
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            @endfor
           </tbody>
         </table>
         <p>HARAP DILAKSANAKAN DAN SEGERA MELAPORKAN SETELAH KEMBALI</p>
@@ -105,7 +170,32 @@
           <tbody>
             <tr>
               <td>Uang Harian Perjalanan Dinas (UHPD)	</td>
-              <td>UHPD 1 = 4 hari x Rp 230.000</td>
+              @if($stpd->user->level_jabatan == 'manager')
+                @if($stpd->jenis_uhpd == 'darat')
+                  <td>UHPD 1 = 4 hari x Rp 290000</td>
+                @elseif($stpd->jenis_uhpd == 'udara')
+                  <td>UHPD 1 = 4 hari x Rp 420000</td>
+                @else
+                  <td>UHPD 1 = 4 hari x Rp 230000</td>
+                @endif
+              @elseif($stpd->user->level_jabatan == 'spv')
+                @if($stpd->jenis_uhpd == 'darat')
+                  <td>UHPD 1 = 4 hari x Rp 275000</td>
+                @elseif($stpd->jenis_uhpd == 'udara')
+                  <td>UHPD 1 = 4 hari x Rp 395000</td>
+                @else
+                  <td>UHPD 1 = 4 hari x Rp 215000</td>
+                @endif
+              @elseif($stpd->user->level_jabatan == 'staff')
+                @if($stpd->jenis_uhpd == 'darat')
+                  <td>UHPD 1 = 4 hari x Rp 260000</td>
+                @elseif($stpd->jenis_uhpd == 'udara')
+                  <td>UHPD 1 = 4 hari x Rp 370000</td>
+                @else
+                  <td>UHPD 1 = 4 hari x Rp 200000</td>
+                @endif
+              @else
+              @endif
               <td>
                 <div class="col-md-7">Rp</div>
                 <div class="text-right">920.000,00</div>

@@ -1,5 +1,5 @@
 <?php
-	
+
 	class STPDController extends \BaseController {
 
 		public function index(){
@@ -52,7 +52,7 @@
 				}
 			} else {
 				$harian = 0;
-			}	
+			}
 
 			$berangkat = Carbon::parse(Input::get('tanggal_berangkat'));
 			$kembali = Carbon::parse(Input::get('tanggal_kembali'));
@@ -116,7 +116,7 @@
 				}
 			} else {
 				$harian = 0;
-			}	
+			}
 
 			$berangkat = Carbon::parse(Input::get('tanggal_berangkat'));
 			$kembali = Carbon::parse(Input::get('tanggal_kembali'));
@@ -129,10 +129,25 @@
 			return Redirect::to('/admin/stpd');
 		}
 
+		public function details($id){
+			$data['active'] = 'stpd';
+			$data['stpd'] = STPD::find($id);
+			return View::make('admin.stpd.details',$data);
+		}
+
+		public function printpdf($id){
+			$data['active'] = 'stpd';
+			$data['stpd'] = STPD::find($id);
+			$day = Carbon::parse($data['stpd']->tanggal_stpd);
+			$data['day'] = $day;
+			$pdf = PDF::loadView('templatesurat.STPD' , $data);
+			return $pdf->stream();
+		}
+
 		public function destroy($id){
 			STPD::find($id)->delete();
 			Session::flash('success' , 'Data telah hapus.');
-			return Redirect::to('/admin/stpd');	
+			return Redirect::to('/admin/stpd');
 		}
 
 	}
