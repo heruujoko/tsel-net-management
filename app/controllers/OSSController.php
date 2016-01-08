@@ -124,7 +124,7 @@
 			$data['active'] = 'oss';
 			$data['material'] = true;
 			$data['oss'] = OSS::where('oss_type','=','material')->get();
-			$data['sites'] = Mastertp::all();
+			$data['sites'] = DB::table('mastertp')->groupBy('sitelocation')->get();
 			$data['shoplists'] = Shoplist::all();
 			$data['userno'] = User::where('role' , '=' , 'no')->get();
 			return View::make('admin.oss.showmaterial', $data);
@@ -253,7 +253,7 @@
 			$data['active'] = 'oss';
 			$data['material'] = true;
 			$data['oss'] = OSS::where('oss_type','=','material')->where('id','=',$id)->first();
-			$data['sites'] = Mastertp::all();
+			$data['sites'] = DB::table('mastertp')->groupBy('sitelocation')->get();
 			$data['shoplists'] = Shoplist::all();
 			$data['userno'] = User::where('role' , '=' , 'no')->get();
 			return View::make('admin.oss.editmaterial' , $data);	
@@ -315,7 +315,7 @@
 			$data['active'] = 'oss';
 			$data['spj'] = true;
 			$data['oss'] = OSS::where('oss_type','=','spj')->get();
-			$data['sites'] = Mastertp::all();
+			$data['sites'] = DB::table('mastertp')->groupBy('sitelocation')->get();
 			$data['shoplists'] = Shoplist::all();
 			$data['bantek'] = Bantek::all();
 			$data['userno'] = User::where('role' , '=' , 'no')->get();
@@ -491,7 +491,7 @@
 			$data['active'] = 'oss';
 			$data['spj'] = true;
 			$data['oss'] = OSS::where('oss_type','=','spj')->where('id','=',$id)->first();
-			$data['sites'] = Mastertp::all();
+			$data['sites'] = DB::table('mastertp')->groupBy('sitelocation')->get();
 			$data['shoplists'] = Shoplist::where('type' , '!=' , 'transport')->get();
 			$data['userno'] = User::where('role' , '=' , 'no')->get();
 			$data['bantek'] = Bantek::all();

@@ -83,6 +83,11 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::get('/fpjp/{id}/details', 'FPJPController@details');
 	Route::get('/fpjp/{id}/print', 'FPJPController@printpdf');
 	Route::get('/fpjp/{id}/delete', 'FPJPController@destroy');
+
+	Route::get('/import/shoplists' , 'ImportController@shoplists');
+	Route::get('/import/mastertp' , 'ImportController@mastertp');
+	Route::post('/import/shoplists' , 'ImportController@importshoplists');
+	Route::post('/import/mastertp' , 'ImportController@importmastertp');
 });
 
 

@@ -122,7 +122,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Barryvdh\DomPDF\ServiceProvider',
-
+		'Maatwebsite\Excel\ExcelServiceProvider',
 	),
 
 	/*
@@ -190,7 +190,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'Carbon'		  => 'Carbon\Carbon',	
+		'Carbon'		  => 'Carbon\Carbon',
+		'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 
 	),
 
