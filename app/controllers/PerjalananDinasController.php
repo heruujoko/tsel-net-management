@@ -102,6 +102,26 @@
 			$stpd->jumlah = $jumlah;
 			$stpd->save();
 
+			//Buat Versheet
+
+			$vs = new Versheet;
+			$vs->user_id = Auth::user()->id;
+			$vs->untuk_pembayaran = Input::get('kegiatan');
+			$vs->jumlah_pembayaran = $stpd->jumlah;
+			$vs->kepada_nama = $pj->user->nama;
+			$vs->kepada_bank = $pj->user->bank;
+			$vs->pd_id = $pj->id;
+			$vs->kepada_rekening = $pj->user->no_rekening;
+			$vs->save();
+
+			//Buat FPJP
+
+			$fpjp = new FPJP;
+			$fpjp->user_id = Auth::user()->id;
+			$fpjp->pd_id = $pj->id;
+			$fpjp->tanggal = Carbon::parse(Input::get('pergi'));
+			$fpjp->save();
+
 			Session::flash('success' , 'Data telah dibuat.');
 			return Redirect::to('/admin/perjalanandinas');
 		}
@@ -114,7 +134,14 @@
 				$ids .= $key->id.',';	
 			}
 			$data['lain_ids'] = $ids;
+			$data['users'] = User::all();
 			return View::make('admin.pj.edit' , $data);
+		}
+
+		public function details($id){
+			$data['active'] = 'pj';
+			$data['pj'] = PerjalananDinas::find($id);
+			return View::make('admin.pj.details' , $data);
 		}
 
 		public function update($id){

@@ -1,5 +1,5 @@
 <?php
-	
+
 	class STPDController extends \BaseController {
 
 		public function index(){
@@ -34,7 +34,7 @@
 				} else {
 					$harian = 230000;
 				}
-			} elseif($stpd->user()->level_jabatan == 'spv'){
+			} elseif($stpd->user->level_jabatan == 'spv'){
 				if($stpd->jenis_uhpd == 'darat'){
 					$harian = 275000;
 				} elseif ($stpd->jenis_uhpd == 'udara') {
@@ -42,7 +42,7 @@
 				} else {
 					$harian = 215000;
 				}
-			} elseif ($stpd->user()->level_jabatan == 'staff') {
+			} elseif ($stpd->user->level_jabatan == 'staff') {
 				if($stpd->jenis_uhpd == 'darat'){
 					$harian = 260000;
 				} elseif ($stpd->jenis_uhpd == 'udara') {
@@ -52,7 +52,7 @@
 				}
 			} else {
 				$harian = 0;
-			}	
+			}
 
 			$berangkat = Carbon::parse(Input::get('tanggal_berangkat'));
 			$kembali = Carbon::parse(Input::get('tanggal_kembali'));
@@ -69,6 +69,7 @@
 			$data['active'] = 'stpd';
 			$data['user_no'] = User::where('role','=','no')->get();
 			$data['stpd'] = STPD::find($id);
+			$data['users'] = User::all();
 			return View::make('admin.stpd.edit' , $data);
 		}
 
@@ -97,7 +98,7 @@
 				} else {
 					$harian = 230000;
 				}
-			} elseif($stpd->user()->level_jabatan == 'spv'){
+			} elseif($stpd->user->level_jabatan == 'spv'){
 				if($stpd->jenis_uhpd == 'darat'){
 					$harian = 275000;
 				} elseif ($stpd->jenis_uhpd == 'udara') {
@@ -105,7 +106,7 @@
 				} else {
 					$harian = 215000;
 				}
-			} elseif ($stpd->user()->level_jabatan == 'staff') {
+			} elseif ($stpd->user->level_jabatan == 'staff') {
 				if($stpd->jenis_uhpd == 'darat'){
 					$harian = 260000;
 				} elseif ($stpd->jenis_uhpd == 'udara') {
@@ -115,7 +116,7 @@
 				}
 			} else {
 				$harian = 0;
-			}	
+			}
 
 			$berangkat = Carbon::parse(Input::get('tanggal_berangkat'));
 			$kembali = Carbon::parse(Input::get('tanggal_kembali'));
@@ -128,10 +129,25 @@
 			return Redirect::to('/admin/stpd');
 		}
 
+		public function details($id){
+			$data['active'] = 'stpd';
+			$data['stpd'] = STPD::find($id);
+			return View::make('admin.stpd.details',$data);
+		}
+
+		public function printpdf($id){
+			$data['active'] = 'stpd';
+			$data['stpd'] = STPD::find($id);
+			$day = Carbon::parse($data['stpd']->tanggal_stpd);
+			$data['day'] = $day;
+			$pdf = PDF::loadView('templatesurat.STPD' , $data);
+			return $pdf->stream();
+		}
+
 		public function destroy($id){
 			STPD::find($id)->delete();
 			Session::flash('success' , 'Data telah hapus.');
-			return Redirect::to('/admin/stpd');	
+			return Redirect::to('/admin/stpd');
 		}
 
 	}
