@@ -89,10 +89,16 @@
 		.signature {
 			width: 100%;
 			min-height: 100px;
-			@if(count($oss->shoplists) > 5)
-				margin-top: {{ $br }}px;
+			@if(count($oss->shoplists) < 5)
+				page-break-after: always;
 			@else
-				margin-top: 10px;	
+			@endif
+			
+		}
+		.pbreak {
+			@if(count($oss->shoplists) >= 5)
+				page-break-after: always;
+			@else
 			@endif
 		}
 		.tsel {
@@ -160,11 +166,6 @@
 		}
 		.confirm-wrapper{
 			width: 450px;
-			@if(count($oss->shoplists) < 6)
-				margin-top: {{ $br }}px;
-			@else
-				margin-top: 10px;
-			@endif
 		}
 		.confirm {
 			width: 478px;
@@ -312,6 +313,7 @@
 				<p class="keterangan">	Status/Kondisi Akhir : OK/NOK     Ket. :</p>
 			</div><!-- /.row -->
 		</div><!-- /.border -->
+			<div class="pbreak"></div>
 			<div class="signature">
 				<div class="row">
 				<div class="col-lg-8 tsel">

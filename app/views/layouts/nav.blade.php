@@ -43,7 +43,7 @@
             <li><a href="/admin/oss/material">OSS Material</a></li>
             <li><a href="/admin/oss/spj">OSS SPJ Bantek</a></li>
         </ul>
-    </li>    
+    </li>
 @endif
 
 @if($active == 'fpl')
@@ -124,6 +124,34 @@
     <li class="">
         <a href="{{ URL::to('/admin/bantek') }}"><i class="fa fa-users"></i> <span class="nav-label">Bantek</span> </a>
     </li>
+@endif
+
+@if($active == 'import')
+    @if(isset($sl))
+    <li class="active">
+        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Import Data</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse in">
+            <li class="active"><a href="/admin/import/shoplists">Import Shoppinglist</a></li>
+            <li><a href="/admin/import/mastertp">Import Mastertp</a></li>
+        </ul>
+    </li>
+    @else
+    <li class="active">
+        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Import Data</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse in">
+            <li><a href="/admin/import/shoplists">Import Shoppinglist</a></li>
+            <li class="active"><a href="/admin/import/mastertp">Import Mastertp</a></li>
+        </ul>
+    </li>
+    @endif
+@else
+<li class="">
+    <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Import Data</span><span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level collapse">
+        <li><a href="/admin/import/shoplists">Import Shoppinglist</a></li>
+        <li><a href="/admin/import/mastertp">Import Mastertp</a></li>
+    </ul>
+</li>
 @endif
 
 @if($active == 'data')
