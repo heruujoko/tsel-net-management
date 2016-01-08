@@ -172,33 +172,32 @@
               <td>Uang Harian Perjalanan Dinas (UHPD)	</td>
               @if($stpd->user->level_jabatan == 'manager')
                 @if($stpd->jenis_uhpd == 'darat')
-                  <td>UHPD 1 = 4 hari x Rp 290000</td>
+                  <td>UHPD 1 = 4 hari x Rp {{ number_format('290000') }}</td>
                 @elseif($stpd->jenis_uhpd == 'udara')
-                  <td>UHPD 1 = 4 hari x Rp 420000</td>
+                  <td>UHPD 1 = 4 hari x Rp {{ number_format('420000') }}</td>
                 @else
-                  <td>UHPD 1 = 4 hari x Rp 230000</td>
+                  <td>UHPD 1 = 4 hari x Rp {{ number_format('230000') }}</td>
                 @endif
               @elseif($stpd->user->level_jabatan == 'spv')
                 @if($stpd->jenis_uhpd == 'darat')
-                  <td>UHPD 1 = 4 hari x Rp 275000</td>
+                  <td>UHPD 1 = 4 hari x Rp {{ number_format('275000') }}</td>
                 @elseif($stpd->jenis_uhpd == 'udara')
-                  <td>UHPD 1 = 4 hari x Rp 395000</td>
+                  <td>UHPD 1 = 4 hari x Rp {{ number_format('395000') }}</td>
                 @else
-                  <td>UHPD 1 = 4 hari x Rp 215000</td>
+                  <td>UHPD 1 = 4 hari x Rp {{ number_format('215000') }}</td>
                 @endif
               @elseif($stpd->user->level_jabatan == 'staff')
                 @if($stpd->jenis_uhpd == 'darat')
-                  <td>UHPD 1 = 4 hari x Rp 260000</td>
+                  <td>UHPD 1 = 4 hari x Rp {{ number_format('260000') }}</td>
                 @elseif($stpd->jenis_uhpd == 'udara')
-                  <td>UHPD 1 = 4 hari x Rp 370000</td>
+                  <td>UHPD 1 = 4 hari x Rp {{ number_format('370000') }}</td>
                 @else
-                  <td>UHPD 1 = 4 hari x Rp 200000</td>
+                  <td>UHPD 1 = 4 hari x Rp {{ number_format('200000') }}</td>
                 @endif
               @else
               @endif
               <td>
-                <div class="col-md-7">Rp</div>
-                <div class="text-right">920.000,00</div>
+                <div class="text-right">Rp {{ number_format( $stpd->jumlah )}}</div>
               </td>
             </tr>
 
@@ -224,8 +223,7 @@
               <td>Bantuan Transportasi Bandara</td>
               <td>&nbsp;</td>
               <td>
-                <div class="col-md-7">Rp</div>
-                <div class="text-right">360.000,00</div>
+                <div class="text-right">Rp {{ number_format($stpd->trans_bandara) }}</div>
               </td>
             </tr>
 
@@ -250,8 +248,7 @@
             <tr>
               <td colspan="2">JUMLAH</td>
               <td>
-                <div class="col-md-7">Rp</div>
-                <div class="text-right">1.280.000,00</div>
+                <div class="text-right">Rp {{ number_format( $stpd->jumlah )}}</div>
               </td>
             </tr>
           </tbody>
@@ -344,7 +341,9 @@
         <table class="tbl" width="100%">
           <tbody>
             <tr>
-              <td rowspan="3" class="text-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
+              <td rowspan="3" class="text-left">
+                <br><br><br><br><br><br>
+              </td>
               <td width="20%">Verifikator UHPD</td>
             </tr>
             <tr>
@@ -358,15 +357,30 @@
         <div class="col-md-8">
         Dikeluarkan di Palu<br>
         Pada Tanggal : <b>&nbsp;</b>	<br>
-        Yang Menugaskan	<br><br><br><br><br><br>
-        <b><u>Noviandri</u></b><br>
-        <b>NIK : 67002</b>
-        </div>
-        <div>
-        Mengetahui<br>
-        VP ICT Network Management Area Pamasuka	<br><br><br><br><br><br>
-        <b><u>Ali Imran</u></b><br>
-        <b>NIK : 66034</b>
+        <br><br>
+        <table>
+          <tr>
+            <td>Yang Menugaskan</td>
+            <td width="300">&nbsp;</td>
+            <td>Yang Mengetahui</td>
+          </tr>
+          <tr>
+            <td height="100">&nbsp;</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><b><u>Noviandri</u></b></td>
+            <td></td>
+            <td><b><u>Ali Imran</u></b></td>
+          </tr>
+          <tr>
+            <td><b><u><b>NIK : 67002</b></u></b></td>
+            <td></td>
+            <td><b><u><b>NIK : 66034</b></u></b></td>
+          </tr>
+        </table>
+        <br>
         </div>
       </div><!-- /.content -->
     </div><!-- /.wrap -->

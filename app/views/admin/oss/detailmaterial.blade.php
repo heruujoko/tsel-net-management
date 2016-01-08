@@ -20,7 +20,7 @@
                         <h2>Detail OSS Material</h2>
                     </div>
                     <div class="col-md-2 pull-right">
-                        <a href="#" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                        <a href="/admin/oss/material/{{ $oss->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
                     </div>
                 </div>
                 <div class="row">
