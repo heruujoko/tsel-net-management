@@ -95,7 +95,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="jangka_waktu">Jangak Waktu</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" name="jangka_waktu" id="jangka_waktu" placeholder="dalam hari" required>
+                                    <input class="form-control" name="jangka_waktu" type="number" id="jangka_waktu" placeholder="dalam hari" required>
                                 </div>
                             </div>
                             <div class="form-group">

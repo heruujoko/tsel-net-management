@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('title', 'FPL')
 @section('breadcrumb')
-    <h2>OSS</h2>
+    <h2>FPL</h2>
     <ol class="breadcrumb">
         <li>
             <strong>Form Pengadaan Langsung</strong>

@@ -49,30 +49,43 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::get('/oss/spj/{id}/delete' , 'OSSController@deletespj');
 
 	Route::resource('/fpl', 'FPLController', array('except' => array('show', 'create', 'destroy')));
+	Route::get('/fpl/{id}/print', 'FPLController@print');
+	Route::get('fpl/{id}/details', 'FPLController@detail');
 	// method destroy fpl(id)
 	Route::get('/fpl/{id}/delete', 'FPLController@destroy');
 
 	Route::resource('/spph', 'SPPHController', array('except' => array('show', 'create', 'destroy')));
+	Route::get('/spph/{id}/print', 'SPPHController@print');
+	Route::get('spph/{id}/details', 'SPPHController@detail');
 	// method destroy spph(id)
 	Route::get('/spph/{id}/delete', 'SPPHController@destroy');
 
 	Route::resource('/surattugas', 'SuratTugasController', array('except' => array('show', 'create', 'destroy')));
+	Route::get('/surattugas/{id}/print', 'SuratTugasController@print');
+	Route::get('/surattugas/{id}/details', 'SuratTugasController@detail');
 	// method destroy surattugas(id)
 	Route::get('/surattugas/{id}/delete', 'SuratTugasController@destroy');
 
 	Route::resource('/perjalanandinas', 'PerjalananDinasController', array('except' => array('show', 'create', 'destroy')));
+	Route::get('/perjalanandinas/{id}/print', 'PerjalananDinasController@print');
+	Route::get('perjalanandinas/{id}/details', 'PerjalananDinasController@detail');
 	// method destroy perjalanandinas(id)
 	Route::get('/perjalanandinas/{id}/delete', 'PerjalananDinasController@destroy');
 
 	Route::resource('/stpd', 'STPDController', array('except' => array('show', 'create', 'destroy')));
+	Route::get('/stpd/{id}/print', 'STPDController@print');
+	Route::get('/stpd/{id}/details', 'STPDController@detail');
 	// method destroy STPD(id)
 	Route::get('/stpd/{id}/delete', 'STPDController@destroy');
 
 	Route::resource('/versheet', 'VersheetController', array('except' => array('show', 'create', 'destroy')));
+	Route::get('/versheet/{id}/print', 'VersheetController@print');
 	// method destroy Versheet(id)
 	Route::get('/versheet/{id}/delete', 'VersheetController@destroy');
 
 	Route::resource('/fpjp', 'FPJPController', array('except' => array('show', 'create', 'destroy')));
+	Route::get('/fpjp/{id}/print', 'FPJPController@print');
+	Route::get('/fpjp/{id}/details', 'FPJPController@detail');
 	// method destroy FPJP(id)
 	Route::get('/fpjp/{id}/delete', 'FPJPController@destroy');
 });

@@ -47,7 +47,7 @@
                     </a>
                 </div>
                 <div class="metro-nav-block nav-olive">
-                    <a data-original-title="" href="{{ URL::to('/') }}/admin/stpd">
+                    <a data-original-title="" href="{{ URL::to('/') }}/admin/fpl">
                         <i class="icon-tags"></i>
                         <div class="status">FPL </div>
                     </a>
