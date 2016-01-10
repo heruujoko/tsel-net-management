@@ -124,7 +124,7 @@
 			$data['active'] = 'fpjp';
 			$data['user_no'] = User::where('role','=','no')->get();
 			$data['fpjp'] = FPJP::all();
-			return View::make('admin.fpjp.list',$data);
+			return View::make(Auth::user()->role.'.fpjp.list',$data);
 		}
 
 		public function store(){
@@ -150,7 +150,7 @@
 			$fpjp->total = $jumlah;
 			$fpjp->save();
 			Session::flash('success' , 'Data telah dibuat.');
-			return Redirect::to('/admin/fpjp');
+			return Redirect::to('/'.Auth::user()->role.'/fpjp');
 		}
 
 		public function edit($id){
@@ -212,7 +212,7 @@
 		public function details($id){
 			$data['active'] = 'fpjp';
 			$data['fpjp'] = FPJP::find($id);
-			return View::make('admin.fpjp.details',$data);
+			return View::make(Auth::user()->role.'.fpjp.details',$data);
 		}
 
 		public function printpdf($id){

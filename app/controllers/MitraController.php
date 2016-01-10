@@ -4,7 +4,7 @@ class MitraController extends \BaseController {
 	{
 		$data['active'] = 'data';
 		$data['mitra']	=	Mitra::all();
-		return View::make('admin.mitra.show', $data);
+		return View::make(Auth::user()->role.'.mitra.show', $data);
 	}
 	public function store()
 	{
@@ -19,7 +19,7 @@ class MitraController extends \BaseController {
 		$mitra->save();
 
 		Session::flash('success', 'Data berhasil disimpan');
-		return Redirect::to('admin/mitra');
+		return Redirect::to('/'.Auth::user()->role.'/mitra');
 	}
 	public function edit($id)
 	{

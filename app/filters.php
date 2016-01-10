@@ -61,6 +61,19 @@ Route::filter('auth.admin', function()
 	}
 });
 
+Route::filter('auth.no', function()
+{
+	if(Auth::check()){
+		if(Auth::user()->role != 'no'){
+			Session::flash('error','Unauthorized user.');
+			return Redirect::guest('/');
+		}
+	} else {
+		Session::flash('error','Login required.');
+		return Redirect::guest('/');
+	}
+});
+
 
 Route::filter('auth.basic', function()
 {

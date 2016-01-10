@@ -7,7 +7,7 @@
 			$data['doc_type'] = VersheetType::all();
 			$data['vs'] = Versheet::all();
 			$data['user_no'] = User::where('role','=','no')->get();
-			return View::make('admin.versheet.list',$data);
+			return View::make(Auth::user()->role.'.versheet.list',$data);
 		}
 
 		public function store(){
@@ -34,7 +34,7 @@
 			}
 
 			Session::flash('success' , 'Data telah dibuat.');
-			return Redirect::to('/admin/versheet');
+			return Redirect::to('/'.Auth::user()->role.'/versheet');
 		}
 
 		public function edit($id){
@@ -75,7 +75,7 @@
 		public function details($id){
 			$data['vs'] = Versheet::find($id);
 			$data['active'] = 'versheet';
-			return View::make('admin.versheet.details' , $data);
+			return View::make(Auth::user()->role.'.versheet.details' , $data);
 		}
 
 		public function printpdf($id){

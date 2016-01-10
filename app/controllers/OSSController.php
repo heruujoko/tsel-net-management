@@ -127,7 +127,7 @@
 			$data['sites'] = DB::table('mastertp')->groupBy('sitelocation')->get();
 			$data['shoplists'] = Shoplist::all();
 			$data['userno'] = User::where('role' , '=' , 'no')->get();
-			return View::make('admin.oss.showmaterial', $data);
+			return View::make(Auth::user()->role.'.oss.showmaterial', $data);
 		}
 
 		public function storematerial(){
@@ -166,14 +166,14 @@
 				$stj->save();	
 			}
 			Session::flash('success' , 'Data telah dibuat.');
-			return Redirect::to('/admin/oss/material');
+			return Redirect::to('/'.Auth::user()->role.'/oss/material');
 		}
 
 		public function detailmaterial($id){
 			$data['active'] = 'oss';
 			$data['material'] = true;
 			$data['oss'] = OSS::where('oss_type','=','material')->where('id','=',$id)->first();
-			return View::make('admin.oss.detailmaterial' , $data);
+			return View::make(Auth::user()->role.'.oss.detailmaterial' , $data);
 		}
 
 		public function printmaterial($id){
@@ -319,7 +319,7 @@
 			$data['shoplists'] = Shoplist::all();
 			$data['bantek'] = Bantek::all();
 			$data['userno'] = User::where('role' , '=' , 'no')->get();
-			return View::make('admin.oss.showspj', $data);
+			return View::make(Auth::user()->role.'.oss.showspj', $data);
 		}
 
 		public function printspj($id){
@@ -477,14 +477,14 @@
 			$oss->save();
 
 			Session::flash('success' , 'Data telah dibuat.');
-			return Redirect::to('/admin/oss/spj');
+			return Redirect::to('/'.Auth::user()->role.'/oss/spj');
 		}
 
 		public function detailspj($id){
 			$data['active'] = 'oss';
 			$data['spj'] = true;
 			$data['oss'] = OSS::where('oss_type','=','spj')->where('id','=',$id)->first();
-			return View::make('admin.oss.detailspj' , $data);		
+			return View::make(Auth::user()->role.'.oss.detailspj' , $data);		
 		}
 
 		public function editspj($id){

@@ -6,7 +6,7 @@
 			$data['active'] = 'stpd';
 			$data['user_no'] = User::where('role','=','no')->get();
 			$data['stpd'] = STPD::all();
-			return View::make('admin.stpd.list' , $data);
+			return View::make(Auth::user()->role.'.stpd.list' , $data);
 		}
 
 		public function store(){
@@ -62,7 +62,7 @@
 			$stpd->save();
 
 			Session::flash('success' , 'Data telah dibuat.');
-			return Redirect::to('/admin/stpd');
+			return Redirect::to('/'.Auth::user()->role.'/stpd');
 		}
 
 		public function edit($id){
@@ -132,7 +132,7 @@
 		public function details($id){
 			$data['active'] = 'stpd';
 			$data['stpd'] = STPD::find($id);
-			return View::make('admin.stpd.details',$data);
+			return View::make(Auth::user()->role.'.stpd.details',$data);
 		}
 
 		public function printpdf($id){

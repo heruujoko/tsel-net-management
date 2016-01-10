@@ -5,7 +5,7 @@ class SignatureController extends \BaseController {
 		$data['active'] = 'data';
 		$data['signature'] = Signature::all();
 		$data['users'] = User::where('role','=','no')->get();
-		return View::make('admin.signature.show', $data);
+		return View::make(Auth::user()->role.'.signature.show', $data);
 	}
 	public function store()
 	{	
@@ -17,7 +17,7 @@ class SignatureController extends \BaseController {
 		);
 		if($validator->fails()){
 			Session::flash('error', 'Format tidak di dukung');
-			return Redirect::to('/admin/signature');
+			return Redirect::to('/'.Auth::user()->role.'/signature');
 		} else {
 			if($ext == 'jpg'){
 				$signpic = Input::file('file')->move(public_path(), 'signature_'.$user_id.'.jpg');
@@ -32,7 +32,7 @@ class SignatureController extends \BaseController {
 			$signature->save();
 		}
 		Session::flash('success', 'Data telah disimpan');
-		return Redirect::to('/admin/signature');
+		return Redirect::to('/'.Auth::user()->role.'/signature');
 	}
 	public function edit($id)
 	{

@@ -6,7 +6,7 @@
 			$data['active'] = 'pj';
 			$data['pjs'] = PerjalananDinas::all();
 			$data['users'] = User::all();
-			return View::make('admin.pj.list' , $data);
+			return View::make(Auth::user()->role.'.pj.list' , $data);
 		}
 
 		public function store(){
@@ -123,7 +123,7 @@
 			$fpjp->save();
 
 			Session::flash('success' , 'Data telah dibuat.');
-			return Redirect::to('/admin/perjalanandinas');
+			return Redirect::to('/'.Auth::user()->role.'/perjalanandinas');
 		}
 
 		public function edit($id){
@@ -141,7 +141,7 @@
 		public function details($id){
 			$data['active'] = 'pj';
 			$data['pj'] = PerjalananDinas::find($id);
-			return View::make('admin.pj.details' , $data);
+			return View::make(Auth::user()->role.'.pj.details' , $data);
 		}
 
 		public function update($id){

@@ -6,7 +6,7 @@ class UserController extends \BaseController {
 		$data['users'] = User::all();
 		$data['lokasi'] = LokasiKerja::all();
 		$data['mitras'] = Mitra::all();
-		return View::make('admin.users.show', $data);
+		return View::make(Auth::user()->role.'.users.show', $data);
 	}
 	public function store()
 	{
@@ -27,7 +27,7 @@ class UserController extends \BaseController {
 		$user->save();
 
 		Session::flash('success' , 'Data telah disimpan');
-		return Redirect::to('admin/users');
+		return Redirect::to('/'.Auth::user()->role.'/users');
 	}
 	public function edit($id)
 	{

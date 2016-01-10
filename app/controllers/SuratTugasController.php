@@ -8,7 +8,7 @@
 			$data['bantek'] = Bantek::all();
 			$data['sites'] = Mastertp::all();
 			$data['user_no'] = User::where('role' , '=', 'no')->get();
-			return View::make('admin.surattugas.list' , $data);
+			return View::make(Auth::user()->role.'.surattugas.list' , $data);
 		}
 
 		public function store(){
@@ -40,7 +40,7 @@
 
 			STActivity::where('st_id','=','')->delete();	
 			Session::flash('success' , 'Data telah dibuat.');
-			return Redirect::to('/admin/surattugas');
+			return Redirect::to('/'.Auth::user()->role.'/surattugas');
 		}
 
 		public function edit($id){

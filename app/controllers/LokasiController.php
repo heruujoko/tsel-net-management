@@ -4,7 +4,7 @@ class LokasiController extends \BaseController {
 	{
 		$data['active'] = 'lokasi';
 		$data['lokasi'] = LokasiKerja::all();
-		return View::make('admin.lokasi.show', $data);
+		return View::make(Auth::user()->role.'.lokasi.show', $data);
 	}
 	public function store()
 	{
@@ -13,7 +13,7 @@ class LokasiController extends \BaseController {
 		$lokasi->save();
 
 		Session::flash('success' , 'Data telah disimpan');
-		return Redirect::to('admin/lokasikerja');
+		return Redirect::to('/'.Auth::user()->role.'/lokasikerja');
 	}
 	public function edit($id)
 	{
