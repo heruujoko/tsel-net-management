@@ -28,7 +28,12 @@
                         App
                     </div>
                 </li>
-                @include('layouts.nav')
+                @if(Auth::user()->role == 'admin')
+                    @include('layouts.nav')
+                @elseif(Auth::user()->role == 'no')
+                    @include('layouts.navno')
+                @else
+                @endif
             </ul>
 
         </div>

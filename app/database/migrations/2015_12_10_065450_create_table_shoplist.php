@@ -16,9 +16,9 @@ class CreateTableShoplist extends Migration {
 			$table->increments('id');
 			$table->string('kode');
 			$table->string('deskripsi');
-			$table->string('satuan');
+			$table->string('satuan')->nullable();
 			$table->integer('harga');
-			$table->string('type');
+			$table->string('type')->nullable();
 			$table->timestamps();
 		});
 	}

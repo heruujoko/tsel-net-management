@@ -4,7 +4,7 @@ class BantekController extends \BaseController {
 	{
 		$data['active'] = 'bantek';
 		$data['banteks'] = Bantek::all();
-		return View::make('admin.bantek.show', $data);
+		return View::make(Auth::user()->role.'.bantek.show', $data);
 	}
 	public function store()
 	{
@@ -15,7 +15,7 @@ class BantekController extends \BaseController {
 		$bantek->save();
 
 		Session::flash('success' , 'Data telah disimpan');
-		return Redirect::to('admin/bantek');
+		return Redirect::to('/'.Auth::user()->role.'/bantek');
 	}
 	public function edit($id)
 	{

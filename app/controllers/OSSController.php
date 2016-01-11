@@ -2,19 +2,138 @@
 	
 	class OSSController extends \BaseController {
 
+		public function convert_number_to_words($number){
+
+			// $hyphen      = '-';
+			$hyphen = " ";
+		    // $conjunction = ' and ';
+		    $conjunction = '';
+		    $separator   = ', ';
+		    $negative    = 'negative ';
+		    $decimal     = ' point ';
+		    $dictionary  = array(
+		        0                   => 'nol',
+		        1                   => 'satu',		        
+		        2                   => 'dua',		        
+		        3                   => 'tiga',		        
+		        4                   => 'empat',		        
+		        5                   => 'lima',		        
+		        6                   => 'enam',		        
+		        7                   => 'tujuh',		       
+		        8                   => 'delapan',		        
+		        9                   => 'sembilan',		        
+		        10                  => 'sepuluh',
+		        11                  => 'sebelas',
+		        12                  => 'dua belas',
+		        13                  => 'tiga belas',
+		        14                  => 'empat belas',
+		        15                  => 'lima belas',
+		        16                  => 'enam belas',
+		        17                  => 'tujuh belas',
+		        18                  => 'delapan belas',
+		        19                  => 'sembilan belas',
+		        20                  => 'dua puluh',
+		        30                  => 'tiga puluh',
+		        40                  => 'empat puluh',
+		        50                  => 'lima puluh',
+		        60                  => 'enam puluh',
+		        70                  => 'tujuh puluh',
+		        80                  => 'delapan puluh',
+		        90                  => 'sembilan puluh',
+		        100                 => 'ratus ',
+		        1000                => 'ribu ',
+		        1000000             => 'juta ',
+		        1000000000          => 'miliar ',
+		        1000000000000       => 'triliun ',
+		        1000000000000000    => 'quadrillion ',
+		        1000000000000000000 => 'quintillion '
+		    );
+
+			if (!is_numeric($number)) {
+		        return false;
+		    }
+		    
+		    if (($number >= 0 && (int) $number < 0) || (int) $number < 0 - PHP_INT_MAX) {
+		        // overflow
+		        trigger_error(
+		            'convert_number_to_words only accepts numbers between -' . PHP_INT_MAX . ' and ' . PHP_INT_MAX,
+		            E_USER_WARNING
+		        );
+		        return false;
+		    }
+
+		    if ($number < 0) {
+		        return $negative . convert_number_to_words(abs($number));
+		    }
+		    
+		    $string = $fraction = null;
+		    
+		    if (strpos($number, '.') !== false) {
+		        list($number, $fraction) = explode('.', $number);
+		    }
+		    
+		    switch (true) {
+		        case $number < 21:
+		            $string = $dictionary[$number];
+		            break;
+		        case $number < 100:
+		            $tens   = ((int) ($number / 10)) * 10;
+		            $units  = $number % 10;
+		            $string = $dictionary[$tens];
+		            if ($units) {
+		                $string .= $hyphen . $dictionary[$units];
+		            }
+		            break;
+		        case $number < 1000:
+		            $hundreds  = $number / 100;
+		            $remainder = $number % 100;
+		            if($hundreds < 2){
+		            	$string = 'se'. $dictionary[100]." ";
+		            } else {
+		            	$string = $dictionary[$hundreds] . ' ' . $dictionary[100].' ';
+		            }
+		            if ($remainder) {
+		                $string .= $conjunction . $this->convert_number_to_words($remainder);
+		            }
+		            break;
+		        default:
+		            $baseUnit = pow(1000, floor(log($number, 1000)));
+		            $numBaseUnits = (int) ($number / $baseUnit);
+		            $remainder = $number % $baseUnit;
+		            $string = $this->convert_number_to_words($numBaseUnits) . ' ' . $dictionary[$baseUnit];
+		            if ($remainder) {
+		                $string .= $remainder < 100 ? $conjunction : $separator;
+		                $string .= $this->convert_number_to_words($remainder);
+		            }
+		            break;
+		    }
+		    
+		    if (null !== $fraction && is_numeric($fraction)) {
+		        $string .= $decimal;
+		        $words = array();
+		        foreach (str_split((string) $fraction) as $number) {
+		            $words[] = $dictionary[$number];
+		        }
+		        $string .= implode(' ', $words);
+		    }
+		    
+			return $string;
+		}
+
 		public function showmaterial(){
 			$data['active'] = 'oss';
 			$data['material'] = true;
 			$data['oss'] = OSS::where('oss_type','=','material')->get();
-			$data['sites'] = Mastertp::all();
+			$data['sites'] = DB::table('mastertp')->groupBy('sitelocation')->get();
 			$data['shoplists'] = Shoplist::all();
 			$data['userno'] = User::where('role' , '=' , 'no')->get();
-			return View::make('admin.oss.showmaterial', $data);
+			return View::make(Auth::user()->role.'.oss.showmaterial', $data);
 		}
 
 		public function storematerial(){
 			$tanggal = Carbon::parse(Input::get('tanggal'));
 			$oss = new Oss;
+			$oss->user_id = Auth::user()->id;
 			$oss->site = Input::get('namasite');
 			$oss->oss_type = "material";
 			$oss->tanggal = $tanggal;
@@ -47,18 +166,67 @@
 				$stj->save();	
 			}
 			Session::flash('success' , 'Data telah dibuat.');
-			return Redirect::to('/admin/oss/material');
+			return Redirect::to('/'.Auth::user()->role.'/oss/material');
 		}
 
 		public function detailmaterial($id){
 			$data['active'] = 'oss';
 			$data['material'] = true;
 			$data['oss'] = OSS::where('oss_type','=','material')->where('id','=',$id)->first();
-			return View::make('admin.oss.detailmaterial' , $data);
+			return View::make(Auth::user()->role.'.oss.detailmaterial' , $data);
 		}
 
 		public function printmaterial($id){
 			$oss = OSS::find($id);
+			$day = Carbon::parse($oss->tanggal);
+			if($day->dayOfWeek == 0 ){
+				$data['hari'] = 'Minggu';	
+			} elseif($day->dayOfWeek == 1){
+				$data['hari'] = 'Senin';	
+			} elseif($day->dayOfWeek == 2){
+				$data['hari'] = 'Selasa';	
+			} elseif($day->dayOfWeek == 3){
+				$data['hari'] = 'Rabu';	
+			} elseif($day->dayOfWeek == 4){
+				$data['hari'] = 'Kamis';	
+			} elseif($day->dayOfWeek == 5){
+				$data['hari'] = 'Jum\'at';	
+			} elseif($day->dayOfWeek == 6){
+				$data['hari'] = 'Sabtu';	
+			} else {}
+			if($day->month == 1 ){
+				$data['bulan'] = 'Januari';
+			} elseif ($day->month == 2) {
+				$data['bulan'] = 'Februari';
+			} elseif ($day->month == 3) {
+				$data['bulan'] = 'Maret';
+			} elseif ($day->month == 4) {
+				$data['bulan'] = 'April';
+			} elseif ($day->month == 5) {
+				$data['bulan'] = 'Mei';
+			} elseif ($day->month == 6) {
+				$data['bulan'] = 'Juni';
+			} elseif ($day->month == 2) {
+				$data['bulan'] = 'Juli';
+			} elseif ($day->month == 2) {
+				$data['bulan'] = 'Agustus';
+			} elseif ($day->month == 2) {
+				$data['bulan'] = 'September';
+			} elseif ($day->month == 2) {
+				$data['bulan'] = 'Oktober';
+			} elseif ($day->month == 2) {
+				$data['bulan'] = 'November';
+			} elseif ($day->month == 2) {
+				$data['bulan'] = 'Desember';
+			} else {}
+			$sum = 0;
+			foreach ($oss->shoplists as $sl) {
+				$sum = $sum + $sl->harga;
+			}
+			$data['sum'] = $sum;
+			$data['day'] = $day->toDateString();
+			$data['tanggal'] = $this->convert_number_to_words($day->day);
+			$data['tahun'] = $this->convert_number_to_words($day->year);
 			$data['oss'] = $oss;
 			$data['sites'] = $oss->sites;
 			$panjang = count($oss->shoplists);
@@ -85,7 +253,7 @@
 			$data['active'] = 'oss';
 			$data['material'] = true;
 			$data['oss'] = OSS::where('oss_type','=','material')->where('id','=',$id)->first();
-			$data['sites'] = Mastertp::all();
+			$data['sites'] = DB::table('mastertp')->groupBy('sitelocation')->get();
 			$data['shoplists'] = Shoplist::all();
 			$data['userno'] = User::where('role' , '=' , 'no')->get();
 			return View::make('admin.oss.editmaterial' , $data);	
@@ -147,17 +315,86 @@
 			$data['active'] = 'oss';
 			$data['spj'] = true;
 			$data['oss'] = OSS::where('oss_type','=','spj')->get();
-			$data['sites'] = Mastertp::all();
+			$data['sites'] = DB::table('mastertp')->groupBy('sitelocation')->get();
 			$data['shoplists'] = Shoplist::all();
 			$data['bantek'] = Bantek::all();
 			$data['userno'] = User::where('role' , '=' , 'no')->get();
-			return View::make('admin.oss.showspj', $data);
+			return View::make(Auth::user()->role.'.oss.showspj', $data);
+		}
+
+		public function printspj($id){
+			$oss = OSS::find($id);
+			$day = Carbon::parse($oss->tanggal);
+			$data['oss'] = $oss;
+			if($day->dayOfWeek == 0 ){
+				$data['hari'] = 'Minggu';	
+			} elseif($day->dayOfWeek == 1){
+				$data['hari'] = 'Senin';	
+			} elseif($day->dayOfWeek == 2){
+				$data['hari'] = 'Selasa';	
+			} elseif($day->dayOfWeek == 3){
+				$data['hari'] = 'Rabu';	
+			} elseif($day->dayOfWeek == 4){
+				$data['hari'] = 'Kamis';	
+			} elseif($day->dayOfWeek == 5){
+				$data['hari'] = 'Jum\'at';	
+			} elseif($day->dayOfWeek == 6){
+				$data['hari'] = 'Sabtu';	
+			} else {}
+
+			if($day->month == 1 ){
+				$data['bulan'] = 'Januari';
+			} elseif ($day->month == 2) {
+				$data['bulan'] = 'Februari';
+			} elseif ($day->month == 3) {
+				$data['bulan'] = 'Maret';
+			} elseif ($day->month == 4) {
+				$data['bulan'] = 'April';
+			} elseif ($day->month == 5) {
+				$data['bulan'] = 'Mei';
+			} elseif ($day->month == 6) {
+				$data['bulan'] = 'Juni';
+			} elseif ($day->month == 2) {
+				$data['bulan'] = 'Juli';
+			} elseif ($day->month == 2) {
+				$data['bulan'] = 'Agustus';
+			} elseif ($day->month == 2) {
+				$data['bulan'] = 'September';
+			} elseif ($day->month == 2) {
+				$data['bulan'] = 'Oktober';
+			} elseif ($day->month == 2) {
+				$data['bulan'] = 'November';
+			} elseif ($day->month == 2) {
+				$data['bulan'] = 'Desember';
+			} else {}
+			$data['day'] = $day->toDateString();
+			$data['tanggal'] = $this->convert_number_to_words($day->day);
+			$data['tahun'] = $this->convert_number_to_words($day->year);
+			$panjang = count($oss->shoplists);
+			$br = 0;
+			if($panjang > 2){
+				$br = 160;
+				if($panjang < 6){
+					$sel = $panjang - 3;
+					$br = $br - (30*$sel);
+				} else {
+					$br = 303;
+					$sel = $panjang - 6;
+					$br = $br - (30*$sel);
+				}
+			} else {
+
+			}
+			$data['br'] = $br;
+			$pdf = PDF::loadView('templatesurat.oss_bantek_2' , $data);
+			return $pdf->setPaper('a4')->stream();	
 		}
 
 		public function storespj(){
 			$oss = new OSS;
 			$oss->site = Input::get('namasite');
 			$oss->oss_type = "spj";
+			$oss->user_id = Auth::user()->id;
 			$oss->tanggal = Carbon::parse(Input::get('tanggal'));
 			$oss->bantek = Input::get('bantek');
 			$oss->permasalahan = Input::get('permasalahan');
@@ -240,21 +477,21 @@
 			$oss->save();
 
 			Session::flash('success' , 'Data telah dibuat.');
-			return Redirect::to('/admin/oss/spj');
+			return Redirect::to('/'.Auth::user()->role.'/oss/spj');
 		}
 
 		public function detailspj($id){
 			$data['active'] = 'oss';
 			$data['spj'] = true;
 			$data['oss'] = OSS::where('oss_type','=','spj')->where('id','=',$id)->first();
-			return View::make('admin.oss.detailspj' , $data);		
+			return View::make(Auth::user()->role.'.oss.detailspj' , $data);		
 		}
 
 		public function editspj($id){
 			$data['active'] = 'oss';
 			$data['spj'] = true;
 			$data['oss'] = OSS::where('oss_type','=','spj')->where('id','=',$id)->first();
-			$data['sites'] = Mastertp::all();
+			$data['sites'] = DB::table('mastertp')->groupBy('sitelocation')->get();
 			$data['shoplists'] = Shoplist::where('type' , '!=' , 'transport')->get();
 			$data['userno'] = User::where('role' , '=' , 'no')->get();
 			$data['bantek'] = Bantek::all();

@@ -142,9 +142,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3" for="cluster">Cluster</label>
+                                <label class="control-label col-md-3" for="cluster">Mitra</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" name="cluster" id="cluster" required>
+                                    <select class="form-control chosen" name="mitra">
+                                        @foreach($mitras as $m)
+                                            <option value="{{ $m->id }}">{{ $m->nama }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">

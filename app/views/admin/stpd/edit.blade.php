@@ -133,6 +133,7 @@
                                 <label class="control-label col-md-3" for="menugaskan">Menugaskan</label>
                                 <div class="col-md-6">
                                     <select class="form-control chosen" name="menugaskan">
+                                    @if($stpd->menugaskan != '')
                                     @foreach($user_no as $no)
                                         @if($stpd->menugaskan->id == $no->id)
                                             <option value="{{ $no->id }}" selected>{{ $no->nama }} - {{ $no->jabatan }}</option>
@@ -140,6 +141,11 @@
                                             <option value="{{ $no->id }}">{{ $no->nama }} - {{ $no->jabatan }}</option>
                                         @endif
                                     @endforeach
+                                    @else
+                                    @foreach($user_no as $no)
+                                            <option value="{{ $no->id }}">{{ $no->nama }} - {{ $no->jabatan }}</option>
+                                    @endforeach
+                                    @endif
                                     </select>
                                 </div>
                             </div>
@@ -147,6 +153,7 @@
                                 <label class="control-label col-md-3" for="mengetahui">Mengetahui</label>
                                 <div class="col-md-6">
                                     <select class="form-control chosen" name="mengetahui">
+                                    @if($stpd->mengetahui != '')
                                     @foreach($user_no as $no)
                                         @if($stpd->mengetahui->id == $no->id)
                                             <option value="{{ $no->id }}" selected>{{ $no->nama }} - {{ $no->jabatan }}</option>
@@ -154,6 +161,11 @@
                                             <option value="{{ $no->id }}">{{ $no->nama }} - {{ $no->jabatan }}</option>
                                         @endif
                                     @endforeach
+                                    @else
+                                    @foreach($user_no as $no)
+                                            <option value="{{ $no->id }}">{{ $no->nama }} - {{ $no->jabatan }}</option>
+                                    @endforeach
+                                    @endif
                                     </select>
                                 </div>
                             </div>

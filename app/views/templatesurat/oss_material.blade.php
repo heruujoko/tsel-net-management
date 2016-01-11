@@ -3,7 +3,6 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- <link href="{{ URL::to('/') }}/surat/style-surat.css" rel="stylesheet" type="text/css"> -->
 	 <style type="text/css">
 		.wrap {
 			margin:0 auto;
@@ -90,10 +89,16 @@
 		.signature {
 			width: 100%;
 			min-height: 100px;
-			@if(count($oss->shoplists) > 5)
-				margin-top: {{ $br }}px;
+			@if(count($oss->shoplists) < 5)
+				page-break-after: always;
 			@else
-				margin-top: 10px;	
+			@endif
+			
+		}
+		.pbreak {
+			@if(count($oss->shoplists) >= 5)
+				page-break-after: always;
+			@else
 			@endif
 		}
 		.tsel {
@@ -161,11 +166,6 @@
 		}
 		.confirm-wrapper{
 			width: 450px;
-			@if(count($oss->shoplists) < 6)
-				margin-top: {{ $br }}px;
-			@else
-				margin-top: 10px;
-			@endif
 		}
 		.confirm {
 			width: 478px;
@@ -206,8 +206,8 @@
 				<span class="text-center">CORRECTIVE - ON SITE SUPPORT (OSS)</span>
 			</div>
 			<div class="isinya">
-				Pada hari ini <b>Rabu</b> tanggal <b>Dua Puluh Sembilan</b> bulan <b>Juli</b> tahun <b>Dua Ribu Lima Belas</b> (10-12-2015)
-				<b>PT.Telkomsel</b> memberikan perintah kepada <b>PT. KISEL</b> untuk melakukan  pekerjaan On Site
+				Pada hari ini <b>{{ $hari }}</b> tanggal <b>{{ $tanggal }}</b> bulan <b>{{ $bulan }}</b> tahun <b>{{ $tahun }}</b> ({{ $day }})
+				<b>PT.Telkomsel</b> memberikan perintah kepada <b>{{$oss->request->mitranya->nama}}</b> untuk melakukan  pekerjaan On Site
 				Support dengan rincian sebagai berikut :
 			</div>
 			<div class"row">
@@ -222,7 +222,7 @@
 					<tr>
 						<td>Request Dari</td>
 						<td>:</td>
-						<td colspan="3">RTPO TOLITOLI</td>
+						<td colspan="3">{{ $oss->request->nama }}</td>
 					</tr>
 					<tr>
 						<td>Jam Request</td>
@@ -306,15 +306,16 @@
 						@endfor
 						<tr>
 							<td colspan="4">Jumlah</td>
-							<td>56786</td>
+							<td>{{ $sum }}</td>
 						</tr>
 					</tbody>
 				</table>
 				<p class="keterangan">	Status/Kondisi Akhir : OK/NOK     Ket. :</p>
 			</div><!-- /.row -->
 		</div><!-- /.border -->
+			<div class="pbreak"></div>
 			<div class="signature">
-			<div class="row">
+				<div class="row">
 				<div class="col-lg-8 tsel">
 					<table class="tbl-signature" border="1">
 						<thead>
@@ -335,11 +336,11 @@
 									</tr>
 									<tr>
 										<td height="0"><b><u>{{ $oss->dikerjakan->nama }}</u></b></td>
-										<td><b><u>Habibi M Tau</u></b></td>
+										<td><b><u>{{ $oss->mengetahui->nama }}</u></b></td>
 									</tr>
 									<tr>
 										<td height="0">{{ $oss->dikerjakan->jabatan }}</td>
-										<td>Mgr. Network Service Palu</td>
+										<td>{{ $oss->mengetahui->jabatan }}</td>
 									</tr>
 								</table>
 							</tr>
@@ -350,7 +351,7 @@
 					<table class="tbl-signature-oleh" border="1">
 						<thead>
 							<tr>
-								<th colspan="2">PT. Primatama</th>
+								<th colspan="2">{{ $oss->request->mitranya->nama }}</th>
 							</tr>
 						</thead>
 						<tbody>

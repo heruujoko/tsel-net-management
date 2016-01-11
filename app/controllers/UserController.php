@@ -5,7 +5,8 @@ class UserController extends \BaseController {
 		$data['active'] = 'users';
 		$data['users'] = User::all();
 		$data['lokasi'] = LokasiKerja::all();
-		return View::make('admin.users.show', $data);
+		$data['mitras'] = Mitra::all();
+		return View::make(Auth::user()->role.'.users.show', $data);
 	}
 	public function store()
 	{
@@ -15,9 +16,9 @@ class UserController extends \BaseController {
 		$user->password = Hash::make(Input::get('password'));
 		$user->role = Input::get('role');
 		$user->jabatan = Input::get('jabatan');
-		$user->cluster = Input::get('cluster');
 		$user->nik = Input::get('nik');
 		$user->lokasi_kerja_id = Input::get('lokasi');
+		$user->mitra = Input::get('mitra');
 		$user->bank = Input::get('bank');
 		$user->no_rekening = Input::get('rekening');
 		$user->level_jabatan = Input::get('level_jabatan');
@@ -26,13 +27,14 @@ class UserController extends \BaseController {
 		$user->save();
 
 		Session::flash('success' , 'Data telah disimpan');
-		return Redirect::to('admin/users');
+		return Redirect::to('/'.Auth::user()->role.'/users');
 	}
 	public function edit($id)
 	{
 		$data['user'] = User::find($id);
 		$data['lokasi'] = LokasiKerja::all();
 		$data['active'] = 'users';
+		$data['mitras'] = Mitra::all();
 		return View::make('admin.users.edit', $data);
 	}
 	public function update($id)
@@ -45,9 +47,9 @@ class UserController extends \BaseController {
 		}
 		$user->role = Input::get('role');
 		$user->jabatan = Input::get('jabatan');
-		$user->cluster = Input::get('cluster');
 		$user->nik = Input::get('nik');
 		$user->lokasi_kerja_id = Input::get('lokasi');
+		$user->mitra = Input::get('mitra');
 		$user->bank = Input::get('bank');
 		$user->no_rekening = Input::get('rekening');
 		$user->level_jabatan = Input::get('level_jabatan');

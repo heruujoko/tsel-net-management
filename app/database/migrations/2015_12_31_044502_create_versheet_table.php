@@ -16,6 +16,7 @@ class CreateVersheetTable extends Migration {
 			$table->increments('id');
 			$table->string('no_invoice')->nullable();
 			$table->integer('user_id');
+			$table->integer('pd_id');
 			//kelengkapan dokumen ada di versheet docs
 			$table->string('untuk_pembayaran');
 			$table->integer('jumlah_pembayaran');

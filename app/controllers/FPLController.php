@@ -6,7 +6,7 @@
 			$data['active'] = 'fpl';
 			$data['user_no'] = User::where('role' , '=', 'no')->get();
 			$data['fpl'] = FPL::all();
-			return View::make('admin.fpl.list' , $data);
+			return View::make(Auth::user()->role.'.fpl.list' , $data);
 		}
 		public function store(){
 
@@ -84,7 +84,7 @@
 				$stj->save();	
 			}
 			Session::flash('success' , 'Data telah dibuat.');
-			return Redirect::to('/admin/fpl');
+			return Redirect::to('/'.Auth::user()->role.'/fpl');
 		}
 		public function edit($id){
 			$data['active'] = 'fpl';

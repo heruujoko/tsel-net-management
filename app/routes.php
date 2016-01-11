@@ -16,7 +16,7 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::resource('/users', 'UserController', array('except' => array('show', 'create', 'destroy')));
 	// method destroy user(id)
 	Route::get('/users/{id}/delete', 'UserController@destroy');
-	
+
 	Route::resource('/bantek', 'BantekController', array('except' => array('show', 'create', 'destroy')));
 	// method destroy bantek(id)
 	Route::get('/bantek/{id}/delete', 'BantekController@destroy');
@@ -44,6 +44,7 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::get('/oss/spj' , 'OSSController@showspj');
 	Route::post('/oss/spj' , 'OSSController@storespj');
 	Route::get('/oss/spj/{id}/details' , 'OSSController@detailspj');
+	Route::get('/oss/spj/{id}/print' , 'OSSController@printspj');
 	Route::get('/oss/spj/{id}/edit' , 'OSSController@editspj');
 	Route::post('/oss/spj/{id}/update' , 'OSSController@updatespj');
 	Route::get('/oss/spj/{id}/delete' , 'OSSController@deletespj');
@@ -70,24 +71,89 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::get('/perjalanandinas/{id}/print', 'PerjalananDinasController@print');
 	Route::get('perjalanandinas/{id}/details', 'PerjalananDinasController@detail');
 	// method destroy perjalanandinas(id)
+	Route::get('/perjalanandinas/{id}/details', 'PerjalananDinasController@details');
 	Route::get('/perjalanandinas/{id}/delete', 'PerjalananDinasController@destroy');
 
 	Route::resource('/stpd', 'STPDController', array('except' => array('show', 'create', 'destroy')));
 	Route::get('/stpd/{id}/print', 'STPDController@print');
 	Route::get('/stpd/{id}/details', 'STPDController@detail');
 	// method destroy STPD(id)
+	Route::get('/stpd/{id}/details', 'STPDController@details');
+	Route::get('/stpd/{id}/print', 'STPDController@printpdf');
 	Route::get('/stpd/{id}/delete', 'STPDController@destroy');
 
 	Route::resource('/versheet', 'VersheetController', array('except' => array('show', 'create', 'destroy')));
 	Route::get('/versheet/{id}/print', 'VersheetController@print');
 	// method destroy Versheet(id)
+	Route::get('/versheet/{id}/details', 'VersheetController@details');
+	Route::get('/versheet/{id}/print', 'VersheetController@printpdf');
 	Route::get('/versheet/{id}/delete', 'VersheetController@destroy');
 
 	Route::resource('/fpjp', 'FPJPController', array('except' => array('show', 'create', 'destroy')));
 	Route::get('/fpjp/{id}/print', 'FPJPController@print');
 	Route::get('/fpjp/{id}/details', 'FPJPController@detail');
 	// method destroy FPJP(id)
+	Route::get('/fpjp/{id}/details', 'FPJPController@details');
+	Route::get('/fpjp/{id}/print', 'FPJPController@printpdf');
 	Route::get('/fpjp/{id}/delete', 'FPJPController@destroy');
+
+	Route::get('/import/shoplists' , 'ImportController@shoplists');
+	Route::get('/import/mastertp' , 'ImportController@mastertp');
+	Route::post('/import/shoplists' , 'ImportController@importshoplists');
+	Route::post('/import/mastertp' , 'ImportController@importmastertp');
+});
+
+// route NO
+
+Route::group(array('prefix' => 'no' , 'before' => 'auth.no'), function(){
+	Route::get('/' , 'NOController@dash');
+	Route::resource('/users', 'UserController', array('except' => array('show', 'create', 'destroy' , 'edit' , 'update')));
+	// method destroy user(id)
+	Route::get('/users/{id}/delete', 'UserController@destroy');
+
+	Route::resource('/bantek', 'BantekController', array('except' => array('show', 'create', 'destroy'  , 'edit' , 'update')));
+
+	Route::resource('/mitra', 'MitraController', array('except' => array('show', 'create', 'destroy'  , 'edit' , 'update')));
+
+	Route::resource('/signature', 'SignatureController', array('except' => array('show', 'create', 'destroy'  , 'edit' , 'update')));
+
+	Route::resource('/lokasikerja', 'LokasiController', array('except' => array('show', 'create', 'destroy'  , 'edit' , 'update')));
+
+	Route::get('/oss/material' , 'OSSController@showmaterial');
+	Route::post('/oss/material' , 'OSSController@storematerial');
+	Route::get('/oss/material/{id}/details' , 'OSSController@detailmaterial');
+	Route::get('/oss/material/{id}/print' , 'OSSController@printmaterial');
+
+	Route::get('/oss/spj' , 'OSSController@showspj');
+	Route::post('/oss/spj' , 'OSSController@storespj');
+	Route::get('/oss/spj/{id}/details' , 'OSSController@detailspj');
+	Route::get('/oss/spj/{id}/print' , 'OSSController@printspj');
+	Route::get('/oss/spj/{id}/edit' , 'OSSController@editspj');
+	Route::post('/oss/spj/{id}/update' , 'OSSController@updatespj');
+	Route::get('/oss/spj/{id}/delete' , 'OSSController@deletespj');
+
+	Route::resource('/fpl', 'FPLController', array('except' => array('show', 'create', 'destroy' , 'edit' , 'update')));
+	Route::resource('/spph', 'SPPHController', array('except' => array('show', 'create', 'destroy' , 'edit' , 'update')));
+	Route::resource('/surattugas', 'SuratTugasController', array('except' => array('show', 'create', 'destroy' , 'edit' , 'update')));
+	Route::resource('/perjalanandinas', 'PerjalananDinasController', array('except' => array('show', 'create', 'destroy', 'edit','update')));
+	Route::get('/perjalanandinas/{id}/details', 'PerjalananDinasController@details');
+
+	Route::resource('/stpd', 'STPDController', array('except' => array('show', 'create', 'destroy','edit','update')));
+	Route::get('/stpd/{id}/details', 'STPDController@details');
+	Route::get('/stpd/{id}/print', 'STPDController@printpdf');
+
+	Route::resource('/versheet', 'VersheetController', array('except' => array('show', 'create', 'destroy' , 'edit' , 'update')));
+	Route::get('/versheet/{id}/details', 'VersheetController@details');
+	Route::get('/versheet/{id}/print', 'VersheetController@printpdf');
+
+	Route::resource('/fpjp', 'FPJPController', array('except' => array('show', 'create', 'destroy' , 'edit' , 'update')));
+	Route::get('/fpjp/{id}/details', 'FPJPController@details');
+	Route::get('/fpjp/{id}/print', 'FPJPController@printpdf');
+
+	Route::get('/import/shoplists' , 'ImportController@shoplists');
+	Route::get('/import/mastertp' , 'ImportController@mastertp');
+	Route::post('/import/shoplists' , 'ImportController@importshoplists');
+	Route::post('/import/mastertp' , 'ImportController@importmastertp');
 });
 
 
@@ -120,6 +186,9 @@ Route::group(array('prefix'=>'surat'), function(){
 	});
 	Route::get('/verification', function(){
 		return View::make('templatesurat.verification');
+	});
+	Route::get('/fpjp', function(){
+		return View::make('templatesurat.fpjp');
 	});
 
 });

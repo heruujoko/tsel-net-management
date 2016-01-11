@@ -19,7 +19,7 @@
     <div class="lock-header">
         <!-- BEGIN LOGO -->
         <a class="center" id="logo" href="{{ public_path() }}">
-            <img class="center" alt="logo" src="{{ URL::to('/') }}/img/logo-logo.jpg">
+            <img class="center" alt="logo" src="{{ URL::to('/') }}/surat/tsel.jpg">
         </a>
         <br><br>
         <!-- END LOGO -->

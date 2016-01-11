@@ -1,5 +1,5 @@
 <?php
-	
+
 	class VersheetController extends \BaseController {
 
 		public function index(){
@@ -7,7 +7,7 @@
 			$data['doc_type'] = VersheetType::all();
 			$data['vs'] = Versheet::all();
 			$data['user_no'] = User::where('role','=','no')->get();
-			return View::make('admin.versheet.list',$data);		
+			return View::make(Auth::user()->role.'.versheet.list',$data);
 		}
 
 		public function store(){
@@ -30,11 +30,11 @@
 				$vd = new VersheetDocs;
 				$vd->versheet_id = $vs->id;
 				$vd->docs = $doc;
-				$vd->save();		
+				$vd->save();
 			}
 
 			Session::flash('success' , 'Data telah dibuat.');
-			return Redirect::to('/admin/versheet');	
+			return Redirect::to('/'.Auth::user()->role.'/versheet');
 		}
 
 		public function edit($id){
@@ -42,7 +42,7 @@
 			$data['vs'] = Versheet::find($id);
 			$data['doc_type'] = VersheetType::all();
 			$data['user_no'] = User::where('role','=','no')->get();
-			return View::make('admin.versheet.edit',$data);		
+			return View::make('admin.versheet.edit',$data);
 		}
 
 		public function update($id){
@@ -65,16 +65,31 @@
 				$vd = new VersheetDocs;
 				$vd->versheet_id = $vs->id;
 				$vd->docs = $doc;
-				$vd->save();		
+				$vd->save();
 			}
 
 			Session::flash('success' , 'Data telah dibuat.');
-			return Redirect::to('/admin/versheet');		
+			return Redirect::to('/admin/versheet');
+		}
+
+		public function details($id){
+			$data['vs'] = Versheet::find($id);
+			$data['active'] = 'versheet';
+			return View::make(Auth::user()->role.'.versheet.details' , $data);
+		}
+
+		public function printpdf($id){
+			$data['active'] = 'versheet';
+			$data['vs'] = Versheet::find($id);
+			$day = Carbon::parse($data['vs']->tanggal);
+			$data['day'] = $day;
+			$pdf = PDF::loadView('templatesurat.verification' , $data);
+			return $pdf->stream();
 		}
 
 		public function destroy($id){
-			Versheet::find($id)->delete();	
-			VersheetDocs::where('versheet_id','=',$id)->delete();			
+			Versheet::find($id)->delete();
+			VersheetDocs::where('versheet_id','=',$id)->delete();
 		}
 
 	}

@@ -5,7 +5,7 @@
 		public function index(){	
 			$data['active'] = 'spph';
 			$data['spph'] = SPPH::all();
-			return View::make('admin.spph.list' , $data);
+			return View::make(Auth::user()->role.'.spph.list' , $data);
 		}
 
 		public function store(){
@@ -64,7 +64,7 @@
 			$spph->save();
 
 			Session::flash('success' , 'Data telah dibuat.');
-			return Redirect::to('/admin/spph');
+			return Redirect::to('/'.Auth::user()->role.'/spph');
 		}
 
 		public function edit($id){
