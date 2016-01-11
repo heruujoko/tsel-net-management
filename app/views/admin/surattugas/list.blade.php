@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="bantek">Bantek</label>
                                 <div class="col-md-6">
-                                    <select multiple class="chosen form-control" name="bantek[]">
+                                    <select multiple class="chosen form-control" name="bantek[]" required="required">
                                         @foreach($bantek as $b)
                                             <option value="{{ $b->id }}">{{ $b->nama }} - {{ $b->perusahaan }}</option>
                                         @endforeach

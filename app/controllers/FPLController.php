@@ -256,6 +256,23 @@
 			return Redirect::to('/admin/fpl');
 		}
 
+		public function detail($id) {
+			$fpl = FPL::find($id);
+			$data['fpl'] = $fpl;
+			$data['active'] = 'fpl';
+
+			return View::make('admin.fpl.detail', $data);
+		}
+
+		public function print($id) {
+			$fpl = FPL::find($id);
+			$data['fpl'] = $fpl;
+
+			$pdf = PDF::loadView('templatesurat.fpl' , $data);
+			return $pdf->setPaper('a4')->stream();
+		}
+
+
 	}
 
 ?>

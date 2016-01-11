@@ -92,6 +92,21 @@
 			return Redirect::to('/admin/spph');	
 		}
 
+		public function detail($id) {
+			$spph = SPPH::find($id);
+			$data['active'] = 'spph';
+			$data['spph'] = $spph;
+			return View::make('admin.spph.detail', $data);
+		}
+
+		public function print($id){
+			$spph = SPPH::find($id);
+			$data['no'] = 1;
+			$data['spph'] = $spph;
+			$pdf = PDF::loadView('templatesurat.spph' , $data);
+			return $pdf->setPaper('a4')->stream();
+		}
+
 	}
 
 ?>

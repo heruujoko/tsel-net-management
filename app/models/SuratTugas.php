@@ -15,7 +15,6 @@
 		public function setuju(){
 			return $this->HasOne('User', 'id', 'menyetujui');	
 		}
-
 	}
 
 ?>

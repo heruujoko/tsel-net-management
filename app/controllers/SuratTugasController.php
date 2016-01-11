@@ -1,5 +1,5 @@
 <?php
-	
+
 	class SuratTugasController extends \BaseController {
 
 		public function index(){
