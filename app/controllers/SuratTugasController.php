@@ -109,6 +109,24 @@
 			return Redirect::to('/admin/surattugas');	
 		}
 
+		public function detail($id){
+	 		$surat = SuratTugas::find($id);
+	 		$data['active'] = 'st';
+	 		$data['surat'] = $surat;
+	 		
+	 		return View::make(Auth::user()->role.'.surattugas.detail', $data);	
+ 		}
+ 		
+ 		public function printpdf($id){
+	 		$surat = SuratTugas::find($id);
+	 		$data['no'] = 1;
+	 		$data['sites'] = $surat->activities;
+	 		$data['surat'] = $surat;
+	 		$pdf = PDF::loadView('templatesurat.surat_tugas' , $data);
+	 		return $pdf->setPaper('a4')->stream();
+ 		}
+
+
 	}
 
 ?>

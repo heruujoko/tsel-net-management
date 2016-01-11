@@ -50,19 +50,19 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::get('/oss/spj/{id}/delete' , 'OSSController@deletespj');
 
 	Route::resource('/fpl', 'FPLController', array('except' => array('show', 'create', 'destroy')));
-	Route::get('/fpl/{id}/print', 'FPLController@print');
+	Route::get('/fpl/{id}/print', 'FPLController@printpdf');
 	Route::get('fpl/{id}/details', 'FPLController@detail');
 	// method destroy fpl(id)
 	Route::get('/fpl/{id}/delete', 'FPLController@destroy');
 
 	Route::resource('/spph', 'SPPHController', array('except' => array('show', 'create', 'destroy')));
-	Route::get('/spph/{id}/print', 'SPPHController@print');
+	Route::get('/spph/{id}/print', 'SPPHController@printpdf');
 	Route::get('spph/{id}/details', 'SPPHController@detail');
 	// method destroy spph(id)
 	Route::get('/spph/{id}/delete', 'SPPHController@destroy');
 
 	Route::resource('/surattugas', 'SuratTugasController', array('except' => array('show', 'create', 'destroy')));
-	Route::get('/surattugas/{id}/print', 'SuratTugasController@print');
+	Route::get('/surattugas/{id}/print', 'SuratTugasController@printpdf');
 	Route::get('/surattugas/{id}/details', 'SuratTugasController@detail');
 	// method destroy surattugas(id)
 	Route::get('/surattugas/{id}/delete', 'SuratTugasController@destroy');
@@ -133,8 +133,11 @@ Route::group(array('prefix' => 'no' , 'before' => 'auth.no'), function(){
 	Route::get('/oss/spj/{id}/delete' , 'OSSController@deletespj');
 
 	Route::resource('/fpl', 'FPLController', array('except' => array('show', 'create', 'destroy' , 'edit' , 'update')));
+	Route::get('/fpl/{id}/print', 'FPLController@printpdf');
 	Route::resource('/spph', 'SPPHController', array('except' => array('show', 'create', 'destroy' , 'edit' , 'update')));
+	Route::get('/spph/{id}/print', 'SPPHController@printpdf');
 	Route::resource('/surattugas', 'SuratTugasController', array('except' => array('show', 'create', 'destroy' , 'edit' , 'update')));
+	Route::get('/surattugas/{id}/print', 'SuratTugasController@printpdf');
 	Route::resource('/perjalanandinas', 'PerjalananDinasController', array('except' => array('show', 'create', 'destroy', 'edit','update')));
 	Route::get('/perjalanandinas/{id}/details', 'PerjalananDinasController@details');
 

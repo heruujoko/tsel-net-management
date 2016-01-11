@@ -264,7 +264,7 @@
 			return View::make('admin.fpl.detail', $data);
 		}
 
-		public function print($id) {
+		public function printpdf($id) {
 			$fpl = FPL::find($id);
 			$data['fpl'] = $fpl;
 

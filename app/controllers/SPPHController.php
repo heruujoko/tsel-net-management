@@ -99,7 +99,7 @@
 			return View::make('admin.spph.detail', $data);
 		}
 
-		public function print($id){
+		public function printpdf($id){
 			$spph = SPPH::find($id);
 			$data['no'] = 1;
 			$data['spph'] = $spph;
