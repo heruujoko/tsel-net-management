@@ -8,6 +8,10 @@
 			return $this->HasMany('FPLPerbaikan', 'fpl_id', 'id');	
 		}
 
+		public function pemohon(){
+			return $this->hasOne('User', 'id', 'id_pemohon');	
+		}
+
 		public function pembelians(){
 			return $this->HasMany('FPLPembelian', 'fpl_id', 'id');	
 		}

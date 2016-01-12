@@ -65,7 +65,7 @@
         <br><br>
         <div class="isi">
         Dengan Hormat,
-        <p class="text-justify">Mengawali surat ini, kami mengucapkan terima kasih atas kerjasamanya selama ini. Sehubungan dengan adanya <strong>Pekerjaan Pembuatan Power House Sound Proof site Banteng </strong>(desain terlampir), kami mohon kepada Bapak untuk mengirimkan Surat Penawaran Harga (SPH).
+        <p class="text-justify">Mengawali surat ini, kami mengucapkan terima kasih atas kerjasamanya selama ini. Sehubungan dengan adanya <strong>{{ $spph->kegiatan }}</strong>, kami mohon kepada Bapak untuk mengirimkan Surat Penawaran Harga (SPH).
           <p>
             Surat Penawaran Harga (SPH) kami harapkan sudah diterima selambat-lambatnya 1 hari setelah SPPH ini diterbitkan dan ditujukan kepada :
           </p>
