@@ -13,40 +13,40 @@
 		    $decimal     = ' point ';
 		    $dictionary  = array(
 		        0                   => 'nol',
-		        1                   => 'satu',
-		        2                   => 'dua',
-		        3                   => 'tiga',
-		        4                   => 'empat',
-		        5                   => 'lima',
-		        6                   => 'enam',
-		        7                   => 'tujuh',
-		        8                   => 'delapan',
-		        9                   => 'sembilan',
-		        10                  => 'sepuluh',
-		        11                  => 'sebelas',
-		        12                  => 'dua belas',
-		        13                  => 'tiga belas',
-		        14                  => 'empat belas',
-		        15                  => 'lima belas',
-		        16                  => 'enam belas',
-		        17                  => 'tujuh belas',
-		        18                  => 'delapan belas',
-		        19                  => 'sembilan belas',
-		        20                  => 'dua puluh',
-		        30                  => 'tiga puluh',
-		        40                  => 'empat puluh',
-		        50                  => 'lima puluh',
-		        60                  => 'enam puluh',
-		        70                  => 'tujuh puluh',
-		        80                  => 'delapan puluh',
-		        90                  => 'sembilan puluh',
-		        100                 => 'ratus ',
-		        1000                => 'ribu ',
-		        1000000             => 'juta ',
-		        1000000000          => 'miliar ',
-		        1000000000000       => 'triliun ',
-		        1000000000000000    => 'quadrillion ',
-		        1000000000000000000 => 'quintillion '
+		        1                   => 'Satu',
+		        2                   => 'Dua',
+		        3                   => 'Tiga',
+		        4                   => 'Empat',
+		        5                   => 'Lima',
+		        6                   => 'Enam',
+		        7                   => 'Tujuh',
+		        8                   => 'Delapan',
+		        9                   => 'Sembilan',
+		        10                  => 'Sepuluh',
+		        11                  => 'Sebelas',
+		        12                  => 'Dua Belas',
+		        13                  => 'Tiga Belas',
+		        14                  => 'Empat Belas',
+		        15                  => 'Lima Belas',
+		        16                  => 'Enam Belas',
+		        17                  => 'Tujuh Belas',
+		        18                  => 'Delapan Belas',
+		        19                  => 'Sembilan Belas',
+		        20                  => 'Dua Puluh',
+		        30                  => 'Tiga Puluh',
+		        40                  => 'Empat Puluh',
+		        50                  => 'Lima Puluh',
+		        60                  => 'Enam Puluh',
+		        70                  => 'Tujuh Puluh',
+		        80                  => 'Delapan Puluh',
+		        90                  => 'Sembilan Puluh',
+		        100                 => 'Ratus ',
+		        1000                => 'Ribu ',
+		        1000000             => 'Juta ',
+		        1000000000          => 'Miliar ',
+		        1000000000000       => 'Rriliun ',
+		        1000000000000000    => 'Quadrillion ',
+		        1000000000000000000 => 'Quintillion '
 		    );
 
 			if (!is_numeric($number)) {
@@ -223,6 +223,7 @@
 			foreach ($oss->shoplists as $sl) {
 				$sum = $sum + $sl->harga;
 			}
+			$data['year'] = $day->year;
 			$data['sum'] = $sum;
 			$data['day'] = $day->toDateString();
 			$data['tanggal'] = $this->convert_number_to_words($day->day);
@@ -367,6 +368,7 @@
 			} elseif ($day->month == 2) {
 				$data['bulan'] = 'Desember';
 			} else {}
+			$data['year'] = $day->year;
 			$data['day'] = $day->toDateString();
 			$data['tanggal'] = $this->convert_number_to_words($day->day);
 			$data['tahun'] = $this->convert_number_to_words($day->year);

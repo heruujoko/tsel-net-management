@@ -48,7 +48,7 @@
     <table class="tbl">
       <tr>
         <td colspan="4">
-          <div class="logo"></div> 
+          <div class="logo"></div>
           <div class="cap">
             Formulir Pengadaan Langsung Barang / Jasa
           </div>
@@ -128,7 +128,10 @@
         </tr>
         <tr>
           <td><strong>Tandatangan</strong></td>
-          <td colspan="3" height="50" class="bg-white">&nbsp;</td>
+          <!-- <td colspan="3" height="50" class="bg-white">&nbsp;</td> -->
+          <td class="bg-white" colspan="3">
+            <img src="{{ URL::to($tahu->sign->signature_pic )}}" width="50" height="50">
+          </td>
         </tr>
       @endforeach
       <tr>

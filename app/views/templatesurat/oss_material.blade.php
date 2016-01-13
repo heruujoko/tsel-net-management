@@ -89,7 +89,8 @@
 		.signature {
 			width: 100%;
 			min-height: 100px;
-			@if(count($oss->shoplists) < 5)
+			@if(count($oss->shoplists) < 4)
+				padding-top: 20px;
 				page-break-after: always;
 			@else
 			@endif
@@ -199,9 +200,9 @@
 		<div class="kop">
 			<div class="kop-kiri pull-left"></div>
 			@if($oss->request->mitranya->id == 1)
-				<div class="kop-kanan pull-right"> No. OSS : 222/KISEL-TLI/VII/2015 </div>
+				<div class="kop-kanan pull-right"> No. OSS : {{ $oss->id }}/KISEL-TLI/VII/{{ $year }} </div>
 			@else
-				<div class="kop-kanan pull-right"> No. OSS : 222/PRIMATAMA-LWK/VII/2015 </div>
+				<div class="kop-kanan pull-right"> No. OSS : {{ $oss->id }}/PRIMATAMA-LWK/VII/{{ $year }} </div>
 			@endif
 		</div>
 		<div class="border">
@@ -262,8 +263,8 @@
 					<tr>
 						<td>PIC Pekerjaan</td>
 						<td>:</td>
-						<td>{{ $oss->dikerjakan->nama }}</td>
-						<td colspan="2">HP : 082192622222</td>
+						<td>{{ $oss->request->mitranya->pic }}</td>
+						<td colspan="2">HP : {{ $oss->request->mitranya->hp }}</td>
 					</tr>
 					<tr>
 						<td>Type Gangguan</td>
@@ -335,8 +336,10 @@
 										<td><b>Diketahui</b></td>
 									</tr>
 									<tr>
-										<td height="25"><img src="" height="100%"></td>
-										<td>&nbsp;</td>
+										<td height="65"><img src="" height="100%"></td>
+										<td>
+											<img src="{{ URL::to($oss->mengetahui->sign->signature_pic) }}" width="65" height="65">
+										</td>
 									</tr>
 									<tr>
 										<td height="0"><b><u>{{ $oss->dikerjakan->nama }}</u></b></td>
@@ -362,16 +365,16 @@
 							<tr>
 								<table width="100%" class="content-signature-oleh">
 									<tr>
-										<td>Direquest Oleh</td>
+										<td>Dikerjakan Oleh</td>
 									</tr>
 									<tr>
-										<td height="25">&nbsp;</td>
+										<td height="65">&nbsp;</td>
 									</tr>
 									<tr>
-										<td height=""><u><b>{{ $oss->dikerjakan->nama }}</b></u></td>
+										<td height=""><u><b>{{ $oss->request->mitranya->pic }}</b></u></td>
 									</tr>
 									<tr>
-										<td height="">{{ $oss->dikerjakan->jabatan }}</td>
+										<td height="">Koordinator</td>
 									</tr>
 								</table>
 							</tr>
@@ -385,8 +388,25 @@
 					<div class="confirm-signature confirm">
 						<table border="0">
 							<tr>
-								<td valign="top" height="80" colspan="{{count($oss->menyetujui)}}">Disetujui</td>
+								<!-- <td valign="top" height="80" colspan="{{count($oss->menyetujui)}}">Disetujui</td> -->
+								<td valign="top" height="" colspan="{{count($oss->menyetujui)}}">Disetujui</td>
 							</tr>
+							@if(count($oss->menyetujui) == 2)
+							<tr>
+								<td valign="top" height="">
+									<img src="{{ URL::to($oss->menyetujui[0]->sign->signature_pic) }}" width="80" height="80">
+								</td>
+								<td valign="top" height="">
+									<img src="{{ URL::to($oss->menyetujui[1]->sign->signature_pic) }}" width="80" height="80">
+								</td>
+							</tr>
+							@else
+							<tr>
+								<td valign="top" height="">
+									<img src="{{ URL::to($oss->menyetujui[0]->sign->signature_pic) }}" width="80" height="80">
+								</td>
+							</tr>
+							@endif
 							<tr>
 								@if(count($oss->menyetujui) == 2)
 								<td class="text-left">

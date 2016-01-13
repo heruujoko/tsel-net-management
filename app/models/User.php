@@ -8,15 +8,19 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface {
 	use UserTrait, RemindableTrait;
 
-	protected $table = 'users';
-	protected $hidden = array('password', 'remember_token');
+		protected $table = 'users';
+		protected $hidden = array('password', 'remember_token');
 
-	public function lokasi(){
-		return $this->hasOne('LokasiKerja', 'id', 'lokasi_kerja_id');
-	}
+		public function lokasi(){
+			return $this->hasOne('LokasiKerja', 'id', 'lokasi_kerja_id');
+		}
 
-	public function mitranya(){
-			return $this->hasOne('Mitra', 'id', 'mitra');	
+		public function mitranya(){
+			return $this->hasOne('Mitra', 'id', 'mitra');
+		}
+
+		public function sign(){
+				return $this->hasOne('Signature', 'user_id', 'id');
 		}
 
 }
