@@ -32,7 +32,7 @@
 			height:40px;
 			margin-left: 400px;
 			background-size:contain;
-			width:300px;
+			width:320px;
 			border:solid 1px #000000;
 			color: black;
 			padding: 7px;
@@ -93,7 +93,7 @@
 				page-break-after: always;
 			@else
 			@endif
-			
+
 		}
 		.pbreak {
 			@if(count($oss->shoplists) >= 5)
@@ -173,7 +173,7 @@
 		}
 		.blank-confirm{
 			float: left;
-			margin-left: 50px;	
+			margin-left: 50px;
 			width: 200px;
 		}
 		label {
@@ -198,7 +198,11 @@
 	<div class="wrap">
 		<div class="kop">
 			<div class="kop-kiri pull-left"></div>
-			<div class="kop-kanan pull-right"> No. OSS : 222/KISEL-TLI/VII/2015 </div>
+			@if($oss->request->mitranya->id == 1)
+				<div class="kop-kanan pull-right"> No. OSS : 222/KISEL-TLI/VII/2015 </div>
+			@else
+				<div class="kop-kanan pull-right"> No. OSS : 222/PRIMATAMA-LWK/VII/2015 </div>
+			@endif
 		</div>
 		<div class="border">
 			<div class="head">
@@ -294,19 +298,19 @@
 								<td rowspan="{{ count($oss->shoplists) }}">{{ $oss->action }}</td>
 								<td>{{ $oss->shoplists[$i]->deskripsi }}</td>
 								<td>{{ $oss->shoplists[$i]->kode }}</td>
-								<td>{{ $oss->shoplists[$i]->harga }}</td>
+								<td>Rp. {{ number_format($oss->shoplists[$i]->harga) }}</td>
 								</tr>
 							@else
 								<tr>
 									<td>{{ $oss->shoplists[$i]->deskripsi }}</td>
 									<td>{{ $oss->shoplists[$i]->kode }}</td>
-									<td>{{ $oss->shoplists[$i]->harga }}</td>
-								</tr>	
+									<td>Rp. {{ number_format($oss->shoplists[$i]->harga) }}</td>
+								</tr>
 							@endif
 						@endfor
 						<tr>
 							<td colspan="4">Jumlah</td>
-							<td>{{ $sum }}</td>
+							<td>Rp. {{ number_format($sum) }}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -397,7 +401,7 @@
 								<td class="text-left" style="">
 									<p class="text-capitalize"><u>{{ $oss->menyetujui[0]->nama }}</u></p>
 									<p class="text-capitalize">{{ $oss->menyetujui[0]->jabatan }}</p>
-								</td>	
+								</td>
 								@endif
 							</tr>
 						</table>
@@ -412,7 +416,7 @@
 						</table>
 					</div>
 				</div>
-			</div>		
+			</div>
 	</div><!-- /.wrap -->
 </body>
 </html>

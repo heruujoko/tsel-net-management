@@ -22,7 +22,12 @@
                     <div class="dropdown profile-element">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"><span class="block m-t-xs"> <strong class="font-bold">{{ Auth::user()->nama }}</strong>
-                             </span> <span class="text-muted text-xs block">{{ Auth::user()->jabatan }}</span> </span> </a>
+                             </span> <span class="text-muted text-xs block">{{ Auth::user()->jabatan }} <b class="caret"></b></span></span>
+                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="/{{ Auth::user()->role }}/profile">Profile</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </a>
                     </div>
                     <div class="logo-element">
                         App

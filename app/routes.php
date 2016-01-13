@@ -13,6 +13,9 @@ Route::group(array('prefix' => 'home' , 'before' => 'auth') , function(){
 
 Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::get('/' , 'AdminController@dashboard');
+	Route::post('/updateprofile' , 'AdminController@updateProfile');
+	Route::get('/profile' , 'AdminController@profile');
+
 	Route::resource('/users', 'UserController', array('except' => array('show', 'create', 'destroy')));
 	// method destroy user(id)
 	Route::get('/users/{id}/delete', 'UserController@destroy');
@@ -107,6 +110,8 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 
 Route::group(array('prefix' => 'no' , 'before' => 'auth.no'), function(){
 	Route::get('/' , 'NOController@dash');
+	Route::post('/updateprofile' , 'NOController@updateProfile');
+	Route::get('/profile' , 'NOController@profile');
 	Route::resource('/users', 'UserController', array('except' => array('show', 'create', 'destroy' , 'edit' , 'update')));
 	// method destroy user(id)
 	Route::get('/users/{id}/delete', 'UserController@destroy');

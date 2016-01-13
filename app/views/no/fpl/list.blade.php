@@ -10,6 +10,10 @@
 @stop
 
 @section('css')
+    <link rel="stylesheet" type="text/css" href="{{ URL::to('/') }}/bower_components/datatables-bootstrap3-plugin/media/css/datatables-bootstrap3.min.css">
+@stop
+
+@section('css')
     <link rel="stylesheet" href="{{ URL::to('/') }}/datepicker/css/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" href="{{ URL::to('/') }}/bower_components/chosen-bootstrap/chosen.bootstrap.min.css">
     <style>
@@ -52,7 +56,7 @@
         <div class="panel-body">
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane active">
-                    <table class="table table-striped">
+                    <table class="table table-striped datatable">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -81,8 +85,8 @@
                                         <script type="application/javascript">
                                         var myCountdown1 = new Countdown({
                                             time: 86400 * {{ Carbon::parse($fp->periode_trx_id)->addMonth(2)->diffInDays(Carbon::now()) }}, // 86400 seconds = 1 day
-                                            width:80, 
-                                            height:40,  
+                                            width:80,
+                                            height:40,
                                             rangeHi:"day",
                                             rangeLo:"hour",
                                             style:"flip"    // <- no comma on last item!
@@ -102,7 +106,7 @@
                                       </div>
                                     </td>
                                 </tr>
-                            @endforeach        
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -114,7 +118,7 @@
                                 <div class="col-md-8">
                                     <label class="control-label">{{ Auth::user()->nama }}</label>
                                     <input type="hidden" name="pemohon" value="{{ Auth::user()->id }}">
-                                </div>    
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3">Tanggal Permintaan</label>
@@ -144,7 +148,7 @@
                                 <label class="control-label col-md-3">Perbaikan & Pemeliharaan</label>
                                 <div class="col-md-6">
                                     <div class="list-perbaikan">
-                                                
+
                                     </div>
                                     <input type="hidden" name="ids_perbaikan" id="ids_perbaikan">
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal6">
@@ -156,7 +160,7 @@
                                 <label class="control-label col-md-3">Pembelian</label>
                                 <div class="col-md-6">
                                     <div class="list-pembelian">
-                                                
+
                                     </div>
                                     <input type="hidden" name="ids_pembelian" id="ids_pembelian">
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal7">
@@ -186,7 +190,7 @@
                                 <label class="control-label col-md-3">Kebutuhan</label>
                                 <div class="col-md-6">
                                     <div class="list-kebutuhan">
-                                                
+
                                     </div>
                                     <input type="hidden" name="ids_kebutuhan" id="ids_kebutuhan">
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal8">
@@ -198,7 +202,7 @@
                                 <label class="control-label col-md-3">Spesifikasi</label>
                                 <div class="col-md-6">
                                     <div class="list-spec">
-                                                
+
                                     </div>
                                     <input type="hidden" name="ids_spec" id="ids_spec">
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal9">
@@ -338,12 +342,18 @@
     <script src="{{ URL::to('/') }}/datepicker/js/bootstrap-datepicker.min.js"></script>
     <script src="{{ URL::to('/') }}/chosen/chosen.jquery.js"></script>
     <script src="{{ URL::to('/') }}/bower_components/numeral/numeral.js"></script>
+    <script type="text/javascript" src="{{ URL::to('/') }}/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{{ URL::to('/') }}/bower_components/datatables-bootstrap3-plugin/media/js/datatables-bootstrap3.min.js"></script>
     <script type="text/javascript" src="{{ URL::to('/') }}/bower_components/moment/moment.js"></script>
     <script type="text/javascript">
         $('.datepicker').datepicker({});
         $('.price').each(function(){
             var Pformat = numeral($(this).text()).format('0,0');
             $(this).text('Rp '+Pformat);
+        });
+        $('.datatable').DataTable({
+          "iDisplayLength" : 10,
+          "aaSorting": []
         });
         $('.chosen').chosen();
         function hapusPerbaikan(id){
@@ -474,9 +484,9 @@
             }
         }
 
-        $(".monthPicker").datepicker({ 
+        $(".monthPicker").datepicker({
             format: "mm-yyyy",
-            startView: "months", 
+            startView: "months",
             minViewMode: "months"
         });
     </script>

@@ -90,10 +90,17 @@
 		.signature {
 			width: 100%;
 			min-height: 100px;
-			@if(count($oss->shoplists) > 5)
-				margin-top: {{ $br }}px;
+			@if(count($oss->shoplists) > 2)
+				@if(count($oss->shoplists) > 4)
+					page-break-before: always;
+				@else
+					margin-top: 10px;
+					page-break-after: always;
+				@endif
+
 			@else
-				margin-top: 10px;	
+
+				margin-top: 10px;
 			@endif
 		}
 		.tsel {
@@ -154,6 +161,11 @@
 			width: 100%;
 			text-align: center;
 		}
+
+		.confirm-blank {
+			margin-top: 15px;
+		}
+
 		.confirm-signature table tr td p {
 			font-weight: bold;
 			padding:0 !important;
@@ -161,11 +173,8 @@
 		}
 		.confirm-wrapper{
 			width: 450px;
-			@if(count($oss->shoplists) < 6)
-				margin-top: {{ $br }}px;
-			@else
-				margin-top: 10px;
-			@endif
+
+			margin-top: 10px;
 		}
 		.confirm {
 			width: 478px;
@@ -173,7 +182,7 @@
 		}
 		.blank-confirm{
 			float: left;
-			margin-left: 50px;	
+			margin-left: 50px;
 			width: 200px;
 		}
 		label {
@@ -293,39 +302,39 @@
 										<td rowspan="{{ count($oss->shoplists)+2 }}">{{ $oss->action }}</td>
 										<td>{{ $oss->deskripsi_rks }}</td>
 										<td>{{ $oss->kode_rks }}</td>
-										<td><span class="pull-left">Rp.</span> <span class="pull-right">{{ $oss->harga_rks }}</span></td>
+										<td><span class="pull-left">Rp.</span> <span class="pull-right">{{ number_format($oss->harga_rks) }}</span></td>
 									</tr>
 									<tr>
 										<td>{{ $oss->shoplists[$i]->deskripsi }}</td>
 										<td>{{ $oss->shoplists[$i]->kode }}</td>
-										<td><span class="pull-left">Rp.</span> <span class="pull-right">{{ $oss->shoplists[$i]->harga }}</span></td>
+										<td><span class="pull-left">Rp.</span> <span class="pull-right">{{ number_format($oss->shoplists[$i]->harga) }}</span></td>
 									</tr>
-								@elseif($oss->shoplists[$i]->type == 'transport')	
+								@elseif($oss->shoplists[$i]->type == 'transport')
 									<tr>
 										<td>{{ $oss->shoplists[$i]->deskripsi }}</td>
 										<td rowspan="2">{{ $oss->shoplists[$i]->kode }}</td>
-										<td><span class="pull-left">Rp.</span> <span class="pull-right">{{ $oss->shoplists[$i]->harga }}</span></td>
+										<td><span class="pull-left">Rp.</span> <span class="pull-right">{{ number_format($oss->shoplists[$i]->harga) }}</span></td>
 									</tr>
 									<tr>
 										@if($oss->shoplists[$i]->harga > 500000)
 											<td>Fee (10%)</td>
-											<td>Rp. {{ $oss->shoplists[$i]->harga*(10/100) }}</td>
+											<td>Rp. {{ number_format($oss->shoplists[$i]->harga*(10/100)) }}</td>
 										@else
 											<td>Fee (15%)</td>
-											<td>Rp. {{ $oss->shoplists[$i]->harga*(15/100) }}</td>
+											<td>Rp. {{ number_format($oss->shoplists[$i]->harga*(15/100)) }}</td>
 										@endif
 									</tr>
 								@else
 									<tr>
 										<td>{{ $oss->shoplists[$i]->deskripsi }}</td>
 										<td>{{ $oss->shoplists[$i]->kode }}</td>
-										<td><span class="pull-left">Rp.</span> <span class="pull-right">{{ $oss->shoplists[$i]->harga }}</span></td>
+										<td><span class="pull-left">Rp.</span> <span class="pull-right">{{ number_format($oss->shoplists[$i]->harga) }}</span></td>
 									</tr>
 								@endif
 							@endfor
 							<tr>
 								<td colspan="4">Jumlah</td>
-								<td>Rp. {{ $oss->harga }}</td>
+								<td>Rp. {{ number_format($oss->harga) }}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -415,14 +424,14 @@
 								<td class="text-left" style="">
 									<p class="text-capitalize"><u>{{ $oss->menyetujui[0]->nama }}</u></p>
 									<p class="text-capitalize">{{ $oss->menyetujui[0]->jabatan }}</p>
-								</td>	
+								</td>
 								@endif
 							</tr>
 						</table>
 					</div>
 				</div>
 				<div class="col-lg-4 blank-confirm">
-					<div class="confirm-signature">
+					<div class="confirm-signature confirm-blank">
 						<table border="0">
 							<tr>
 								<td valign="top" height="112">Diketahui</td>
@@ -430,7 +439,7 @@
 						</table>
 					</div>
 				</div>
-			</div>		
+			</div>
 		</div><!-- /.wrap -->
 	</body>
 	</html>

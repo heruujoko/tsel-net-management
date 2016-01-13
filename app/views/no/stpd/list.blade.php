@@ -12,6 +12,7 @@
 @section('css')
     <link rel="stylesheet" href="{{ URL::to('/') }}/datepicker/css/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" href="{{ URL::to('/') }}/bower_components/chosen-bootstrap/chosen.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ URL::to('/') }}/bower_components/datatables-bootstrap3-plugin/media/css/datatables-bootstrap3.min.css">
     <style>
         .datepicker table tr td.active:hover, .datepicker table tr td.active:hover:hover, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active:focus, .datepicker table tr td.active:hover:focus, .datepicker table tr td.active.disabled:focus, .datepicker table tr td.active.disabled:hover:focus, .datepicker table tr td.active:active, .datepicker table tr td.active:hover:active, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.active, .datepicker table tr td.active:hover.active, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled:hover.active, .open .dropdown-toggle.datepicker table tr td.active, .open .dropdown-toggle.datepicker table tr td.active:hover, .open .dropdown-toggle.datepicker table tr td.active.disabled, .open .dropdown-toggle.datepicker table tr td.active.disabled:hover {
             color: #fff;
@@ -51,7 +52,7 @@
         <div class="panel-body">
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane active">
-                    <table class="table table-striped">
+                    <table class="table table-striped datatable">
                         <thead>
                             <tr>
                                 <th width="1%">ID</th>
@@ -83,7 +84,7 @@
                                       </div>
                                     </td>
                                 </tr>
-                            @endforeach        
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -136,7 +137,7 @@
                                 <div class="col-md-6">
                                     <input type="radio" value="darat" name="uhpd"> Darat
                                     <input type="radio" value="sebagian" name="uhpd"> Sebagian
-                                    <input type="radio" value="udara" name="uhpd"> Udara 
+                                    <input type="radio" value="udara" name="uhpd"> Udara
                                 </div>
                             </div>
                             <div class="form-group">
@@ -209,9 +210,15 @@
     <script src="{{ URL::to('/') }}/chosen/chosen.jquery.js"></script>
     <script src="{{ URL::to('/') }}/bower_components/numeral/numeral.js"></script>
     <script type="text/javascript" src="{{ URL::to('/') }}/bower_components/moment/moment.js"></script>
+    <script type="text/javascript" src="{{ URL::to('/') }}/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{{ URL::to('/') }}/bower_components/datatables-bootstrap3-plugin/media/js/datatables-bootstrap3.min.js"></script>
     <script type="text/javascript">
         $('.datepicker').datepicker({
-            
+
+        });
+        $('.datatable').DataTable({
+          "iDisplayLength" : 10,
+          "aaSorting": []
         });
         $('.chosen').chosen({});
         $('.price').each(function(){

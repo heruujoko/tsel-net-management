@@ -1,5 +1,5 @@
 <?php
-	
+
 	class OSSController extends \BaseController {
 
 		public function convert_number_to_words($number){
@@ -13,15 +13,15 @@
 		    $decimal     = ' point ';
 		    $dictionary  = array(
 		        0                   => 'nol',
-		        1                   => 'satu',		        
-		        2                   => 'dua',		        
-		        3                   => 'tiga',		        
-		        4                   => 'empat',		        
-		        5                   => 'lima',		        
-		        6                   => 'enam',		        
-		        7                   => 'tujuh',		       
-		        8                   => 'delapan',		        
-		        9                   => 'sembilan',		        
+		        1                   => 'satu',
+		        2                   => 'dua',
+		        3                   => 'tiga',
+		        4                   => 'empat',
+		        5                   => 'lima',
+		        6                   => 'enam',
+		        7                   => 'tujuh',
+		        8                   => 'delapan',
+		        9                   => 'sembilan',
 		        10                  => 'sepuluh',
 		        11                  => 'sebelas',
 		        12                  => 'dua belas',
@@ -52,7 +52,7 @@
 			if (!is_numeric($number)) {
 		        return false;
 		    }
-		    
+
 		    if (($number >= 0 && (int) $number < 0) || (int) $number < 0 - PHP_INT_MAX) {
 		        // overflow
 		        trigger_error(
@@ -65,13 +65,13 @@
 		    if ($number < 0) {
 		        return $negative . convert_number_to_words(abs($number));
 		    }
-		    
+
 		    $string = $fraction = null;
-		    
+
 		    if (strpos($number, '.') !== false) {
 		        list($number, $fraction) = explode('.', $number);
 		    }
-		    
+
 		    switch (true) {
 		        case $number < 21:
 		            $string = $dictionary[$number];
@@ -107,7 +107,7 @@
 		            }
 		            break;
 		    }
-		    
+
 		    if (null !== $fraction && is_numeric($fraction)) {
 		        $string .= $decimal;
 		        $words = array();
@@ -116,7 +116,7 @@
 		        }
 		        $string .= implode(' ', $words);
 		    }
-		    
+
 			return $string;
 		}
 
@@ -145,7 +145,7 @@
 
 			$shopping_list = Input::get('shoplist');
 			$harga = 0;
-			for ($i=0; $i < count($shopping_list); $i++) { 
+			for ($i=0; $i < count($shopping_list); $i++) {
 				$ss = new OSShop;
 				$ss->oss_id = $oss->id;
 				$ss->shoplist_id = $shopping_list[$i];
@@ -158,12 +158,12 @@
 			$oss->save();
 
 			$menyetujui = Input::get('menyetujui');
-			
-			for ($j=0; $j < count($menyetujui); $j++) { 
+
+			for ($j=0; $j < count($menyetujui); $j++) {
 				$stj = new MenyetujuiOSS;
 				$stj->oss_id = $oss->id;
 				$stj->user_id = $menyetujui[$j];
-				$stj->save();	
+				$stj->save();
 			}
 			Session::flash('success' , 'Data telah dibuat.');
 			return Redirect::to('/'.Auth::user()->role.'/oss/material');
@@ -180,19 +180,19 @@
 			$oss = OSS::find($id);
 			$day = Carbon::parse($oss->tanggal);
 			if($day->dayOfWeek == 0 ){
-				$data['hari'] = 'Minggu';	
+				$data['hari'] = 'Minggu';
 			} elseif($day->dayOfWeek == 1){
-				$data['hari'] = 'Senin';	
+				$data['hari'] = 'Senin';
 			} elseif($day->dayOfWeek == 2){
-				$data['hari'] = 'Selasa';	
+				$data['hari'] = 'Selasa';
 			} elseif($day->dayOfWeek == 3){
-				$data['hari'] = 'Rabu';	
+				$data['hari'] = 'Rabu';
 			} elseif($day->dayOfWeek == 4){
-				$data['hari'] = 'Kamis';	
+				$data['hari'] = 'Kamis';
 			} elseif($day->dayOfWeek == 5){
-				$data['hari'] = 'Jum\'at';	
+				$data['hari'] = 'Jum\'at';
 			} elseif($day->dayOfWeek == 6){
-				$data['hari'] = 'Sabtu';	
+				$data['hari'] = 'Sabtu';
 			} else {}
 			if($day->month == 1 ){
 				$data['bulan'] = 'Januari';
@@ -256,7 +256,7 @@
 			$data['sites'] = DB::table('mastertp')->groupBy('sitelocation')->get();
 			$data['shoplists'] = Shoplist::all();
 			$data['userno'] = User::where('role' , '=' , 'no')->get();
-			return View::make('admin.oss.editmaterial' , $data);	
+			return View::make('admin.oss.editmaterial' , $data);
 		}
 
 		public function updatematerial($id){
@@ -270,12 +270,12 @@
 			$oss->user_mengerjakan = Input::get('mengerjakan');
 			$oss->user_mengetahui = Input::get('mengetahui');
 			$oss->save();
-			
+
 			OSShop::where('oss_id' , '=' ,$id)->delete();
 
 			$shopping_list = Input::get('shoplist');
 			$harga = 0;
-			for ($i=0; $i < count($shopping_list); $i++) { 
+			for ($i=0; $i < count($shopping_list); $i++) {
 				$ss = new OSShop;
 				$ss->oss_id = $oss->id;
 				$ss->shoplist_id = $shopping_list[$i];
@@ -288,12 +288,12 @@
 			$oss->save();
 			MenyetujuiOSS::where('oss_id' , '=' , $id)->delete();
 			$menyetujui = Input::get('menyetujui');
-			
-			for ($j=0; $j < count($menyetujui); $j++) { 
+
+			for ($j=0; $j < count($menyetujui); $j++) {
 				$stj = new MenyetujuiOSS;
 				$stj->oss_id = $oss->id;
 				$stj->user_id = $menyetujui[$j];
-				$stj->save();	
+				$stj->save();
 			}
 			Session::flash('success' , 'Data telah diperbarui.');
 			return Redirect::to('/admin/oss/material/'.$id.'/edit');
@@ -303,9 +303,9 @@
 			$oss = OSS::find($id);
 			$oss->delete();
 			$sl = OSShop::where('oss_id' , '=', $id)->delete();
-			
+
 			$stj = MenyetujuiOSS::where('oss_id' , '=' , $id)->delete();
-			
+
 			Session::flash('success' , 'Data telah dihapus.');
 			return Redirect::to('/admin/oss/material/');
 		}
@@ -327,19 +327,19 @@
 			$day = Carbon::parse($oss->tanggal);
 			$data['oss'] = $oss;
 			if($day->dayOfWeek == 0 ){
-				$data['hari'] = 'Minggu';	
+				$data['hari'] = 'Minggu';
 			} elseif($day->dayOfWeek == 1){
-				$data['hari'] = 'Senin';	
+				$data['hari'] = 'Senin';
 			} elseif($day->dayOfWeek == 2){
-				$data['hari'] = 'Selasa';	
+				$data['hari'] = 'Selasa';
 			} elseif($day->dayOfWeek == 3){
-				$data['hari'] = 'Rabu';	
+				$data['hari'] = 'Rabu';
 			} elseif($day->dayOfWeek == 4){
-				$data['hari'] = 'Kamis';	
+				$data['hari'] = 'Kamis';
 			} elseif($day->dayOfWeek == 5){
-				$data['hari'] = 'Jum\'at';	
+				$data['hari'] = 'Jum\'at';
 			} elseif($day->dayOfWeek == 6){
-				$data['hari'] = 'Sabtu';	
+				$data['hari'] = 'Sabtu';
 			} else {}
 
 			if($day->month == 1 ){
@@ -387,7 +387,7 @@
 			}
 			$data['br'] = $br;
 			$pdf = PDF::loadView('templatesurat.oss_bantek_2' , $data);
-			return $pdf->setPaper('a4')->stream();	
+			return $pdf->setPaper('a4')->stream();
 		}
 
 		public function storespj(){
@@ -410,7 +410,7 @@
 
 			$shopping_list = Input::get('shoplist');
 			$harga = 0;
-			for ($i=0; $i < count($shopping_list); $i++) { 
+			for ($i=0; $i < count($shopping_list); $i++) {
 				$ss = new OSShop;
 				$ss->oss_id = $oss->id;
 				$ss->shoplist_id = $shopping_list[$i];
@@ -423,19 +423,19 @@
 			$oss->save();
 
 			$menyetujui = Input::get('menyetujui');
-			
-			for ($j=0; $j < count($menyetujui); $j++) { 
+
+			for ($j=0; $j < count($menyetujui); $j++) {
 				$stj = new MenyetujuiOSS;
 				$stj->oss_id = $oss->id;
 				$stj->user_id = $menyetujui[$j];
-				$stj->save();	
+				$stj->save();
 			}
 
 			//perhitungan RKS
 			$biaya_rks = 0;
 			$st = new Carbon(Input::get('mulai'));
 			$nd = new Carbon(Input::get('selesai'));
-			$diff = $nd->diff($st)->days;	
+			$diff = $nd->diff($st)->days;
 
 			if($diff > 1){
 				$biaya_rks += 350000 * ( $diff -1 );
@@ -451,7 +451,7 @@
 			//biaya perjalanan
 			$biayafee = 0;
 			if(Input::get('transport') == 'no'){
-				$oss->harga +=$biaya_rks;		
+				$oss->harga +=$biaya_rks;
 			} else {
 				$shopl = new Shoplist;
 				$shopl->kode = Input::get('kode_sl_trans');
@@ -484,7 +484,7 @@
 			$data['active'] = 'oss';
 			$data['spj'] = true;
 			$data['oss'] = OSS::where('oss_type','=','spj')->where('id','=',$id)->first();
-			return View::make(Auth::user()->role.'.oss.detailspj' , $data);		
+			return View::make(Auth::user()->role.'.oss.detailspj' , $data);
 		}
 
 		public function editspj($id){
@@ -492,7 +492,7 @@
 			$data['spj'] = true;
 			$data['oss'] = OSS::where('oss_type','=','spj')->where('id','=',$id)->first();
 			$data['sites'] = DB::table('mastertp')->groupBy('sitelocation')->get();
-			$data['shoplists'] = Shoplist::where('type' , '!=' , 'transport')->get();
+			$data['shoplists'] = Shoplist::whereNull('type')->get();
 			$data['userno'] = User::where('role' , '=' , 'no')->get();
 			$data['bantek'] = Bantek::all();
 			foreach ($data['oss']->shoplists as $sl) {
@@ -500,7 +500,7 @@
 					$data['transport'] = $sl;
 				}
 			}
-			return View::make('admin.oss.editspj' , $data);			
+			return View::make('admin.oss.editspj' , $data);
 		}
 
 		public function updatespj($id){
@@ -531,7 +531,7 @@
 
 			$shopping_list = Input::get('shoplist');
 			$harga = 0;
-			for ($i=0; $i < count($shopping_list); $i++) { 
+			for ($i=0; $i < count($shopping_list); $i++) {
 				$ss = new OSShop;
 				$ss->oss_id = $oss->id;
 				$ss->shoplist_id = $shopping_list[$i];
@@ -546,18 +546,18 @@
 			$menyetujui = Input::get('menyetujui');
 			MenyetujuiOSS::where('oss_id' , '=' , $id)->delete();
 
-			for ($j=0; $j < count($menyetujui); $j++) { 
+			for ($j=0; $j < count($menyetujui); $j++) {
 				$stj = new MenyetujuiOSS;
 				$stj->oss_id = $oss->id;
 				$stj->user_id = $menyetujui[$j];
-				$stj->save();	
+				$stj->save();
 			}
 
 			//perhitungan RKS
 			$biaya_rks = 0;
 			$st = new Carbon(Input::get('mulai'));
 			$nd = new Carbon(Input::get('selesai'));
-			$diff = $nd->diff($st)->days;	
+			$diff = $nd->diff($st)->days;
 
 			if($diff > 1){
 				$biaya_rks += 350000 * ( $diff -1 );
@@ -573,7 +573,7 @@
 			//biaya perjalanan
 			$biayafee = 0;
 			if(Input::get('transport') == 'no'){
-				$oss->harga +=$biaya_rks;		
+				$oss->harga +=$biaya_rks;
 			} else {
 				if($transport == ''){
 					$shopl = new Shoplist;
@@ -610,7 +610,7 @@
 			$oss = OSS::find($id)->delete();
 			$rel = OSShop::where('oss_id','=',$id)->delete();
 			Session::flash('success' , 'Data telah dihapus.');
-			return Redirect::to('/admin/oss/spj');	
+			return Redirect::to('/admin/oss/spj');
 		}
 
 	}

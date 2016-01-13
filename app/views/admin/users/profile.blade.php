@@ -1,13 +1,10 @@
 @extends('layouts.layout')
-@section('title', 'Edit User')
+@section('title', 'Edit Profile')
 @section('breadcrumb')
 <h2>Users</h2>
 <ol class="breadcrumb">
-  <li>
-    <strong>Users</strong>
-  </li>
   <li class="active">
-    <strong>Edit User</strong>
+    <strong>Edit Profile</strong>
   </li>
 </ol>
 @stop
@@ -30,7 +27,7 @@
     <div class="ibox">
       <div class="ibox-content">
         <div class="panel-body">
-          {{ Form::open(array('method' => 'PATCH', 'url' => 'admin/users/'.$user->id.'' , 'class' => 'form form-horizontal')) }}
+          {{ Form::open(array('method' => 'POST', 'url' => 'admin/updateprofile' , 'class' => 'form form-horizontal')) }}
           <div class="col-md-12">
             <div class="form-group">
                 <label class="control-label col-md-3" for="nama">Nama</label>
@@ -55,28 +52,6 @@
               <div class="col-md-6">
                 <input class="form-control" type="password" name="cpassword" id="cpassword" placeholder="biarkan kosong jika tidak ingin merubah password">
               </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-md-3" for="role">Role</label>
-                <div class="col-md-6">
-                  <select class="form-control" name="role" id="role" required>
-                    @if($user->role == 'admin')
-                      <option selected value="admin">Admin</option>
-                    @else
-                      <option value="admin">Admin</option>
-                    @endif
-                    @if($user->role == 'no')
-                      <option selected value="no">User No</option>
-                    @else
-                      <option value="no">Admin</option>
-                    @endif
-                    @if($user->role == 'bantek')
-                      <option selected value="bantek">Bantek</option>
-                    @else
-                      <option value="bantek">Bantek</option>
-                    @endif
-                  </select>
-                </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-3" for="jabatan">Jabatan</label>

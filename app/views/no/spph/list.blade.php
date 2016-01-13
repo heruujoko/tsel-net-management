@@ -9,6 +9,10 @@
     </ol>
 @stop
 
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{ URL::to('/') }}/bower_components/datatables-bootstrap3-plugin/media/css/datatables-bootstrap3.min.css">
+@stop
+
 @section('content')
 <div class="row">
   @if(Session::get('error'))
@@ -35,7 +39,7 @@
         <div class="panel-body">
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane active">
-                    <table class="table table-striped">
+                    <table class="table table-striped datatable">
                         <thead>
                             <tr>
                                 <th width="1%">ID</th>
@@ -65,7 +69,7 @@
                                       </div>
                                     </td>
                                 </tr>
-                            @endforeach   
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -111,7 +115,13 @@
 @stop
 
 @section('js')
+<script type="text/javascript" src="{{ URL::to('/') }}/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{ URL::to('/') }}/bower_components/datatables-bootstrap3-plugin/media/js/datatables-bootstrap3.min.js"></script>
     <script type="text/javascript">
+        $('.datatable').DataTable({
+          "iDisplayLength" : 10,
+          "aaSorting": []
+        });
         function popupdelete(id){
             console.log('click');
             var choice = confirm('Anda yakin akan menghapus ?');

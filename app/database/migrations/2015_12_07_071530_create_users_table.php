@@ -28,9 +28,9 @@ class CreateUsersTable extends Migration {
 			$table->integer('lokasi_kerja_id');
 			$table->string('bank');
 			$table->string('no_rekening');
-			$table->string('avatar');
+			$table->string('no_hp');
 			$table->string('remember_token');
-			$table->timestamps();	
+			$table->timestamps();
 		});
 	}
 
