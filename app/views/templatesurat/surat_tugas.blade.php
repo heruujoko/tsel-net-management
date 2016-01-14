@@ -54,7 +54,11 @@
         border: 1px solid black;
       }
       .disetuju {
+        @if(count($surat->activities) > 9))
+        page-break-before: always;
+        @else
         margin-top:250px;
+        @endif
       }
   </style>
 </head>
@@ -62,7 +66,7 @@
   <div class="container">
       <div class="no">
         <span class="text-center"><b>SURAT TUGAS</b></span><br>
-        <span class="text-center"><b>NOMOR  : 0541/TC.01/RO-43/XI/2015</b></span>
+        <span class="text-center"><b>NOMOR  : {{ $surat->no_surat }}</b></span>
       </div>
       <div class="isine">
       <p>Sehubungan dengan adanya pekerjaan dibawah ini, maka kami menugaskan saudara :</p>
@@ -71,7 +75,7 @@
        <tr>
          <td>{{ $srt->nama }} ({{ $srt->hp }})</td>
          <td>{{ $srt->perusahaan }}</td>
-       </tr> 
+       </tr>
        @endforeach
       </table>
       <p>Untuk dapat mengerjakan pekerjaan berikut sesuai dengan jadwal yang telah ditentukan sebagai berikut:</p>
@@ -87,18 +91,41 @@
         <tbody>
           @for( $i=0; $i < count($surat->activities); $i++ )
             @if($i == 0)
+              <?php $row1 = 1; ?>
+              @for( $j=0; $j < count($surat->activities)-1; $j++ )
+                @if(($surat->activities[0]->selesai == $surat->activities[$j+1]->selesai) && ($surat->activities[0]->mulai == $surat->activities[$j+1]->mulai) )
+                  <?php $row1++; ?>
+                @else
+                @endif
+              @endfor
               <tr>
                 <td>{{ $no++ }}</td>
                 <td>{{ $surat->activities[$i]->sites->sitelocation }}</td>
-                <td rowspan="{{ count($surat->activities) }}">19 November s/d 19 Desember 2015</td>
+                <td rowspan="{{ $row1; }}">{{ Carbon::parse($surat->activities[0]->mulai)->toFormattedDateString() }} s/d {{ Carbon::parse($surat->activities[0]->selesai)->toFormattedDateString() }}</td>
                 <td>{{ $surat->activities[$i]->activity }}</td>
               </tr>
             @else
-              <tr>
-                <td>{{ $no++ }}</td>
-                <td>{{ $surat->activities[$i]->sites->sitelocation }}</td>
-                <td>{{ $surat->activities[$i]->activity }}</td>
-              </tr>
+              @if(($surat->activities[$i]->mulai == $surat->activities[$i-1]->mulai) && ($surat->activities[$i]->selesai == $surat->activities[$i-1]->selesai))
+                <tr>
+                  <td>{{ $no++ }}</td>
+                  <td>{{ $surat->activities[$i]->sites->sitelocation }}</td>
+                  <td>{{ $surat->activities[$i]->activity }}</td>
+                </tr>
+              @else
+                <?php $row2= 1;?>
+                @for($k = $i+1 ; $k < count($surat->activities);$k++)
+                  @if(($surat->activities[$k]->mulai == $surat->activities[$k-1]->mulai) && ($surat->activities[$k]->selesai == $surat->activities[$k-1]->selesai))
+                    <?php $row2++; ?>
+                  @else
+                  @endif
+                @endfor
+                <tr>
+                  <td>{{ $no++ }}</td>
+                  <td>{{ $surat->activities[$i]->sites->sitelocation }}</td>
+                  <td rowspan="{{ $row2; }}">{{ Carbon::parse($surat->activities[$i]->mulai)->toFormattedDateString() }} s/d {{ Carbon::parse($surat->activities[$i]->selesai)->toFormattedDateString() }}</td>
+                  <td>{{ $surat->activities[$i]->activity }}</td>
+                </tr>
+              @endif
             @endif
           @endfor
         </tbody>
@@ -107,12 +134,10 @@
       <div class="disetuju">
         <p>Demikian surat tugas ini dibuat sebagaimana mestinya.</p>
         <p>
-          Palu, 19  November  2015 <br>
+          Palu, {{ Carbon::parse($surat->tempat_tanggal)->toFormattedDateString() }} <br>
           Hormat kami
         </p>
-        <br>
-        <br>
-        <br>
+        <img src="{{ URL::to($surat->setuju->sign->signature_pic) }}" width="80" height="80">
         <br>
         <strong><u>{{ $surat->setuju->nama }}</u></strong><br>
         <strong>{{ $surat->setuju->jabatan }}</strong>

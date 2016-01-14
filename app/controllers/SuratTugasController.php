@@ -16,13 +16,15 @@
 			$st->tempat_tanggal = Carbon::now();
 			$st->menyetujui = Input::get('menyetujui');
 			$st->save();
-
+			$day = Carbon::now();
+			$st->no_surat = $st->id.'/TC.01'.'/RO-43'.'/XI'.'/'.$day->year;
+			$st->save();
 			$banteks = Input::get('bantek');
-			for ($i=0; $i < count($banteks); $i++) { 
+			for ($i=0; $i < count($banteks); $i++) {
 				$stb = new STBantek;
 				$stb->bantek_id = $banteks[$i];
 				$stb->st_id	= $st->id;
-				$stb->save();	
+				$stb->save();
 			}
 
 			$activities = Input::get('activity');
@@ -30,7 +32,7 @@
 				$activities = substr($activities, 0, -1);
 				$activity = explode(",",$activities);
 				if(count($activity > 0)){
-					for ($i=0; $i < count($activity) ; $i++) { 
+					for ($i=0; $i < count($activity) ; $i++) {
 						$sta = STActivity::find($activity[$i]);
 						$sta->st_id = $st->id;
 						$sta->save();
@@ -38,7 +40,7 @@
 				}
 			}
 
-			STActivity::where('st_id','=','')->delete();	
+			STActivity::where('st_id','=','')->delete();
 			Session::flash('success' , 'Data telah dibuat.');
 			return Redirect::to('/'.Auth::user()->role.'/surattugas');
 		}
@@ -51,7 +53,7 @@
 			$data['user_no'] = User::where('role' , '=', 'no')->get();
 			$ids = '';
 			foreach ($data['surat']->activities as $key) {
-				$ids .= $key->id.',';	
+				$ids .= $key->id.',';
 			}
 			$data['activity_ids'] = $ids;
 			return View::make('admin.surattugas.edit' , $data);
@@ -64,19 +66,19 @@
 
 			STBantek::where('st_id','=',$id)->delete();
 			$banteks = Input::get('bantek');
-			for ($i=0; $i < count($banteks); $i++) { 
+			for ($i=0; $i < count($banteks); $i++) {
 				$stb = new STBantek;
 				$stb->bantek_id = $banteks[$i];
 				$stb->st_id	= $st->id;
-				$stb->save();	
+				$stb->save();
 			}
-			
+
 			$activities = Input::get('activity');
 			if($activities != ''){
 				$activities = substr($activities, 0, -1);
 				$activity = explode(",",$activities);
 				if(count($activity > 0)){
-					for ($i=0; $i < count($activity) ; $i++) { 
+					for ($i=0; $i < count($activity) ; $i++) {
 						$sta = STActivity::find($activity[$i]);
 						$sta->st_id = $st->id;
 						$sta->save();
@@ -96,9 +98,9 @@
 				STActivity::where('id','=',$key)->delete();
 			}
 
-			STActivity::where('st_id','=','')->delete();	
+			STActivity::where('st_id','=','')->delete();
 			Session::flash('success' , 'Data telah ubah.');
-			return Redirect::to('/admin/surattugas');	
+			return Redirect::to('/admin/surattugas');
 		}
 
 		public function destroy($id){
@@ -106,17 +108,17 @@
 			STActivity::where('st_id','=',$id)->delete();
 			STBantek::where('st_id','=',$id)->delete();
 			Session::flash('success' , 'Data telah dihapus.');
-			return Redirect::to('/admin/surattugas');	
+			return Redirect::to('/admin/surattugas');
 		}
 
 		public function detail($id){
 	 		$surat = SuratTugas::find($id);
 	 		$data['active'] = 'st';
 	 		$data['surat'] = $surat;
-	 		
-	 		return View::make(Auth::user()->role.'.surattugas.detail', $data);	
+
+	 		return View::make(Auth::user()->role.'.surattugas.detail', $data);
  		}
- 		
+
  		public function printpdf($id){
 	 		$surat = SuratTugas::find($id);
 	 		$data['no'] = 1;
