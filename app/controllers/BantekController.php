@@ -1,5 +1,11 @@
 <?php
 class BantekController extends \BaseController {
+
+	public function dash(){
+		$data['active'] = 'dashboard';
+		return View::make('bantek.dashboard',$data);
+	}
+
 	public function index()
 	{
 		$data['active'] = 'bantek';

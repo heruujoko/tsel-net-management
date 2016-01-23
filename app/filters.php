@@ -52,7 +52,7 @@ Route::filter('auth.admin', function()
 {
 	if(Auth::check()){
 		if(Auth::user()->role != 'admin'){
-			Session::flash('error','Unauthorized user.');
+			Session::flash('error','Unauthorized user trying to reach admin.');
 			return Redirect::guest('/');
 		}
 	} else {
@@ -65,7 +65,20 @@ Route::filter('auth.no', function()
 {
 	if(Auth::check()){
 		if(Auth::user()->role != 'no'){
-			Session::flash('error','Unauthorized user.');
+			Session::flash('error','Unauthorized user trying to reach NO.');
+			return Redirect::guest('/');
+		}
+	} else {
+		Session::flash('error','Login required.');
+		return Redirect::guest('/');
+	}
+});
+
+Route::filter('auth.bantek', function()
+{
+	if(Auth::check()){
+		if(Auth::user()->role != 'bantek'){
+			Session::flash('error','Unauthorized user trying to reach bantek.');
 			return Redirect::guest('/');
 		}
 	} else {

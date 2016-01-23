@@ -1,5 +1,5 @@
 <?php
-	
+
 	class SessionController extends BaseController {
 
 		public function auth(){
@@ -20,9 +20,11 @@
 				return Redirect::to('/admin');
 			} else if($role == 'no'){
 				return Redirect::to('/no');
+			} else if($role == 'bantek'){
+				return Redirect::to('/bantek');
 			} else {
 				Session::flash('error','Corupted user without role.');
-				return Redirect::to('/');	
+				return Redirect::to('/');
 			}
 		}
 

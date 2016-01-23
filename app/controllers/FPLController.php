@@ -1,5 +1,5 @@
 <?php
-	
+
 	class FPLController extends \BaseController {
 
 		public function index(){
@@ -28,20 +28,20 @@
 				$listperbaikan = substr($listperbaikan, 0, -1);
 				$perbaikan = explode(",",$listperbaikan);
 				if(count($perbaikan > 0)){
-					for ($i=0; $i < count($perbaikan) ; $i++) { 
+					for ($i=0; $i < count($perbaikan) ; $i++) {
 						$fplperbaikan = FPLPerbaikan::find($perbaikan[$i]);
 						$fplperbaikan->fpl_id = $fpl->id;
 						$fplperbaikan->save();
 					}
 				}
-			}	
+			}
 
 			$listpembelian = Input::get('ids_pembelian');
 			if($listpembelian != ''){
 				$listpembelian = substr($listpembelian, 0, -1);
 				$pembelian = explode(",",$listpembelian);
 				if(count($pembelian) > 0){
-					for ($k=0; $k < count($pembelian) ; $k++) { 
+					for ($k=0; $k < count($pembelian) ; $k++) {
 						$fplpembelian = FPLPembelian::find($pembelian[$k]);
 						$fplpembelian->fpl_id = $fpl->id;
 						$fplpembelian->save();
@@ -54,7 +54,7 @@
 				$listkebutuhan = substr($listkebutuhan, 0, -1);
 				$kebutuhan = explode(",",$listkebutuhan);
 				if(count($kebutuhan) > 0){
-					for ($l=0; $l < count($kebutuhan) ; $l++) { 
+					for ($l=0; $l < count($kebutuhan) ; $l++) {
 						$fplkebutuhan = FPLKebutuhan::find($kebutuhan[$l]);
 						$fplkebutuhan->fpl_id = $fpl->id;
 						$fplkebutuhan->save();
@@ -67,7 +67,7 @@
 				$listspec = substr($listspec, 0, -1);
 				$spec = explode(",",$listspec);
 				if(count($spec) > 0){
-					for ($m=0; $m < count($spec) ; $m++) { 
+					for ($m=0; $m < count($spec) ; $m++) {
 						$fplspec = FPLSpec::find($spec[$m]);
 						$fplspec->fpl_id = $fpl->id;
 						$fplspec->save();
@@ -76,12 +76,12 @@
 			}
 
 			$mengetahui = Input::get('mengetahui');
-			
-			for ($j=0; $j < count($mengetahui); $j++) { 
+
+			for ($j=0; $j < count($mengetahui); $j++) {
 				$stj = new MengetahuiFPL;
 				$stj->fpl_id = $fpl->id;
 				$stj->user_id = $mengetahui[$j];
-				$stj->save();	
+				$stj->save();
 			}
 			Session::flash('success' , 'Data telah dibuat.');
 			return Redirect::to('/'.Auth::user()->role.'/fpl');
@@ -92,22 +92,22 @@
 			$data['fpl'] = FPL::find($id);
 			$perbaikanids = '';
 			foreach ($data['fpl']->perbaikans as $key) {
-				$perbaikanids .= $key->id.',';	
+				$perbaikanids .= $key->id.',';
 			}
 			$data['perbaikanids'] = $perbaikanids;
 			$pembelianids = '';
 			foreach ($data['fpl']->pembelians as $key) {
-				$pembelianids .= $key->id.',';	
+				$pembelianids .= $key->id.',';
 			}
 			$data['pembelianids'] = $pembelianids;
 			$kebutuhanids = '';
 			foreach ($data['fpl']->kebutuhans as $key) {
-				$kebutuhanids .= $key->id.',';	
+				$kebutuhanids .= $key->id.',';
 			}
 			$data['kebutuhanids'] = $kebutuhanids;
 			$specids = '';
 			foreach ($data['fpl']->specs as $key) {
-				$specids .= $key->id.',';	
+				$specids .= $key->id.',';
 			}
 			$data['specids'] = $specids;
 			return View::make('admin.fpl.edit' , $data);
@@ -132,13 +132,13 @@
 				$listperbaikan = substr($listperbaikan, 0, -1);
 				$perbaikan = explode(",",$listperbaikan);
 				if(count($perbaikan > 0)){
-					for ($i=0; $i < count($perbaikan) ; $i++) { 
+					for ($i=0; $i < count($perbaikan) ; $i++) {
 						$fplperbaikan = FPLPerbaikan::find($perbaikan[$i]);
 						$fplperbaikan->fpl_id = $fpl->id;
 						$fplperbaikan->save();
 					}
 				}
-			}	
+			}
 
 			//delete unused
 			$nowperbaikan = array();
@@ -157,7 +157,7 @@
 				$listpembelian = substr($listpembelian, 0, -1);
 				$pembelian = explode(",",$listpembelian);
 				if(count($pembelian) > 0){
-					for ($k=0; $k < count($pembelian) ; $k++) { 
+					for ($k=0; $k < count($pembelian) ; $k++) {
 						$fplpembelian = FPLPembelian::find($pembelian[$k]);
 						$fplpembelian->fpl_id = $fpl->id;
 						$fplpembelian->save();
@@ -182,7 +182,7 @@
 				$listkebutuhan = substr($listkebutuhan, 0, -1);
 				$kebutuhan = explode(",",$listkebutuhan);
 				if(count($kebutuhan) > 0){
-					for ($l=0; $l < count($kebutuhan) ; $l++) { 
+					for ($l=0; $l < count($kebutuhan) ; $l++) {
 						$fplkebutuhan = FPLKebutuhan::find($kebutuhan[$l]);
 						$fplkebutuhan->fpl_id = $fpl->id;
 						$fplkebutuhan->save();
@@ -207,7 +207,7 @@
 				$listspec = substr($listspec, 0, -1);
 				$spec = explode(",",$listspec);
 				if(count($spec) > 0){
-					for ($m=0; $m < count($spec) ; $m++) { 
+					for ($m=0; $m < count($spec) ; $m++) {
 						$fplspec = FPLSpec::find($spec[$m]);
 						$fplspec->fpl_id = $fpl->id;
 						$fplspec->save();
@@ -229,11 +229,11 @@
 
 			$mengetahui = Input::get('mengetahui');
 			MengetahuiFPL::where('fpl_id','=',$id)->delete();
-			for ($j=0; $j < count($mengetahui); $j++) { 
+			for ($j=0; $j < count($mengetahui); $j++) {
 				$stj = new MengetahuiFPL;
 				$stj->fpl_id = $fpl->id;
 				$stj->user_id = $mengetahui[$j];
-				$stj->save();	
+				$stj->save();
 			}
 
 			// FPLSpec::where('fpl_id','=','')->delete();
@@ -244,7 +244,7 @@
 			Session::flash('success' , 'Data telah diubah.');
 			return Redirect::to('/admin/fpl');
 		}
-		
+
 		public function destroy($id){
 			FPL::where('id' , '=' ,$id)->delete();
 			MengetahuiFPL::where('fpl_id','=',$id)->delete();
@@ -261,7 +261,7 @@
 			$data['fpl'] = $fpl;
 			$data['active'] = 'fpl';
 
-			return View::make('admin.fpl.detail', $data);
+			return View::make(Auth::user()->role.'.fpl.detail', $data);
 		}
 
 		public function printpdf($id) {

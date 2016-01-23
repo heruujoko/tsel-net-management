@@ -38,6 +38,7 @@
                 @elseif(Auth::user()->role == 'no')
                     @include('layouts.navno')
                 @else
+                    @include('layouts.navbantek')
                 @endif
             </ul>
 

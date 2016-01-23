@@ -1,8 +1,8 @@
 <?php
-	
+
 	class SPPHController extends \BaseController {
 
-		public function index(){	
+		public function index(){
 			$data['active'] = 'spph';
 			$data['spph'] = SPPH::all();
 			return View::make(Auth::user()->role.'.spph.list' , $data);
@@ -21,7 +21,7 @@
 					break;
 				case 3:
 					$bulan = 'Maret';
-					break;	
+					break;
 				case 4:
 					$bulan = 'April';
 					break;
@@ -48,7 +48,7 @@
 					break;
 				case 12:
 					$bulan = 'Desember';
-					break;									
+					break;
 				default:
 					$bulan = '';
 					break;
@@ -79,7 +79,7 @@
 			$spph->perihal = Input::get('perihal');
 			$spph->kegiatan = Input::get('kegiatan');
 			$spph->jangka_waktu = Input::get('jangka_waktu');
-			$spph->save();	
+			$spph->save();
 
 			Session::flash('success' , 'Data telah update.');
 			return Redirect::to('/admin/spph');
@@ -89,14 +89,14 @@
 			$spph = SPPH::find($id)->delete();
 
 			Session::flash('success' , 'Data telah dihapus.');
-			return Redirect::to('/admin/spph');	
+			return Redirect::to('/admin/spph');
 		}
 
 		public function detail($id) {
 			$spph = SPPH::find($id);
 			$data['active'] = 'spph';
 			$data['spph'] = $spph;
-			return View::make('admin.spph.detail', $data);
+			return View::make(Auth::user()->role.'.spph.detail', $data);
 		}
 
 		public function printpdf($id){
