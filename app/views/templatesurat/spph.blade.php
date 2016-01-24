@@ -60,7 +60,7 @@
         {{ $spph->kepada }}<br>
         Di<br>
         <p class="indent">Makassar</p>
-        
+
         Perihal : <span class="text-uppercase"><b>{{ $spph->kegiatan }}</b></span>
         <br><br>
         <div class="isi">
@@ -82,7 +82,7 @@
             <p>Demikian disampaikan dan atas kerjasamanya kami ucapkan Terima Kasih.</p>
             <p>Hormat kami</p>
             <p>PT.TELKOMSEL</p>
-            <br><br><br>
+            <img src="{{ URL::to('/') }}/habibi.png"><br>
             <u>Habibi M. Tau</u><br>
             Mgr. Network Service Palu
         </div>

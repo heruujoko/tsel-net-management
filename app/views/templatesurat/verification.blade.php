@@ -171,7 +171,7 @@
           <tr>
             <td>Total Amount</td>
             <td width="3">:</td>
-            <td class="underline bg-black"><b>Rp {{ $vs->jumlah_pembayaran }}</b></td>
+            <td class="underline bg-black"><b>Rp {{ number_format($vs->jumlah_pembayaran) }}</b></td>
           </tr>
         </table>
       </div>
@@ -345,7 +345,7 @@
           <tr>
             <td>a. DPP  PPN</td>
             <td>=</td>
-            <td><span class="pull-left">Rp</span> <span class="pull-right">{{ $vs->jumlah_pembayaran }}</span></td>
+            <td><span class="pull-left">Rp</span> <span class="pull-right">{{ number_format($vs->jumlah_pembayaran) }}</span></td>
           </tr>
           <tr>
             <td>b. PPN</td>
@@ -395,7 +395,7 @@
               <td>{{ $vs->cost_centre }}</td>
               <td>{{ $vs->budget_account }}</td>
               <td>{{ $vs->activity_code }}</td>
-              <td> Rp {{ $vs->jumlah_pembayaran }} </td>
+              <td> Rp {{ number_format($vs->jumlah_pembayaran) }} </td>
             </tr>
             @for($i=1; $i <= 5; $i++ )
             <tr>
@@ -432,7 +432,7 @@
           Spv. FA Branch Palu
         </td>
         <td class="sign">
-          <img src="" width="90" height="90" alt="Image"><br><br><br>
+          <img src="{{ URL::to($vs->menyetujui->sign->signature_pic) }}" width="50" height="50"><br>
           <b><u>{{ $vs->menyetujui->nama }}</u></b><br>
           {{ $vs->menyetujui->jabatan }}
         </td>

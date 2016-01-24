@@ -365,19 +365,23 @@
             <td>Yang Mengetahui</td>
           </tr>
           <tr>
-            <td height="100">&nbsp;</td>
+            <td height="100">
+              <img src="{{ URL::to($stpd->menugaskan->sign->signature_pic) }}" width="100">
+            </td>
             <td></td>
-            <td></td>
+            <td>
+              <img src="{{ URL::to($stpd->mengetahui->sign->signature_pic) }}" width="100">
+            </td>
           </tr>
           <tr>
-            <td><b><u>Noviandri</u></b></td>
+            <td><b><u>{{ $stpd->menugaskan->nama }}</u></b></td>
             <td></td>
-            <td><b><u>Ali Imran</u></b></td>
+            <td><b><u>{{ $stpd->mengetahui->nama }}</u></b></td>
           </tr>
           <tr>
-            <td><b><u><b>NIK : 67002</b></u></b></td>
+            <td><b><u><b>NIK : {{ $stpd->menugaskan->nik }}</b></u></b></td>
             <td></td>
-            <td><b><u><b>NIK : 66034</b></u></b></td>
+            <td><b><u><b>NIK : {{ $stpd->mengetahui->nik }}</b></u></b></td>
           </tr>
         </table>
         <br>

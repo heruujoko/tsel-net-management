@@ -7,14 +7,14 @@
 			text-align: center;
 		}
 		.paper {
-			
+
 		}
 		.header-logo {
 			height:85px;
 			background-size:contain;
 			width:300px;
 			background-repeat:no-repeat;
-			background-image:url('/surat/tsel.jpg'); 
+			background-image:url('/surat/tsel.jpg');
 		}
 		.out-wrapper {
 			padding: 8px;
@@ -69,7 +69,7 @@
 <body>
 	<div class="paper">
 		<div class="header-logo">
-			
+
 		</div>
 		<div class="titlebar">
 			<h4>FORMULIR PENANGGUNGJAWABAN PENGELUARAN</h4>
@@ -106,12 +106,12 @@
 							<td></td>
 							<td></td>
 							<td>{{ $urai->uraian }}</td>
-							<td>{{ $urai->jumlah }}</td>
+							<td>Rp. {{ number_format($urai->jumlah) }}</td>
 						</tr>
 					@endforeach
 					<tr>
 						<td colspan="5" style="text-align:center">Jumlah</td>
-						<td>{{ $fpjp->total }}</td>
+						<td>Rp. {{ number_format($fpjp->total) }}</td>
 					</tr>
 				</table>
 			</div>
@@ -129,12 +129,12 @@
 								<tr>
 									<td>Nama</td> <td>: {{ $fpjp->user->nama }}</td>
 								</tr>
-								<tr>	
+								<tr>
 									<td>No Rekening</td> <td>: {{ $fpjp->user->no_rekening }}</td>
 								</tr>
-								<tr>	
+								<tr>
 									<td>Bank / Cabang</td> <td>: {{ $fpjp->user->bank }}</td>
-								</tr>	
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -156,7 +156,9 @@
 					<tr>
 						<td height="100" style="border-bottom:none;text-align:center;"></td>
 						<td style="border-bottom:none;text-align:center;"></td>
-						<td style="border-bottom:none;text-align:center;"></td>
+						<td style="border-bottom:none;text-align:center;">
+							<img src="{{ URL::to($fpjp->mengetahui->sign->signature_pic) }}" width="100" height="100">
+						</td>
 						<td rowspan="3"></td>
 					</tr>
 					<tr>
@@ -171,7 +173,7 @@
 					</tr>
 				</table>
 			</div>
-		</div>		
+		</div>
 	</div>
 </body>
 </html>
