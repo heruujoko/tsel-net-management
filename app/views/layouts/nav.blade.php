@@ -24,7 +24,7 @@
         <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">OSS</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
             <li class="active"><a href="/admin/oss/material">OSS Material</a></li>
-            <li><a href="/admin/oss/spj">OSS SPJ Bantek</a></li>
+            <li><a href="{{ URL::to('/admin/oss/spj') }}">OSS SPJ Bantek</a></li>
         </ul>
     </li>
     @elseif(isset($spj))
@@ -32,7 +32,7 @@
         <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
             <li><a href="/admin/oss/material">OSS Material</a></li>
-            <li class="active"><a href="/admin/oss/spj">OSS SPJ Bantek</a></li>
+            <li class="active"><a href="{{ URL::to('/admin/oss/spj')}}">OSS SPJ Bantek</a></li>
         </ul>
     </li>
     @endif
@@ -40,8 +40,8 @@
     <li class="">
         <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">OSS</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse ">
-            <li><a href="/admin/oss/material">OSS Material</a></li>
-            <li><a href="/admin/oss/spj">OSS SPJ Bantek</a></li>
+            <li><a href="{{ URL::to('/admin/oss/material') }}">OSS Material</a></li>
+            <li><a href="{{ URL::to('/admin/oss/spj') }}">OSS SPJ Bantek</a></li>
         </ul>
     </li>
 @endif
@@ -131,16 +131,16 @@
     <li class="active">
         <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Import Data</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
-            <li class="active"><a href="/admin/import/shoplists">Import Shoppinglist</a></li>
-            <li><a href="/admin/import/mastertp">Import Mastertp</a></li>
+            <li class="active"><a href="{{ URL::to('/admin/import/shoplists') }}">Import Shoppinglist</a></li>
+            <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Mastertp</a></li>
         </ul>
     </li>
     @else
     <li class="active">
         <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Import Data</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
-            <li><a href="/admin/import/shoplists">Import Shoppinglist</a></li>
-            <li class="active"><a href="/admin/import/mastertp">Import Mastertp</a></li>
+            <li><a href="{{ URL::to('/admin/import/shoplists') }}">Import Shoppinglist</a></li>
+            <li class="active"><a href="{{ URL::to('/admin/import/mastertp') }}">Import Mastertp</a></li>
         </ul>
     </li>
     @endif
@@ -148,8 +148,8 @@
 <li class="">
     <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Import Data</span><span class="fa arrow"></span></a>
     <ul class="nav nav-second-level collapse">
-        <li><a href="/admin/import/shoplists">Import Shoppinglist</a></li>
-        <li><a href="/admin/import/mastertp">Import Mastertp</a></li>
+        <li><a href="{{ URL::to('/admin/import/shoplists') }}">Import Shoppinglist</a></li>
+        <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Mastertp</a></li>
     </ul>
 </li>
 @endif
@@ -159,36 +159,36 @@
     <li class="active">
         <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
-            <li><a href="/admin/lokasikerja">Lokasi Kerja</a></li>
-            <li class="active"><a href="/admin/mitra">Mitra</a></li>
-            <li><a href="/admin/signature">Tanda Tangan</a></li>
+            <li><a href="{{ URL::to('/admin/lokasikerja') }}">Lokasi Kerja</a></li>
+            <li class="active"><a href="{{ URL::to('/admin/mitra') }}">Mitra</a></li>
+            <li><a href="{{ URL::to('/admin/signature') }}">Tanda Tangan</a></li>
         </ul>
     </li>
     @elseif(isset($signature))
     <li class="active">
         <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
-            <li><a href="/admin/lokasikerja">Lokasi Kerja</a></li>
-            <li><a href="/admin/mitra">Mitra</a></li>
-            <li class="active"><a href="/admin/signature">Tanda Tangan</a></li>
+            <li><a href="{{ URL::to('/admin/lokasikerja') }}">Lokasi Kerja</a></li>
+            <li><a href="{{ URL::to('/admin/mitra') }}">Mitra</a></li>
+            <li class="active"><a href="{{ URL::to('/admin/signature') }}">Tanda Tangan</a></li>
         </ul>
     </li>
     @elseif(isset($lokasikerja))
     <li class="active">
         <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
-            <li class="active"><a href="/admin/lokasikerja">Lokasi Kerja</a></li>
-            <li><a href="/admin/mitra">Mitra</a></li>
-            <li><a href="/admin/signature">Tanda Tangan</a></li>
+            <li class="active"><a href="{{ URL::to('/admin/lokasikerja') }}">Lokasi Kerja</a></li>
+            <li><a href="{{ URL::to('/admin/mitra') }}">Mitra</a></li>
+            <li><a href="{{ URL::to('/admin/signature') }}">Tanda Tangan</a></li>
         </ul>
     </li>
     @else
     <li class="active">
         <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
-            <li><a href="/admin/lokasikerja">Lokasi Kerja</a></li>
-            <li><a href="/admin/mitra">Mitra</a></li>
-            <li><a href="/admin/signature">Tanda Tangan</a></li>
+            <li><a href="{{ URL::to('/admin/lokasikerja') }}">Lokasi Kerja</a></li>
+            <li><a href="{{ URL::to('/admin/mitra') }}">Mitra</a></li>
+            <li><a href="{{ URL::to('/admin/signature') }}">Tanda Tangan</a></li>
         </ul>
     </li>
     @endif
@@ -196,9 +196,9 @@
     <li class="">
         <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse ">
-            <li><a href="/admin/lokasikerja">Lokasi Kerja</a></li>
-            <li><a href="/admin/mitra">Mitra</a></li>
-            <li><a href="/admin/signature">Tanda Tangan</a></li>
+            <li><a href="{{ URL::to('/admin/lokasikerja') }}">Lokasi Kerja</a></li>
+            <li><a href="{{ URL::to('/admin/mitra') }}">Mitra</a></li>
+            <li><a href="{{ URL::to('/admin/signature') }}">Tanda Tangan</a></li>
         </ul>
     </li>
 @endif
