@@ -34,6 +34,13 @@
     <div class="ibox">
         <div class="ibox-content">
             <div class="panel-body">
+              <div class="pull-right">
+                  <div class="">
+                      @if($pj->nodin != '')
+                        <a href="{{ URL::to('/') }}{{ $pj->nodin }}" class="btn btn-primary"><i class="fa fa-paste"></i> Download Nodin</a>
+                      @endif
+                  </div>
+              </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="tabs-container">

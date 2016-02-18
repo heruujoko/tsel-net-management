@@ -89,7 +89,7 @@
                     </table>
                 </div>
                 <div id="tab-2" class="tab-pane">
-                    {{ Form::open(array('url' => 'no/perjalanandinas' , 'class' => 'form form-horizontal')) }}
+                    {{ Form::open(array('url' => 'no/perjalanandinas' , 'class' => 'form form-horizontal' , 'files' => 'true')) }}
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="nama">Nama</label>
@@ -171,6 +171,12 @@
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal6">
                                         Tambah baru
                                     </button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="">Nodin</label>
+                                <div class="col-md-6">
+                                    <input type="file" name="file" class="form-control" required="">
                                 </div>
                             </div>
                             <div class="form-group">

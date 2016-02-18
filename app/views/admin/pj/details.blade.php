@@ -46,6 +46,13 @@
                         <div class="tab-content">
                             <div id="tab-1" class="tab-pane active">
                                 <div class="panel-body">
+                                  <div class="pull-right">
+                                      <div class="">
+                                          @if($pj->nodin != '')
+                                            <a href="{{ URL::to('/') }}{{ $pj->nodin }}" class="btn btn-primary"><i class="fa fa-paste"></i> Download Nodin</a>
+                                          @endif
+                                      </div>
+                                  </div>
                                     <form class="form form-horizontal">
                                         <div class="form-group">
                                             <label class="col-md-2 control-label">User</label>

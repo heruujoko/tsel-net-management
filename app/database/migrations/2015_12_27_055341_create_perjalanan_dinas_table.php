@@ -27,6 +27,7 @@ class CreatePerjalananDinasTable extends Migration {
 			$table->integer('biaya_hotel');
 			$table->string('tujuan_pesawat');
 			$table->integer('biaya_pesawat');
+			$table->string('nodin');
 			$table->timestamps();
 		});
 	}
