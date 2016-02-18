@@ -24,7 +24,7 @@
                         <h2>Detail OSS SPJ Bantek</h2>
                     </div>
                     <div class="col-md-2 pull-right">
-                        <a href="/no/oss/spj/{{ $oss->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                        <a href="{{ URL::to('/') }}/no/oss/spj/{{ $oss->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
                     </div>
                 </div>
                 <div class="row">
@@ -84,7 +84,7 @@
                                     <p>{{ $stj->nama }}</p>
                                 @endforeach
                             </div>
-                        </div>        
+                        </div>
                     </form>
                 </div>
                 <div class="row">
@@ -118,7 +118,7 @@
                                             <td class="">Fee (15%)</td>
                                             <td class="price">{{ (15/100)*$sl->harga }}</td>
                                         @endif
-                                    </tr>    
+                                    </tr>
                                     @endif
                                 @endforeach
                                 <tr>
@@ -127,7 +127,7 @@
                                     <td class="price">{{ $oss->harga }}</td>
                                 </tr>
                             </tbody>
-                        </table>        
+                        </table>
                     </div>
                 </div>
             </div>

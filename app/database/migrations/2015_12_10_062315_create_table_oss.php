@@ -14,6 +14,7 @@ class CreateTableOss extends Migration {
 	{
 		Schema::create('oss' , function($table){
 			$table->increments('id');
+			$table->string('no_oss');
 			$table->integer('user_id');
 			$table->date('tanggal');
 			$table->text('oss_type'); //material / spj bantek

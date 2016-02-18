@@ -165,6 +165,18 @@
 				$stj->user_id = $menyetujui[$j];
 				$stj->save();
 			}
+
+			//no OSS
+			$day = Carbon::parse($oss->tanggal);
+			$year = $day->year;
+			$noss = '';
+			if(Auth::user()->mitra == 1 ){
+				$noss = $oss->id.'/KISEL-TLI/VII/'.$year;
+			} else {
+				$noss = $oss->id.'/PRIMATAMA-LWK/VII/'.$year;
+			}
+			$oss->no_oss = $noss;
+			$oss->save();
 			Session::flash('success' , 'Data telah dibuat.');
 			return Redirect::to('/'.Auth::user()->role.'/oss/material');
 		}
@@ -477,7 +489,17 @@
 				$oss->harga +=$biaya_rks + $biayafee +$shopl->harga;
 			}
 			$oss->save();
-
+			//no OSS
+			$day = Carbon::parse($oss->tanggal);
+			$year = $day->year;
+			$noss = '';
+			if(Auth::user()->mitra == 1 ){
+				$noss = $oss->id.'/KISEL-TLI/VII/'.$year;
+			} else {
+				$noss = $oss->id.'/PRIMATAMA-LWK/VII/'.$year;
+			}
+			$oss->no_oss = $noss;
+			$oss->save();
 			Session::flash('success' , 'Data telah dibuat.');
 			return Redirect::to('/'.Auth::user()->role.'/oss/spj');
 		}

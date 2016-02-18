@@ -58,6 +58,10 @@
                                 <th width="1%">ID</th>
                                 <th>No Surat</th>
                                 <th>Tanggal</th>
+                                <th>Perusahaan</th>
+                                <th>Site</th>
+                                <th>Activity</th>
+                                <th>Waktu</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -67,6 +71,10 @@
                                     <td>{{ $st->id }}</td>
                                     <td>{{ $st->no_surat }}</td>
                                     <td>{{ $st->tempat_tanggal }}</td>
+                                    <td>{{ $st->banteks[0]->perusahaan }}</td>
+                                    <td>{{ $st->activities[0]->sites->sitelocation }}</td>
+                                    <td>{{ $st->activities[0]->activity }}</td>
+                                    <td>{{ $st->activities[0]->mulai }}</td>
                                     <td>
                                         <div class="btn-group">
                                         <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

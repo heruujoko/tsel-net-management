@@ -36,9 +36,17 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="panel-body">
+                        @if($vs->user_mengetahui == '')
+                        <div class="alert alert-danger alert-dismissable">
+                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                            Sebagian data Versheet masih belum lengkap, silahkan edit terlebih dahulu sebelum print
+                        </div>
+                        @endif
                         <div class="pull-right">
                             <div class="">
+                                @if($vs->user_mengetahui != '')
                                 <a href="/no/versheet/{{ $vs->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                                @endif
                             </div>
                         </div>
                         <form class="form form-horizontal">

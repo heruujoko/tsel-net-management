@@ -36,10 +36,18 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="panel-body">
+                      @if($fpjp->user_mengetahui == '')
+                      <div class="alert alert-danger alert-dismissable">
+                          <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                          Sebagian data FPJP masih belum lengkap, silahkan edit terlebih dahulu sebelum print
+                      </div>
+                      @endif
                         <div class="pull-right">
                             <div class="">
                                 <a href="/admin/fpjp/{{ $fpjp->id }}/edit" class="btn btn-primary"><i class="fa fa-print"></i> Edit Document</a>
-                                <a href="/admin/fpjp/{{ $fpjp->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                                @if($fpjp->user_mengetahui != '')
+                                  <a href="/admin/fpjp/{{ $fpjp->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                                @endif
                             </div>
                         </div>
                         <form class="form form-horizontal">
@@ -55,7 +63,7 @@
                             </div>
                             <div class="form form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label">Uraian</label>        
+                                    <label class="col-md-2 control-label">Uraian</label>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
@@ -76,10 +84,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </form> 
+                        </form>
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 </div>
@@ -98,7 +106,7 @@
         });
         $('.time').promise().done(function(){
             $('.datepicker').datepicker({
-                
+
             });
         });
 

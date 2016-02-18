@@ -60,6 +60,7 @@
                                 <th>Tujuan</th>
                                 <th>Berangkat</th>
                                 <th>Kembali</th>
+                                <th>Kegiatan</th>
                                 <th>Files</th>
                                 <th>Action</th>
                             </tr>
@@ -72,7 +73,8 @@
                                     <td>{{ $pj->kota_tujuan }}</td>
                                     <td>{{ $pj->tanggal_berangkat }}</td>
                                     <td>{{ $pj->tanggal_kembali }}</td>
-                                    <td></td>
+                                    <td>{{ $pj->kegiatan }}</td>
+                                    <td><a href="{{ URL::to('/') }}/admin/perjalanandinas/{{ $pj->id }}/details">Lihat Berkas</a></td>
                                     <td>
                                       <div class="btn-group">
                                         <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -86,7 +88,7 @@
                                       </div>
                                     </td>
                                 </tr>
-                            @endforeach        
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -167,9 +169,9 @@
                                 <label class="control-label col-md-3" for="">Biaya Lain</label>
                                 <div class="col-md-6">
                                     <div id="list_biaya_lain">
-                                        
+
                                     </div>
-                                    <input type="hidden" name="ids_lain" id="ids_lain">    
+                                    <input type="hidden" name="ids_lain" id="ids_lain">
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal6">
                                         Tambah baru
                                     </button>
@@ -223,7 +225,7 @@
     <script type="text/javascript" src="{{ URL::to('/') }}/bower_components/datatables-bootstrap3-plugin/media/js/datatables-bootstrap3.min.js"></script>
     <script type="text/javascript">
         $('.datepicker').datepicker({
-            
+
         });
         $('.datatable').DataTable({
           "iDisplayLength" : 10,

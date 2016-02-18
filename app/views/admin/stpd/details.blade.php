@@ -36,10 +36,18 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="panel-body">
+                      @if($stpd->user_mengetahui == '')
+                      <div class="alert alert-danger alert-dismissable">
+                          <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                          Sebagian data STPD masih belum lengkap, silahkan edit terlebih dahulu sebelum print
+                      </div>
+                      @endif
                         <div class="pull-right">
                             <div class="">
                                 <a href="/admin/stpd/{{ $stpd->id }}/edit" class="btn btn-primary"><i class="fa fa-print"></i> Edit Document</a>
-                                <a href="/admin/stpd/{{ $stpd->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                                @if($stpd->menugaskan != '')
+                                  <a href="/admin/stpd/{{ $stpd->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                                @endif
                             </div>
                         </div>
                         <form class="form form-horizontal">
@@ -77,11 +85,15 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Yang Menugaskan</label>
-                                <label class="control-label">{{ $stpd->menugaskan->nama }} - {{ $stpd->menugaskan->jabatan }}</label>
+                                @if($stpd->menugaskan != '')
+                                  <label class="control-label">{{ $stpd->menugaskan->nama }} - {{ $stpd->menugaskan->jabatan }}</label>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Yang Mengetahui</label>
-                                <label class="control-label">{{ $stpd->mengetahui->nama }} - {{ $stpd->mengetahui->jabatan }}</label>
+                                @if($stpd->mengetahui != '')
+                                  <label class="control-label">{{ $stpd->mengetahui->nama }} - {{ $stpd->mengetahui->jabatan }}</label>
+                                @endif
                             </div>
                         </form>
                     </div>

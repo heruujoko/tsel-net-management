@@ -3,7 +3,7 @@
 @section('breadcrumb')
     <h2>OSS</h2>
     <ol class="breadcrumb">
-        
+
         <li class="active">
             <strong>On Site Support</strong>
         </li>
@@ -20,7 +20,7 @@
                         <h2>Detail OSS Material</h2>
                     </div>
                     <div class="col-md-2 pull-right">
-                        <a href="/admin/oss/material/{{ $oss->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                        <a href="{{URL::to('/') }}/admin/oss/material/{{ $oss->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
                     </div>
                 </div>
                 <div class="row">
@@ -74,7 +74,7 @@
                                     <p>{{ $stj->nama }}</p>
                                 @endforeach
                             </div>
-                        </div>        
+                        </div>
                     </form>
                 </div>
             </div>

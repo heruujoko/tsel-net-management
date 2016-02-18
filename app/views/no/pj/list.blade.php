@@ -72,7 +72,7 @@
                                     <td>{{ $pj->kota_tujuan }}</td>
                                     <td>{{ $pj->tanggal_berangkat }}</td>
                                     <td>{{ $pj->tanggal_kembali }}</td>
-                                    <td></td>
+                                    <td><a href="{{ URL::to('/') }}/no/perjalanandinas/{{ $pj->id }}/details">Lihat Berkas</a></td>
                                     <td>
                                       <div class="btn-group">
                                         <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

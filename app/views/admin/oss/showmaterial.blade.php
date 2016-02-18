@@ -58,21 +58,23 @@
                     <table class="table table-striped datatable">
                         <thead>
                             <tr>
-                                <th>Tanggal</th>
+                                <td>ID</td>
+                                <th>No. OSS</th>
+                                <th>Tanggal OSS</th>
                                 <th>Nama Site</th>
-                                <th>ID Site</th>
-                                <th>Dikerjakan</th>
-                                <th>Harga</th>
+                                <th>Permasalahan</th>
+                                <th>Total</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($oss as $ossd)
                                 <tr>
+                                    <td>{{ $ossd->id }}</td>
+                                    <td>{{ $ossd->no_oss }}</td>
                                     <td>{{ $ossd->tanggal }}</td>
                                     <td>{{ $ossd->sites->sitelocation }}</td>
-                                    <td>{{ $ossd->sites->btsname }}</td>
-                                    <td>{{ $ossd->dikerjakan->nama }}</td>
+                                    <td>{{ $ossd->permasalahan }}</td>
                                     <td class="price">{{ $ossd->harga }}</td>
                                     <td>
                                       <div class="btn-group">
@@ -104,7 +106,7 @@
                                     </select>
 
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal6">
-                                    Tambah baru
+                                    New Site
                                 </button>
                                 </div>
                             </div>
@@ -140,7 +142,7 @@
                                         @endforeach
                                     </select>
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal7">
-                                    Tambah baru
+                                    New Item
                                 </button>
                                 </div>
                             </div>
@@ -265,7 +267,7 @@
     <script type="text/javascript" src="{{ URL::to('/') }}/bower_components/moment/moment.js"></script>
     <script type="text/javascript">
         $('.datepicker').datepicker({
-            
+
         });
 
         $('.datatable').DataTable({

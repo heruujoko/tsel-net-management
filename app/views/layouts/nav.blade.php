@@ -23,7 +23,7 @@
     <li class="active">
         <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">OSS</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
-            <li class="active"><a href="/admin/oss/material">OSS Material</a></li>
+            <li class="active"><a href="{{ URL::to('/admin/oss/material') }}">OSS Material</a></li>
             <li><a href="{{ URL::to('/admin/oss/spj') }}">OSS SPJ Bantek</a></li>
         </ul>
     </li>
@@ -31,7 +31,7 @@
     <li class="active">
         <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse in">
-            <li><a href="/admin/oss/material">OSS Material</a></li>
+            <li><a href="{{ URL::to('/admin/oss/material') }}">OSS Material</a></li>
             <li class="active"><a href="{{ URL::to('/admin/oss/spj')}}">OSS SPJ Bantek</a></li>
         </ul>
     </li>

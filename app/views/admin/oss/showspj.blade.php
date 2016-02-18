@@ -58,21 +58,25 @@
                     <table class="table table-striped datatable">
                         <thead>
                             <tr>
+                                <th>ID</th>
+                                <th>No. OSS</th>
                                 <th>Tanggal</th>
                                 <th>Nama Site</th>
-                                <th>ID Site</th>
-                                <th>Dikerjakan</th>
-                                <th>Harga</th>
+                                <th>Permasalahan</th>
+                                <th>Nama Bantek</th>
+                                <th>Total</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($oss as $ossd)
                                 <tr>
+                                    <td>{{ $ossd->id }}</td>
+                                    <td>{{ $ossd->no_oss }}</td>
                                     <td>{{ $ossd->tanggal }}</td>
                                     <td>{{ $ossd->sites->sitelocation }}</td>
-                                    <td>{{ $ossd->sites->btsname }}</td>
-                                    <td>{{ $ossd->dikerjakan->nama }}</td>
+                                    <td>{{ $ossd->permasalahan }}</td>
+                                    <td>{{ $ossd->banteks->nama }}</td>
                                     <td class="price">{{ $ossd->harga }}</td>
                                     <td>
                                       <div class="btn-group">

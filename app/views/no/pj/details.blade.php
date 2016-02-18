@@ -82,7 +82,9 @@
                                     @endif
                                     <div class="pull-right">
                                         <div class="">
-                                            <a href="/no/stpd/{{ $pj->stpd->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                                            @if($pj->stpd->user_mengetahui != '')
+                                              <a href="/no/stpd/{{ $pj->stpd->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                                            @endif
                                         </div>
                                     </div>
                                    <form class="form form-horizontal">
@@ -137,8 +139,8 @@
                                                 <label class="col-md-2 control-label">Jenis UHPD</label>
                                                 <label class="control-label">{{ $pj->stpd->jumlah }}</label>
                                             </div>
-                                        </div>    
-                                    </form> 
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                             <div id="tab-3" class="tab-pane">
@@ -151,7 +153,9 @@
                                     @endif
                                     <div class="pull-right">
                                         <div class="">
-                                            <a href="/no/versheet/{{ $pj->versheet->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                                            @if($pj->versheet->user_mengetahui != '')
+                                              <a href="/no/versheet/{{ $pj->versheet->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                                            @endif
                                         </div>
                                     </div>
                                    <form class="form form-horizontal">
@@ -177,7 +181,7 @@
                                                 <label class="control-label">{{ $pj->versheet->kepada_bank }} {{ $pj->versheet->kepada_rekening }} {{ $pj->versheet->kepada_nama }}</label>
                                             </div>
                                         </div>
-                                    </form> 
+                                    </form>
                                 </div>
                             </div>
                             <div id="tab-4" class="tab-pane">
@@ -190,7 +194,9 @@
                                     @endif
                                     <div class="pull-right">
                                         <div class="">
-                                            <a href="/no/fpjp/{{ $pj->fpjp->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                                            @if($pj->fpjp->user_menngetahui != '')
+                                              <a href="/no/fpjp/{{ $pj->fpjp->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                                            @endif
                                         </div>
                                     </div>
                                    <form class="form form-horizontal">
@@ -204,14 +210,14 @@
                                                 <label class="control-label">{{ $pj->fpjp->tanggal }}</label>
                                             </div>
                                         </div>
-                                    </form> 
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 </div>
@@ -230,7 +236,7 @@
         });
         $('.time').promise().done(function(){
             $('.datepicker').datepicker({
-                
+
             });
         });
 

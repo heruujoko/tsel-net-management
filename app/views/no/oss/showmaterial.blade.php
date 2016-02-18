@@ -63,22 +63,24 @@
                     <table class="table table-striped datatable">
                         <thead>
                             <tr>
-                                <th>Tanggal</th>
-                                <th>Nama Site</th>
-                                <th>ID Site</th>
-                                <th>Dikerjakan</th>
-                                <th>Harga</th>
-                                <th>Action</th>
+                              <td>ID</td>
+                              <th>No. OSS</th>
+                              <th>Tanggal OSS</th>
+                              <th>Nama Site</th>
+                              <th>Permasalahan</th>
+                              <th>Total</th>
+                              <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($oss as $ossd)
                                 <tr>
-                                    <td>{{ $ossd->tanggal }}</td>
-                                    <td>{{ $ossd->sites->sitelocation }}</td>
-                                    <td>{{ $ossd->sites->btsname }}</td>
-                                    <td>{{ $ossd->dikerjakan->nama }}</td>
-                                    <td class="price">{{ $ossd->harga }}</td>
+                                  <td>{{ $ossd->id }}</td>
+                                  <td>{{ $ossd->no_oss }}</td>
+                                  <td>{{ $ossd->tanggal }}</td>
+                                  <td>{{ $ossd->sites->sitelocation }}</td>
+                                  <td>{{ $ossd->permasalahan }}</td>
+                                  <td class="price">{{ $ossd->harga }}</td>
                                     <td>
                                       <div class="btn-group">
                                         <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
