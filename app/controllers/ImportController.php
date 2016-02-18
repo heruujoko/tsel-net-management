@@ -3,8 +3,8 @@
 	class ImportController extends \BaseController {
 
 		public function shoplists(){
-			$data['active'] = 'import';
-			$data['sl'] = true;
+			$data['active'] = 'data';
+			$data['importshop'] = true;
 			return View::make('admin.import.shoplists',$data);
 		}
 
@@ -38,12 +38,12 @@
 								$d->harga = $data['harga'];
 								$d->save();
 							}
-						});	
+						});
 					} catch(Exception $e) {
 						Session::flash('error' , 'File tidak sesuai format');
 						return Redirect::to('/admin/import/shoplists');
 					}
-					
+
 				}
 				elseif($ext == 'xlsx') {
 					Input::file('file')->move(public_path(), 'sl.xlsx');
@@ -63,7 +63,7 @@
 								$d->harga = $data['harga'];
 								$d->save();
 							}
-						});	
+						});
 					} catch(Exception $e) {
 						Session::flash('error' , 'File tidak sesuai format');
 						return Redirect::to('/admin/import/shoplists');
@@ -77,9 +77,9 @@
 		}
 
 		public function mastertp(){
-			$data['active'] = 'import';
-			$data['mastertp'] = true;
-			return View::make('admin.import.mastertp',$data);	
+			$data['active'] = 'data';
+			$data['importsite'] = true;
+			return View::make('admin.import.mastertp',$data);
 		}
 
 		public function importmastertp(){
@@ -112,12 +112,12 @@
 									$d->save();
 								}
 							}
-						});	
+						});
 					} catch(Exception $e) {
 						Session::flash('error' , ''.$e->getMessage());
 						return Redirect::to('/admin/import/mastertp');
 					}
-					
+
 				}
 				elseif($ext == 'xlsx') {
 					Input::file('file')->move(public_path(), 'mastertp.xlsx');
@@ -137,7 +137,7 @@
 									$d->save();
 								}
 							}
-						});	
+						});
 					} catch(Exception $e) {
 						Session::flash('error' , ''.$e->getMessage());
 						return Redirect::to('/admin/import/mastertp');

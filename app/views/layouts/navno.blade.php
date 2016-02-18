@@ -8,16 +8,6 @@
     </li>
 @endif
 
-@if($active == 'users')
-    <li class="active">
-        <a href="{{ URL::to('/no/users') }}"><i class="fa fa-users"></i> <span class="nav-label">Users</span> </a>
-    </li>
-@else
-    <li class="">
-        <a href="{{ URL::to('/no/users') }}"><i class="fa fa-users"></i> <span class="nav-label">Users</span> </a>
-    </li>
-@endif
-
 @if($active == 'oss')
     @if(isset($material))
     <li class="active">
@@ -126,34 +116,6 @@
     </li>
 @endif
 
-@if($active == 'import')
-    @if(isset($sl))
-    <li class="active">
-        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Import Data</span><span class="fa arrow"></span></a>
-        <ul class="nav nav-second-level collapse in">
-            <li class="active"><a href="{{ URL::to('/no/import/shoplists') }}">Import Shoppinglist</a></li>
-            <li><a href="{{ URL::to('/no/import/mastertp') }}">Import Mastertp</a></li>
-        </ul>
-    </li>
-    @else
-    <li class="active">
-        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Import Data</span><span class="fa arrow"></span></a>
-        <ul class="nav nav-second-level collapse in">
-            <li><a href="{{ URL::to('/no/import/shoplists') }}">Import Shoppinglist</a></li>
-            <li class="active"><a href="{{ URL::to('/no/import/mastertp') }}">Import Mastertp</a></li>
-        </ul>
-    </li>
-    @endif
-@else
-<li class="">
-    <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Import Data</span><span class="fa arrow"></span></a>
-    <ul class="nav nav-second-level collapse">
-        <li><a href="{{ URL::to('/no/import/shoplists') }}">Import Shoppinglist</a></li>
-        <li><a href="{{ URL::to('/no/import/mastertp') }}">Import Mastertp</a></li>
-    </ul>
-</li>
-@endif
-
 @if($active == 'data')
     @if(isset($mitra))
     <li class="active">
@@ -162,6 +124,9 @@
             <li><a href="{{ URL::to('/no/lokasikerja') }}">Lokasi Kerja</a></li>
             <li class="active"><a href="{{ URL::to('/no/mitra') }}">Mitra</a></li>
             <li><a href="{{ URL::to('/no/signature') }}">Tanda Tangan</a></li>
+            <li><a href="{{ URL::to('/no/users') }}"> <span class="nav-label">Users</span> </a><li>
+            <li><a href="{{ URL::to('/no/import/shoplists') }}">Import Shoppinglist</a></li>
+            <li><a href="{{ URL::to('/no/import/mastertp') }}">Import Mastertp</a></li>
         </ul>
     </li>
     @elseif(isset($signature))
@@ -171,6 +136,9 @@
             <li><a href="{{ URL::to('/no/lokasikerja') }}">Lokasi Kerja</a></li>
             <li><a href="{{ URL::to('/no/mitra') }}">Mitra</a></li>
             <li class="active"><a href="{{ URL::to('/no/signature') }}">Tanda Tangan</a></li>
+            <li><a href="{{ URL::to('/no/users') }}"> <span class="nav-label">Users</span> </a><li>
+            <li><a href="{{ URL::to('/no/import/shoplists') }}">Import Shoppinglist</a></li>
+            <li><a href="{{ URL::to('/no/import/mastertp') }}">Import Mastertp</a></li>
         </ul>
     </li>
     @elseif(isset($lokasikerja))
@@ -180,6 +148,45 @@
             <li class="active"><a href="{{ URL::to('/no/lokasikerja') }}">Lokasi Kerja</a></li>
             <li><a href="{{ URL::to('/no/mitra') }}">Mitra</a></li>
             <li><a href="{{ URL::to('/no/signature') }}">Tanda Tangan</a></li>
+            <li><a href="{{ URL::to('/no/users') }}"> <span class="nav-label">Users</span> </a><li>
+            <li><a href="{{ URL::to('/no/import/shoplists') }}">Import Shoppinglist</a></li>
+            <li><a href="{{ URL::to('/no/import/mastertp') }}">Import Mastertp</a></li>
+        </ul>
+    </li>
+    @elseif(isset($usermenu))
+    <li class="active">
+        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse in">
+            <li><a href="{{ URL::to('/no/lokasikerja') }}">Lokasi Kerja</a></li>
+            <li><a href="{{ URL::to('/no/mitra') }}">Mitra</a></li>
+            <li><a href="{{ URL::to('/no/signature') }}">Tanda Tangan</a></li>
+            <li class="active"><a href="{{ URL::to('/no/users') }}"> <span class="nav-label">Users</span> </a><li>
+              <li><a href="{{ URL::to('/no/import/shoplists') }}">Import Shoppinglist</a></li>
+              <li><a href="{{ URL::to('/no/import/mastertp') }}">Import Mastertp</a></li>
+        </ul>
+    </li>
+    @elseif(isset($importshop))
+    <li class="active">
+        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse in">
+            <li><a href="{{ URL::to('/no/lokasikerja') }}">Lokasi Kerja</a></li>
+            <li><a href="{{ URL::to('/no/mitra') }}">Mitra</a></li>
+            <li><a href="{{ URL::to('/no/signature') }}">Tanda Tangan</a></li>
+            <li><a href="{{ URL::to('/no/users') }}"> <span class="nav-label">Users</span> </a><li>
+              <li class="active"><a href="{{ URL::to('/no/import/shoplists') }}">Import Shoppinglist</a></li>
+              <li><a href="{{ URL::to('/no/import/mastertp') }}">Import Mastertp</a></li>
+        </ul>
+    </li>
+    @elseif(isset($importsite))
+    <li class="active">
+        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Data</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse in">
+            <li><a href="{{ URL::to('/no/lokasikerja') }}">Lokasi Kerja</a></li>
+            <li><a href="{{ URL::to('/no/mitra') }}">Mitra</a></li>
+            <li><a href="{{ URL::to('/no/signature') }}">Tanda Tangan</a></li>
+            <li><a href="{{ URL::to('/no/users') }}"> <span class="nav-label">Users</span> </a><li>
+              <li><a href="{{ URL::to('/no/import/shoplists') }}">Import Shoppinglist</a></li>
+              <li class="active"><a href="{{ URL::to('/no/import/mastertp') }}">Import Mastertp</a></li>
         </ul>
     </li>
     @else
@@ -189,6 +196,9 @@
             <li><a href="{{ URL::to('/no/lokasikerja') }}">Lokasi Kerja</a></li>
             <li><a href="{{ URL::to('/no/mitra') }}">Mitra</a></li>
             <li><a href="{{ URL::to('/no/signature') }}">Tanda Tangan</a></li>
+            <li><a href="{{ URL::to('/no/users') }}"> <span class="nav-label">Users</span> </a><li>
+              <li><a href="{{ URL::to('/no/import/shoplists') }}">Import Shoppinglist</a></li>
+              <li class="active"><a href="{{ URL::to('/no/import/mastertp') }}">Import Mastertp</a></li>
         </ul>
     </li>
     @endif
@@ -199,6 +209,9 @@
             <li><a href="{{ URL::to('/no/lokasikerja') }}">Lokasi Kerja</a></li>
             <li><a href="{{ URL::to('/no/mitra') }}">Mitra</a></li>
             <li><a href="{{ URL::to('/no/signature') }}">Tanda Tangan</a></li>
+            <li><a href="{{ URL::to('/no/users') }}"> <span class="nav-label">Users</span> </a><li>
+            <li><a href="{{ URL::to('/no/import/shoplists') }}">Import Shoppinglist</a></li>
+            <li><a href="{{ URL::to('/no/import/mastertp') }}">Import Mastertp</a></li>
         </ul>
     </li>
 @endif

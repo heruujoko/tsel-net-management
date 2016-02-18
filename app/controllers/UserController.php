@@ -2,7 +2,8 @@
 class UserController extends \BaseController {
 	public function index()
 	{
-		$data['active'] = 'users';
+		$data['active'] = 'data';
+		$data['usermenu'] = true;
 		$data['users'] = User::all();
 		$data['lokasi'] = LokasiKerja::all();
 		$data['mitras'] = Mitra::all();
@@ -43,7 +44,7 @@ class UserController extends \BaseController {
 		$user->nama = Input::get('nama');
 		$user->email = Input::get('email');
 		if(Input::get('password') != ''){
-			$user->password = Hash::make(Input::get('password'));	
+			$user->password = Hash::make(Input::get('password'));
 		}
 		$user->role = Input::get('role');
 		$user->jabatan = Input::get('jabatan');
