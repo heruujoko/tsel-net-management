@@ -128,9 +128,9 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="kendaraan">Kendaraan</label>
                                 <div class="col-md-6">
-                                    <input type="radio" name="kendaraan" value="darat"> Darat
-                                    <input type="radio" name="kendaraan" value="laut"> Laut
-                                    <input type="radio" name="kendaraan" value="udara"> Udara
+                                    <input class="k-radio" type="radio" name="kendaraan" value="darat"> Darat
+                                    <input class="k-radio" type="radio" name="kendaraan" value="laut"> Laut
+                                    <input class="k-radio" type="radio" name="kendaraan" value="udara"> Udara
                                 </div>
                             </div>
                             <div class="form-group">
@@ -141,7 +141,7 @@
                                     <input type="radio" name="jenis_uhpd" value="sebagian"> Sebagian
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="trans-bandara">
                                 <label class="control-label col-md-3" for="trans_bandara">Transport Bandara</label>
                                 <div class="col-md-6">
                                     <input type="text" name="trans_bandara" class="form-control">
@@ -222,6 +222,12 @@
     <script type="text/javascript">
         $('.datepicker').datepicker({
 
+        });
+        $('#trans-bandara').hide();
+        $('.k-radio').on('change',function(){
+            if($(this).val() == 'udara'){
+                $('#trans-bandara').show();
+            }
         });
         $('.datatable').DataTable({
           "iDisplayLength" : 10,
