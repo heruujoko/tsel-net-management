@@ -132,7 +132,7 @@
 
 		public function storematerial(){
 			$tanggal = Carbon::parse(Input::get('tanggal'));
-			$oss = new Oss;
+			$oss = new OSS;
 			$oss->user_id = Auth::user()->id;
 			$oss->site = Input::get('namasite');
 			$oss->oss_type = "material";
@@ -274,7 +274,7 @@
 
 		public function updatematerial($id){
 			$tanggal = Carbon::parse(Input::get('tanggal'));
-			$oss = Oss::where('id','=',$id)->first();
+			$oss = OSS::where('id','=',$id)->first();
 			$oss->site = Input::get('namasite');
 			$oss->oss_type = "material";
 			$oss->tanggal = $tanggal;
