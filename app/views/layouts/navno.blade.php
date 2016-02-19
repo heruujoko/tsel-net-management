@@ -116,6 +116,16 @@
     </li>
 @endif
 
+@if($active == 'activity')
+    <li class="active">
+        <a href="{{ URL::to('/no/activity') }}"><i class="fa fa-clipboard"></i> <span class="nav-label">Activity</span> </a>
+    </li>
+@else
+    <li class="">
+        <a href="{{ URL::to('/no/activity') }}"><i class="fa fa-clipboard"></i> <span class="nav-label">Activity</span> </a>
+    </li>
+@endif
+
 @if($active == 'data')
     @if(isset($mitra))
     <li class="active">

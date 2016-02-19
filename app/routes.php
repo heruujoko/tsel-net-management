@@ -104,6 +104,13 @@ Route::group(array('prefix' => 'admin' , 'before' => 'auth.admin') , function(){
 	Route::get('/import/mastertp' , 'ImportController@mastertp');
 	Route::post('/import/shoplists' , 'ImportController@importshoplists');
 	Route::post('/import/mastertp' , 'ImportController@importmastertp');
+
+	Route::get('/activity' , 'ActivityController@index');
+	Route::get('/activity/{id}/details' , 'ActivityController@show');
+	Route::post('/activity' , 'ActivityController@store');
+	Route::get('/activity/{id}/edit' , 'ActivityController@edit');
+	Route::post('/activity/{id}/update' , 'ActivityController@update');
+	Route::get('/activity/{id}/delete' , 'ActivityController@destroy');
 });
 
 // route NO
@@ -165,6 +172,13 @@ Route::group(array('prefix' => 'no' , 'before' => 'auth.no'), function(){
 	Route::get('/import/mastertp' , 'ImportController@mastertp');
 	Route::post('/import/shoplists' , 'ImportController@importshoplists');
 	Route::post('/import/mastertp' , 'ImportController@importmastertp');
+
+	Route::get('/activity' , 'ActivityController@index');
+	Route::get('/activity/{id}/details' , 'ActivityController@show');
+	Route::post('/activity' , 'ActivityController@store');
+	Route::get('/activity/{id}/edit' , 'ActivityController@edit');
+	Route::post('/activity/{id}/update' , 'ActivityController@update');
+	Route::get('/activity/{id}/delete' , 'ActivityController@destroy');
 });
 
 // route bantek
@@ -224,6 +238,13 @@ Route::group(array('prefix' => 'bantek' , 'before' => 'auth.bantek'), function()
 	Route::get('/import/mastertp' , 'ImportController@mastertp');
 	Route::post('/import/shoplists' , 'ImportController@importshoplists');
 	Route::post('/import/mastertp' , 'ImportController@importmastertp');
+
+	Route::get('/activity' , 'ActivityController@index');
+	Route::get('/activity/{id}/details' , 'ActivityController@show');
+	Route::post('/activity' , 'ActivityController@store');
+	Route::get('/activity/{id}/edit' , 'ActivityController@edit');
+	Route::post('/activity/{id}/update' , 'ActivityController@update');
+	Route::get('/activity/{id}/delete' , 'ActivityController@destroy');
 });
 
 

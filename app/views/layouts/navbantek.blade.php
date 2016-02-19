@@ -125,3 +125,13 @@
         <a href="{{ URL::to('/bantek/bantek') }}"><i class="fa fa-users"></i> <span class="nav-label">Bantek</span> </a>
     </li>
 @endif
+
+@if($active == 'activity')
+    <li class="active">
+        <a href="{{ URL::to('/bantek/activity') }}"><i class="fa fa-clipboard"></i> <span class="nav-label">Activity</span> </a>
+    </li>
+@else
+    <li class="">
+        <a href="{{ URL::to('/bantek/activity') }}"><i class="fa fa-clipboard"></i> <span class="nav-label">Activity</span> </a>
+    </li>
+@endif
