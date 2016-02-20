@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 class SetupTableSeeder extends Seeder {
 
@@ -147,7 +147,7 @@ class SetupTableSeeder extends Seeder {
         ));
 
         User::create(array(
-          'email' => 'ataufik@tsel.com',
+          'email' => 'lutfi@tsel.com',
           'password' => Hash::make('12345'),
           'nama' => 'Lutfi N Rachmad',
           'jabatan' => 'Staff Core Network Operation Palu',
@@ -343,7 +343,30 @@ class SetupTableSeeder extends Seeder {
         ));
 
 
+        Signature::create(array(
+          'user_id' => 2,
+          'signature_pic' => '/signature_2.png'
+        ));
 
+        Signature::create(array(
+          'user_id' => 4,
+          'signature_pic' => '/signature_4.png'
+        ));
+
+        Signature::create(array(
+          'user_id' => 6,
+          'signature_pic' => '/signature_6.png'
+        ));
+
+        Signature::create(array(
+          'user_id' => 7,
+          'signature_pic' => '/signature_7.png'
+        ));
+
+        Signature::create(array(
+          'user_id' => 9,
+          'signature_pic' => '/signature_9.png'
+        ));
     }
 
 }
