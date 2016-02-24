@@ -81,17 +81,11 @@
                             </div>
                             <div id="tab-2" class="tab-pane">
                                 <div class="panel-body">
-                                    @if($pj->stpd->user_mengetahui == '')
-                                    <div class="alert alert-danger alert-dismissable">
-                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                        Sebagian data STPD masih belum lengkap, silahkan edit terlebih dahulu sebelum print
-                                    </div>
-                                    @endif
                                     <div class="pull-right">
                                         <div class="">
-                                            <a href="/admin/stpd/{{ $pj->stpd->id }}/edit" class="btn btn-primary"><i class="fa fa-print"></i> Edit Document</a>
+                                            <a href="{{ URL::to('/') }}/admin/stpd/{{ $pj->stpd->id }}/edit" class="btn btn-primary"><i class="fa fa-print"></i> Edit Document</a>
                                             @if($pj->stpd->user_mengetahui != '')
-                                              <a href="/admin/stpd/{{ $pj->stpd->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                                              <a href="{{ URL::to('/') }}/admin/stpd/{{ $pj->stpd->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
                                             @endif
                                         </div>
                                     </div>
@@ -108,7 +102,7 @@
                                         </div>
                                         <div class="form form-horizontal">
                                             <div class="form-group">
-                                                <label class="col-md-2 control-label">Tujuan Penugasan</label>
+                                                <label class="col-md-2 control-label">Jenis Kendaraan</label>
                                                 <label class="control-label">{{ $pj->stpd->kendaraan }}</label>
                                             </div>
                                         </div>
@@ -139,13 +133,13 @@
                                         <div class="form form-horizontal">
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">Transport Bandara</label>
-                                                <label class="control-label">{{ $pj->stpd->trans_bandara }}</label>
+                                                <label class="control-label">Rp {{ number_format($pj->stpd->trans_bandara) }}</label>
                                             </div>
                                         </div>
                                         <div class="form form-horizontal">
                                             <div class="form-group">
-                                                <label class="col-md-2 control-label">Jenis UHPD</label>
-                                                <label class="control-label">{{ $pj->stpd->jumlah }}</label>
+                                                <label class="col-md-2 control-label">Total UHPD</label>
+                                                <label class="control-label">{{ $day }} hari x Rp {{ number_format($harian) }} = Rp {{ number_format($pj->stpd->jumlah) }}</label>
                                             </div>
                                         </div>
                                     </form>
@@ -153,18 +147,10 @@
                             </div>
                             <div id="tab-3" class="tab-pane">
                                 <div class="panel-body">
-                                    @if($pj->versheet->user_menyetujui == '')
-                                    <div class="alert alert-danger alert-dismissable">
-                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                        Sebagian data verification sheet masih belum lengkap, silahkan edit terlebih dahulu sebelum print
-                                    </div>
-                                    @endif
                                     <div class="pull-right">
                                         <div class="">
-                                            <a href="/admin/versheet/{{ $pj->versheet->id }}/edit" class="btn btn-primary"><i class="fa fa-print"></i> Edit Document</a>
-                                            @if($pj->versheet->user_menyetujui != '')
-                                              <a href="/admin/versheet/{{ $pj->versheet->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
-                                            @endif
+                                            <a href="{{ URL::to('/') }}/admin/versheet/{{ $pj->versheet->id }}/edit" class="btn btn-primary"><i class="fa fa-print"></i> Edit Document</a>
+                                            <a href="{{ URL::to('/') }}/admin/versheet/{{ $pj->versheet->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
                                         </div>
                                     </div>
                                    <form class="form form-horizontal">
@@ -181,7 +167,7 @@
                                         <div class="form form-horizontal">
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">Jumlah Pembayaran</label>
-                                                <label class="control-label">{{ $pj->versheet->jumlah_pembayaran }}</label>
+                                                <label class="control-label">Rp {{ number_format($pj->versheet->jumlah_pembayaran) }}</label>
                                             </div>
                                         </div>
                                         <div class="form form-horizontal">
@@ -195,18 +181,10 @@
                             </div>
                             <div id="tab-4" class="tab-pane">
                                 <div class="panel-body">
-                                    @if($pj->fpjp->user_menngetahui == '')
-                                    <div class="alert alert-danger alert-dismissable">
-                                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                        Sebagian data FPJP masih belum lengkap, silahkan edit terlebih dahulu sebelum print
-                                    </div>
-                                    @endif
                                     <div class="pull-right">
                                         <div class="">
-                                            <a href="/admin/fpjp/{{ $pj->fpjp->id }}/edit" class="btn btn-primary"><i class="fa fa-print"></i> Edit Document</a>
-                                            @if($pj->fpjp->user_menngetahui != '')
-                                              <a href="/admin/fpjp/{{ $pj->fpjp->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
-                                            @endif
+                                            <a href="{{ URL::to('/') }}/admin/fpjp/{{ $pj->fpjp->id }}/edit" class="btn btn-primary"><i class="fa fa-print"></i> Edit Document</a>
+                                            <a href="{{ URL::to('/') }}/admin/fpjp/{{ $pj->fpjp->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
                                         </div>
                                     </div>
                                    <form class="form form-horizontal">
@@ -218,6 +196,33 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">Tanggal</label>
                                                 <label class="control-label">{{ $pj->fpjp->tanggal }}</label>
+                                            </div>
+                                        </div>
+                                        <div class="form form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Uraian</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <table class="table table-stripped">
+                                                        <thead>
+                                                            <th>Keterangan</th>
+                                                            <th>Jumlah</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach($pj->fpjp->uraians as $ur)
+                                                                <tr>
+                                                                    <td>{{ $ur->uraian }}</td>
+                                                                    <td>Rp. {{ number_format($ur->jumlah) }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                            <tr>
+                                                                <td><strong>TOTAL</strong></td>
+                                                                <td><strong>Rp. {{ number_format($pj->fpjp->total) }}</strong></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </form>

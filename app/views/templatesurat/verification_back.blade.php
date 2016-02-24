@@ -144,10 +144,6 @@
       text-align: center;
       height: auto;
     }
-
-    .pembayaran {
-      font-size: 10px;
-    }
   </style>
 </head>
 <body>
@@ -341,10 +337,10 @@
       <div class="col-md-2">Untuk Pembayaran :</div>
       <label class="underline">{{ $vs->untuk_pembayaran }}</label>
     </div><!-- /.row -->
-    <div class="row pembayaran">
+    <div class="row">
       B. VERIFIKASI PEMBAYARAN
       <br><br>
-      <div class="col-md-6 left">
+      <div class="col-md-6">
         <table class="tbl">
           <tr>
             <td>a. DPP  PPN</td>

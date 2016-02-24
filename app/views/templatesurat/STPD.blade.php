@@ -12,7 +12,7 @@
       width:770px;
       min-height: 1200px;
       margin: 0 auto;
-      margin-top: 10px;
+      margin-top: -100px;
       margin-bottom: 100px;
       padding-left:5px;
       padding-right: 5px;
@@ -73,12 +73,14 @@
     .no-border {
       border: 0;
     }
-
     .right {
       text-align: right;
     }
     .left {
       text-align: left;
+    }
+    .break {
+      page-break-before: always;
     }
   </style>
   <title>STPD</title>
@@ -228,27 +230,9 @@
             </tr>
 
             <tr>
-              <td>Bantuan Pajak Bandara / Airport Tax	</td>
-              <td>&nbsp;</td>
-              <td>
-                <div class="col-md-7">&nbsp;</div>
-                <div class="text-right">&nbsp;</div>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Bantuan Transportasi Bandara</td>
-              <td>&nbsp;</td>
-              <td>
-                <div class="col-md-7">&nbsp;</div>
-                <div class="text-right">&nbsp;</div>
-              </td>
-            </tr>
-
-            <tr>
               <td colspan="2">JUMLAH</td>
               <td>
-                <div class="text-right">Rp {{ number_format( $stpd->jumlah )}}</div>
+                <div class="text-right">Rp {{ number_format( $stpd->jumlah+$stpd->trans_bandara )}}</div>
               </td>
             </tr>
           </tbody>
@@ -337,6 +321,7 @@
             </tr>
           </tfoot>
         </table>
+        <div class="break"></div>
         <p><b>KETERANGAN ( apabila ada hal yang tidak tercover dalam formulir ini )</b></p>
         <table class="tbl" width="100%">
           <tbody>
@@ -356,7 +341,7 @@
         </table>
         <div class="col-md-8">
         Dikeluarkan di Palu<br>
-        Pada Tanggal : <b>&nbsp;</b>	<br>
+        Pada Tanggal : <b>&nbsp;</b> {{ Carbon::parse($stpd->updated_at)->toDateString(); }}	<br>
         <br><br>
         <table>
           <tr>

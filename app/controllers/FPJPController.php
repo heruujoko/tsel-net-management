@@ -13,15 +13,15 @@
 		    $decimal     = ' point ';
 		    $dictionary  = array(
 		        0                   => 'nol',
-		        1                   => 'Satu',		        
-		        2                   => 'Dua',		        
-		        3                   => 'tiga',		        
-		        4                   => 'Empat',		        
-		        5                   => 'Lima',		        
-		        6                   => 'Enam',		        
-		        7                   => 'Tujuh',		       
-		        8                   => 'Delapan',		        
-		        9                   => 'Sembilan',		        
+		        1                   => 'Satu',
+		        2                   => 'Dua',
+		        3                   => 'tiga',
+		        4                   => 'Empat',
+		        5                   => 'Lima',
+		        6                   => 'Enam',
+		        7                   => 'Tujuh',
+		        8                   => 'Delapan',
+		        9                   => 'Sembilan',
 		        10                  => 'Sepuluh',
 		        11                  => 'Sebelas',
 		        12                  => 'Dua Belas',
@@ -52,7 +52,7 @@
 			if (!is_numeric($number)) {
 		        return false;
 		    }
-		    
+
 		    if (($number >= 0 && (int) $number < 0) || (int) $number < 0 - PHP_INT_MAX) {
 		        // overflow
 		        trigger_error(
@@ -65,13 +65,13 @@
 		    if ($number < 0) {
 		        return $negative . convert_number_to_words(abs($number));
 		    }
-		    
+
 		    $string = $fraction = null;
-		    
+
 		    if (strpos($number, '.') !== false) {
 		        list($number, $fraction) = explode('.', $number);
 		    }
-		    
+
 		    switch (true) {
 		        case $number < 21:
 		            $string = $dictionary[$number];
@@ -107,7 +107,7 @@
 		            }
 		            break;
 		    }
-		    
+
 		    if (null !== $fraction && is_numeric($fraction)) {
 		        $string .= $decimal;
 		        $words = array();
@@ -116,7 +116,7 @@
 		        }
 		        $string .= implode(' ', $words);
 		    }
-		    
+
 			return $string;
 		}
 
@@ -187,6 +187,7 @@
 			}
 			$fpjp->total = $jumlah;
 			$fpjp->save();
+			
 			//delete unused
 			$nowuraian = array();
 			foreach ($fpjp->uraians as $key) {

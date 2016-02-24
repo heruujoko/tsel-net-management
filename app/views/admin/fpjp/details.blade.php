@@ -76,9 +76,13 @@
                                                 @foreach($fpjp->uraians as $ur)
                                                     <tr>
                                                         <td>{{ $ur->uraian }}</td>
-                                                        <td>{{ $ur->jumlah }}</td>
+                                                        <td>Rp. {{ number_format($ur->jumlah) }}</td>
                                                     </tr>
                                                 @endforeach
+                                                <tr>
+                                                    <td><strong>TOTAL</strong></td>
+                                                    <td><strong>Rp. {{ number_format($fpjp->total) }}</strong></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
