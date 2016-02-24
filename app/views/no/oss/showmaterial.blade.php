@@ -204,7 +204,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Nama BTS</label>
+                        <label class="control-label">ID Site</label>
                         <div class="">
                             <input class="form-control" for="ajaxnamabts" id="ajaxnamabts" name="ajaxnamabts">
                         </div>

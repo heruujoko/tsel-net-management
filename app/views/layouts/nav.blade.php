@@ -136,7 +136,7 @@
             <li><a href="{{ URL::to('/admin/signature') }}">Tanda Tangan</a></li>
             <li><a href="{{ URL::to('/admin/users') }}"> <span class="nav-label">Users</span> </a><li>
               <li><a href="{{ URL::to('/admin/import/shoplists') }}">Import Shoppinglist</a></li>
-              <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Mastertp</a></li>
+              <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Master Site</a></li>
         </ul>
     </li>
     @elseif(isset($signature))
@@ -148,7 +148,7 @@
             <li class="active"><a href="{{ URL::to('/admin/signature') }}">Tanda Tangan</a></li>
             <li><a href="{{ URL::to('/admin/users') }}"> <span class="nav-label">Users</span> </a><li>
               <li><a href="{{ URL::to('/admin/import/shoplists') }}">Import Shoppinglist</a></li>
-              <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Mastertp</a></li>
+              <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Master Site</a></li>
         </ul>
     </li>
     @elseif(isset($lokasikerja))
@@ -160,7 +160,7 @@
             <li><a href="{{ URL::to('/admin/signature') }}">Tanda Tangan</a></li>
             <li><a href="{{ URL::to('/admin/users') }}"> <span class="nav-label">Users</span> </a><li>
               <li><a href="{{ URL::to('/admin/import/shoplists') }}">Import Shoppinglist</a></li>
-              <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Mastertp</a></li>
+              <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Master Site</a></li>
         </ul>
     </li>
     @elseif(isset($usermenu))
@@ -172,7 +172,7 @@
             <li><a href="{{ URL::to('/admin/signature') }}">Tanda Tangan</a></li>
             <li class="active"><a href="{{ URL::to('/admin/users') }}"> <span class="nav-label">Users</span> </a><li>
               <li><a href="{{ URL::to('/admin/import/shoplists') }}">Import Shoppinglist</a></li>
-              <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Mastertp</a></li>
+              <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Master Site</a></li>
         </ul>
     </li>
     @elseif(isset($importshop))
@@ -184,7 +184,7 @@
             <li><a href="{{ URL::to('/admin/signature') }}">Tanda Tangan</a></li>
             <li><a href="{{ URL::to('/admin/users') }}"> <span class="nav-label">Users</span> </a><li>
               <li class="active"><a href="{{ URL::to('/admin/import/shoplists') }}">Import Shoppinglist</a></li>
-              <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Mastertp</a></li>
+              <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Master Site</a></li>
         </ul>
     </li>
     @elseif(isset($importsite))
@@ -196,7 +196,7 @@
             <li><a href="{{ URL::to('/admin/signature') }}">Tanda Tangan</a></li>
             <li><a href="{{ URL::to('/admin/users') }}"> <span class="nav-label">Users</span> </a><li>
               <li><a href="{{ URL::to('/admin/import/shoplists') }}">Import Shoppinglist</a></li>
-              <li class="active"><a href="{{ URL::to('/admin/import/mastertp') }}">Import Mastertp</a></li>
+              <li class="active"><a href="{{ URL::to('/admin/import/mastertp') }}">Import Master Site</a></li>
         </ul>
     </li>
     @else
@@ -208,7 +208,7 @@
             <li><a href="{{ URL::to('/admin/signature') }}">Tanda Tangan</a></li>
             <li><a href="{{ URL::to('/admin/users') }}"> <span class="nav-label">Users</span> </a><li>
               <li><a href="{{ URL::to('/admin/import/shoplists') }}">Import Shoppinglist</a></li>
-              <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Mastertp</a></li>
+              <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Master Site</a></li>
         </ul>
     </li>
     @endif
@@ -221,7 +221,7 @@
             <li><a href="{{ URL::to('/admin/signature') }}">Tanda Tangan</a></li>
             <li><a href="{{ URL::to('/admin/users') }}"> <span class="nav-label">Users</span> </a><li>
             <li><a href="{{ URL::to('/admin/import/shoplists') }}">Import Shoppinglist</a></li>
-            <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Mastertp</a></li>
+            <li><a href="{{ URL::to('/admin/import/mastertp') }}">Import Master Site</a></li>
         </ul>
     </li>
 @endif

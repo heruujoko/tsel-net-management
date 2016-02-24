@@ -81,9 +81,9 @@
                                         @if(Carbon::parse($fp->periode_trx_id)->diffInMonths(Carbon::now()) <= 2)
                                         <script type="application/javascript">
                                         var myCountdown1 = new Countdown({
-                                            time: 86400 * {{ Carbon::parse($fp->periode_trx_id)->addMonth(2)->diffInDays(Carbon::now()) }}, // 86400 seconds = 1 day
-                                            width:80, 
-                                            height:40,  
+                                            time: 86400 * {{ Carbon::parse($fp->periode_trx_id)->addMonth()->addMonth()->diffInDays(Carbon::now()) }}, // 86400 seconds = 1 day
+                                            width:80,
+                                            height:40,
                                             rangeHi:"day",
                                             rangeLo:"hour",
                                             style:"flip"    // <- no comma on last item!
@@ -105,7 +105,7 @@
                                       </div>
                                     </td>
                                 </tr>
-                            @endforeach        
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -117,7 +117,7 @@
                                 <div class="col-md-8">
                                     <label class="control-label">{{ Auth::user()->nama }}</label>
                                     <input type="hidden" name="pemohon" value="{{ Auth::user()->id }}">
-                                </div>    
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3">Tanggal Permintaan</label>
@@ -147,7 +147,7 @@
                                 <label class="control-label col-md-3">Perbaikan & Pemeliharaan</label>
                                 <div class="col-md-6">
                                     <div class="list-perbaikan">
-                                                
+
                                     </div>
                                     <input type="hidden" name="ids_perbaikan" id="ids_perbaikan">
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal6">
@@ -159,7 +159,7 @@
                                 <label class="control-label col-md-3">Pembelian</label>
                                 <div class="col-md-6">
                                     <div class="list-pembelian">
-                                                
+
                                     </div>
                                     <input type="hidden" name="ids_pembelian" id="ids_pembelian">
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal7">
@@ -189,7 +189,7 @@
                                 <label class="control-label col-md-3">Kebutuhan</label>
                                 <div class="col-md-6">
                                     <div class="list-kebutuhan">
-                                                
+
                                     </div>
                                     <input type="hidden" name="ids_kebutuhan" id="ids_kebutuhan">
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal8">
@@ -201,7 +201,7 @@
                                 <label class="control-label col-md-3">Spesifikasi</label>
                                 <div class="col-md-6">
                                     <div class="list-spec">
-                                                
+
                                     </div>
                                     <input type="hidden" name="ids_spec" id="ids_spec">
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal9">
@@ -483,9 +483,9 @@
             }
         }
 
-        $(".monthPicker").datepicker({ 
+        $(".monthPicker").datepicker({
             format: "mm-yyyy",
-            startView: "months", 
+            startView: "months",
             minViewMode: "months"
         });
     </script>
