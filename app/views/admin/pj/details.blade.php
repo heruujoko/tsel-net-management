@@ -84,9 +84,7 @@
                                     <div class="pull-right">
                                         <div class="">
                                             <a href="{{ URL::to('/') }}/admin/stpd/{{ $pj->stpd->id }}/edit" class="btn btn-primary"><i class="fa fa-print"></i> Edit Document</a>
-                                            @if($pj->stpd->user_mengetahui != '')
-                                              <a href="{{ URL::to('/') }}/admin/stpd/{{ $pj->stpd->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
-                                            @endif
+                                            <a href="{{ URL::to('/') }}/admin/stpd/{{ $pj->stpd->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
                                         </div>
                                     </div>
                                    <form class="form form-horizontal">
@@ -139,7 +137,7 @@
                                         <div class="form form-horizontal">
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">Total UHPD</label>
-                                                <label class="control-label">{{ $day }} hari x Rp {{ number_format($harian) }} = Rp {{ number_format($pj->stpd->jumlah) }}</label>
+                                                <label class="control-label">{{ $day }} hari x Rp {{ number_format($harian) }} = Rp {{ number_format($day*$harian) }}</label>
                                             </div>
                                         </div>
                                     </form>

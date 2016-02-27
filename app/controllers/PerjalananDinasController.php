@@ -198,6 +198,8 @@
 				}
 				$fpjp->total = $jum_fpjp;
 				$fpjp->save();
+				$vs->jumlah_pembayaran = $fpjp->total;
+				$vs->save();
 
 				Session::flash('success' , 'Data telah dibuat.');
 				return Redirect::to('/'.Auth::user()->role.'/perjalanandinas');
@@ -438,7 +440,7 @@
 				$jum_fpjp += $tu->jumlah;
 			}
 			$fpjp->total = $jum_fpjp;
-			$fpjp->save();	
+			$fpjp->save();
 
 			Session::flash('success' , 'Data telah diubah.');
 			return Redirect::to('/admin/perjalanandinas');

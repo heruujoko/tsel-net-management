@@ -180,6 +180,26 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-md-3" for="menugaskan">Menugaskan</label>
+                                <div class="col-md-6">
+                                    <select class="form-control chosen" name="menugaskan">
+                                    @foreach($user_no as $no)
+                                        <option value="{{ $no->id }}">{{ $no->nama }} - {{ $no->jabatan }}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3" for="mengetahui">Mengetahui</label>
+                                <div class="col-md-6">
+                                    <select class="form-control chosen" name="mengetahui">
+                                    @foreach($user_no as $no)
+                                        <option value="{{ $no->id }}">{{ $no->nama }} - {{ $no->jabatan }}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
                               {{ Form::submit('Save', array('class'=>'btn btn-primary col-md-offset-3')) }}
                             </div>
                         </div>
