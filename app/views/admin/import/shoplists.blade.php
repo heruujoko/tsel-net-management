@@ -59,12 +59,13 @@
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-2">
                                     <input type="checkbox" name="replace" > Ganti semua data dengan file ini
+                                    <br><br><a href="{{ URL::to('/sl.xls') }}">Download Sample Data</a>
                                 </div>
                             </div>
                             <div class="form-group">
-                                  {{ Form::submit('Save', array('class'=>'btn btn-primary col-md-offset-3')) }}
+                                  {{ Form::submit('Save', array('class'=>'btn btn-primary col-md-offset-2')) }}
                             </div>
-                            {{ Form::close() }}    
+                            {{ Form::close() }}
                         </div>
                     </div>
                 </div>
