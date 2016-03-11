@@ -370,6 +370,11 @@ class SetupTableSeeder extends Seeder {
         ));
 
         Signature::create(array(
+          'user_id' => 5,
+          'signature_pic' => '/signature_5.png'
+        ));
+
+        Signature::create(array(
           'user_id' => 6,
           'signature_pic' => '/signature_6.png'
         ));

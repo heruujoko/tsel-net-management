@@ -139,7 +139,10 @@
 			$data['active'] = 'stpd';
 			$data['stpd'] = STPD::find($id);
 			$day = Carbon::parse($data['stpd']->tanggal_stpd);
+			$berangkat = Carbon::parse($data['stpd']->tanggal_berangkat);
+			$kembali = Carbon::parse($data['stpd']->tanggal_kembali);
 			$data['day'] = $day;
+			$data['hari'] = $kembali->diffInDays($berangkat)+1;
 			$pdf = PDF::loadView('templatesurat.STPD' , $data);
 			return $pdf->stream();
 		}

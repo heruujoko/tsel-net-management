@@ -148,7 +148,7 @@
 
 				//Biaya UHPD
 				$ur = new FPJPUraian;
-				$ur->uraian = 'Total STPD';
+				$ur->uraian = 'UHPD ke '.$pj->kota_tujuan.' dalam rangka '.$pj->kegiatan;
 				$ur->jumlah = $pj->stpd->jumlah;
 				$ur->fpjp_id = $fpjp->id;
 				$ur->save();
@@ -156,7 +156,7 @@
 				//Biaya Pesawat
 				if($pj->biaya_pesawat != 0){
 					$ur = new FPJPUraian;
-					$ur->uraian = 'Biaya tiket pesawat ke '.$pj->tujuan_pesawat;
+					$ur->uraian = 'Biaya tiket';
 					$ur->jumlah = $pj->biaya_pesawat;
 					$ur->fpjp_id = $fpjp->id;
 					$ur->save();

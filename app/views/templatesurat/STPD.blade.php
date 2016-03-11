@@ -1,155 +1,155 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-size: 13px;
-    }
-
-    .wrap {
-      width:770px;
-      min-height: 1200px;
-      margin: 0 auto;
-      margin-top: -100px;
-      margin-bottom: 100px;
-      padding-left:5px;
-      padding-right: 5px;
-    }
-    .logo {
-      height: 70px;
-      width: auto;
-      background-repeat: no-repeat;
-      background-image:url('/surat/tsel.jpg');
-    }
-
-    .headings {
-      text-align: center;
-      width:auto;
-      height:auto;
-    }
-    .headings h4{
-      margin-bottom:0px;
-    }
-    .content {
-      text-align: left;
-    }
-
-    .title-head{
-      text-transform: uppercase;
-      font-size: 10px;
-    }
-
-    .tbl {
-      font-weight: bold;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      font-size: 10px;
-      width: 700px;
-      border: 1px solid black;
-      border-spacing: 0px;
-    }
-    .tbl tbody tr {
-      text-align: center;
-      border: 1px solid black;
-    }
-    .tbl thead tr {
-      border: 1px solid black;
-    }
-    .tbl thead tr th{
-      border-right: 2px solid black;
-      text-align: center;
-      font-style: bold;
-      padding: 2px 2px;
-      background-color: #cccccc;
-    }
-    .tbl tbody tr td {
-      padding: 2px 2px;
-    }
-    .tbl tbody tr,
-    .tbl tbody td {
-      border: 1px solid black;
-    }
-    .no-border {
-      border: 0;
-    }
-    .right {
-      text-align: right;
-    }
-    .left {
-      text-align: left;
-    }
-    .break {
-      page-break-before: always;
-    }
-  </style>
-  <title>STPD</title>
+	<title>STPD</title>
+	<style type="text/css">
+		#wrapper {
+			margin-top: -25px;
+			margin-left: -25px;
+		}
+		#firstsection {
+			width: 103%;
+			font-size: 12px;
+		}
+		#secondsection {
+			width: 103%;
+			font-size: 12px;	
+		}
+		#thirdsection {
+			margin-top: 20px;
+			text-align: center;
+			border: 1px solid black;
+			border-spacing: 0px;
+			width: 103%;
+			font-size: 12px;	
+		}
+		#thirdsection td {
+			border: 1px solid black;
+		}
+		#fourthsection {
+			margin-top: 20px;
+			text-align: center;
+			border: 1px solid black;
+			border-spacing: 0px;
+			width: 103%;
+			font-size: 12px;	
+			margin-bottom: 20px;
+		}
+		#fourthsection td {
+			border: 1px solid black;
+		}
+		#fifthsection {
+			border: 1px solid black;
+			border-spacing: 0px;
+			width: 103%;
+			font-size: 12px;	
+		}
+		#fifthsection td {
+			border: 1px solid black;
+		}
+		#sixthsection {
+			border: 1px solid black;
+			border-spacing: 0px;
+			width: 103%;
+			font-size: 12px;	
+			page-break-after: always;
+		}
+		#clearb {
+			border : 1px solid white !important;	
+		}	
+		#sixthsection td {
+			border : 1px solid black;
+		}
+		#seventhsection{
+			width: 103%;
+			font-size: 12px;
+		}
+		.center {
+			text-align: center;
+		}
+		.grey{
+			background: #aaa;
+		}
+	</style>
 </head>
 <body>
-  <div class="container">
-    <div class="wrap">
-      <div class="logo"></div>
-      <div class="headings">
-        <h4 class="text-uppercase"><b>SURAT TUGAS PERJALANAN DINAS ( STPD )</b></h4><br>
-        Nomor STPD : .........<br/>
-        Nomor ID Transaksi : .........
-      </div>
-      <div class="content">
-        <br>
-        <p class="title-head"><b>pimpinan pt telkomsel dengan ini menyatakan kepada :</b></p>
-        <table>
-          <tr>
-            <td width="130" class="text-uppercase">Nama</td>
-            <td width="10">:</td>
-            <td>{{ $stpd->user->nama }}</td>
-          </tr>
-          <tr>
-            <td width="130" class="text-uppercase">NIK</td>
-            <td width="10">:</td>
-            <td>{{ $stpd->user->nik }}</td>
-          </tr>
-          <tr>
-            <td width="130" class="text-uppercase">Jabatan</td>
-            <td width="10">:</td>
-            <td>{{ $stpd->user->jabatan }}</td>
-          </tr>
-          <tr>
-            <td width="130" class="text-uppercase">Lokasi Kerja</td>
-            <td width="10">:</td>
-            <td>{{ $stpd->user->lokasi->nama }}</td>
-          </tr>
-          <tr>
-            <td width="130" class="text-uppercase">cost center</td>
-            <td width="10">:</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td width="130" class="text-uppercase">budget account</td>
-            <td width="10">:</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td width="130" class="text-uppercase">activity code</td>
-            <td width="10">:</td>
-            <td>&nbsp;</td>
-          </tr>
-        </table>
-        <table class="tbl">
-          <thead>
-            <tr>
-              <th width="20">No</th>
-              <th width="65">Lokasi Tujuan Penugasan</th>
-              <th width="65">Berangkat / Mulai</th>
-              <th width="65">Kembali / Selesai</th>
-              <th width="65">Kendaraan / Kelas</th>
-              <th width="65">Uraian / Tugas</th>
-              <th width="65">Konfirmasi Kedatangan</th>
-              <th width="65">Konfirmasi Kepulangan</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
+	<div id="wrapper">
+		<table id="firstsection">
+			<tr>
+				<td>
+					<img src="{{ URL::to('/surat/tsel.jpg') }}">
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="8" class="center">
+					<h2><b>SURAT TUGAS PERJALANAN DINAS (STPD)</b></h2>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="8" class="center">
+					Nomor STPD:......
+				</td>
+			</tr>
+			<tr>
+				<td colspan="8" class="center">
+					Nomor ID Transaksi:......
+				</td>
+			</tr>
+			</table>
+			<table id="secondsection">
+			<tr>
+				<td colspan="8">
+					<b>PIMPINAN TELKOMSEL DENGAN INI MENYATAKAN KEPADA :</b>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" width="80">NAMA</td>
+				<td>: {{ $stpd->user->nama }}</td>
+			</tr>
+			<tr>
+				<td colspan="2" width="30">NIK</td>
+				<td>: {{ $stpd->user->nik }}</td>
+			</tr>
+			<tr>
+				<td colspan="2" width="30">JABATAN</td>
+				<td>: {{ $stpd->user->jabatan }}</td>
+			</tr>
+			<tr>
+				<td colspan="2" width="30">LOKASI KERJA</td>
+				<td>: {{ $stpd->user->lokasi->nama }}</td>
+			</tr>
+			<tr>
+				<td colspan="2" width="30">COST CENTER</td>
+				<td>: </td>
+			</tr>
+			<tr>
+				<td colspan="2" width="30">BUDGET ACCOUNT</td>
+				<td>: 	</td>
+			</tr>
+			<tr>
+				<td colspan="2" width="30">ACTIVITY CODE</td>
+				<td>: 	</td>
+			</tr>
+		</table>
+		<table id="thirdsection">
+			<tr>
+				<td class="grey">No</td>
+				<td class="grey">Lokasi Tujuan Penugasan</td>
+				<td class="grey">Berangkat / Mulai</td>
+				<td class="grey">Kembali / Selesai</td>
+				<td class="grey">Kendaraan / Kelas</td>
+				<td class="grey">Uraian Tugas</td>
+				<td class="grey">Konfirmasi Kedatangan</td>
+				<td class="grey">Konfirmasi Kepulangan</td>
+			</tr>	
+			<tr>
               <td>1</td>
               <td>{{ $stpd->tujuan_penugasan }}</td>
               <td>{{ $stpd->tanggal_berangkat }}</td>
@@ -159,222 +159,241 @@
               <td>&nbsp;</td>
               <td>&nbsp;</td>
             </tr>
-          </tbody>
-        </table>
-        <p>HARAP DILAKSANAKAN DAN SEGERA MELAPORKAN SETELAH KEMBALI</p>
-        <table class="tbl" width="100%">
-          <thead>
             <tr>
-              <th width="33.3%">Bantuan Biaya Perjalanan Dinas</th>
-              <th width="33.3%">Perhitungan</th>
-              <th width="33.3%">Jumlah</th>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
             </tr>
-          </thead>
-          <tbody>
             <tr>
-              <td>Uang Harian Perjalanan Dinas (UHPD)	</td>
-              @if($stpd->user->level_jabatan == 'manager')
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+		</table>
+		<table style="margin-top: 15px;margin-bottom: 15px;">
+			<tr>
+				<td style="font-size: 12px;"><b>HARAP DILAKSANAKAN DAN SEGERA MELAPORKAN SETELAH KEMBALI</b></td>
+			</tr>
+		</table>
+		<table id="fourthsection">
+			<tr>
+				<td class="grey" width="200">Bantuan Biaya Perjalanan Dinas</td>
+				<td class="grey">Perhitungan</td>
+				<td class="grey">Jumlah</td>
+			</tr>	
+			<tr>
+				<td>Uang Harian Perjalanan Dinas (UHPD)	</td>
+				@if($stpd->user->level_jabatan == 'manager')
                 @if($stpd->jenis_uhpd == 'darat')
-                  <td>UHPD 1 = 4 hari x Rp {{ number_format('290000') }}</td>
+                  <td>UHPD  {{ $hari }} hari x Rp {{ number_format('290000') }}</td>
                 @elseif($stpd->jenis_uhpd == 'udara')
-                  <td>UHPD 1 = 4 hari x Rp {{ number_format('420000') }}</td>
+                  <td>UHPD  {{ $hari }} hari x Rp {{ number_format('420000') }}</td>
                 @else
-                  <td>UHPD 1 = 4 hari x Rp {{ number_format('230000') }}</td>
+                  <td>UHPD  {{ $hari }} hari x Rp {{ number_format('230000') }}</td>
                 @endif
               @elseif($stpd->user->level_jabatan == 'spv')
                 @if($stpd->jenis_uhpd == 'darat')
-                  <td>UHPD 1 = 4 hari x Rp {{ number_format('275000') }}</td>
+                  <td>UHPD  {{ $hari }} hari x Rp {{ number_format('275000') }}</td>
                 @elseif($stpd->jenis_uhpd == 'udara')
-                  <td>UHPD 1 = 4 hari x Rp {{ number_format('395000') }}</td>
+                  <td>UHPD  {{ $hari }} hari x Rp {{ number_format('395000') }}</td>
                 @else
-                  <td>UHPD 1 = 4 hari x Rp {{ number_format('215000') }}</td>
+                  <td>UHPD  {{ $hari }} hari x Rp {{ number_format('215000') }}</td>
                 @endif
               @elseif($stpd->user->level_jabatan == 'staff')
                 @if($stpd->jenis_uhpd == 'darat')
-                  <td>UHPD 1 = 4 hari x Rp {{ number_format('260000') }}</td>
+                  <td>UHPD  {{ $hari }} hari x Rp {{ number_format('260000') }}</td>
                 @elseif($stpd->jenis_uhpd == 'udara')
-                  <td>UHPD 1 = 4 hari x Rp {{ number_format('370000') }}</td>
+                  <td>UHPD  {{ $hari }} hari x Rp {{ number_format('370000') }}</td>
                 @else
-                  <td>UHPD 1 = 4 hari x Rp {{ number_format('200000') }}</td>
+                  <td>UHPD  {{ $hari }} hari x Rp {{ number_format('200000') }}</td>
                 @endif
               @else
               @endif
               <td>
                 <div class="text-right">Rp {{ number_format( $stpd->jumlah )}}</div>
               </td>
-            </tr>
-
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>
-                <div class="col-md-7">&nbsp;</div>
-                <div class="text-right">&nbsp;</div>
-              </td>
-            </tr>
-
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>
-                <div class="col-md-7">&nbsp;</div>
-                <div class="text-right">&nbsp;</div>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Bantuan Transportasi Bandara</td>
-              <td>&nbsp;</td>
-              <td>
-                <div class="text-right">Rp {{ number_format($stpd->trans_bandara) }}</div>
-              </td>
-            </tr>
-
-            <tr>
-              <td colspan="2">JUMLAH</td>
-              <td>
-                <div class="text-right">Rp {{ number_format( $stpd->jumlah+$stpd->trans_bandara )}}</div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p><b>Transportasi & Akomodasi</b></p>
-
-        <table class="tbl" width="100%">
-          <thead>
-            <tr>
-              <th width="25%">&nbsp;</th>
-              <th width="50%" colspan="2">&nbsp;</th>
-              <th colspan="2">&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-left">Transportasi</td>
-              <td colspan="2">&nbsp;</td>
-              <td>Nomor PR</td>
-              <td>Status tiket / hotel </td>
-            </tr>
-
-            <tr>
-              <td class="text-left">Tiket</td>
-              <td colspan="2">&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-
-            <tr>
-              <td class="text-left">Tujuan</td>
-              <td colspan="2">&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="text-left">Berangkat</td>
-              <td class="text-left">Tgl : </td>
-              <td class="text-left">Jam : </td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="text-left">Pulang</td>
-              <td class="text-left">Tgl : </td>
-              <td class="text-left">Jam : </td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="text-left">Akomodasi</td>
-              <td colspan="2">&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="text-left">Nama Hotel</td>
-              <td colspan="2">&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="text-left">Kota</td>
-              <td colspan="2">&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="text-left">Check In</td>
-              <td colspan="2">&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="text-left">Check Out</td>
-              <td colspan="2">&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-
-          </tbody>
-          <tfoot>
-            <tr>
-              <th class="text-right" colspan="5">Pengisian Kolom ini dapat dilakukan melalui sistem otmatisasi yang ada</th>
-            </tr>
-          </tfoot>
-        </table>
-        <div class="break"></div>
-        <p><b>KETERANGAN ( apabila ada hal yang tidak tercover dalam formulir ini )</b></p>
-        <table class="tbl" width="100%">
-          <tbody>
-            <tr>
-              <td rowspan="3" class="text-left">
-                <br><br><br><br><br><br>
-              </td>
-              <td width="20%">Verifikator UHPD</td>
-            </tr>
-            <tr>
-              <td height="70">&nbsp;</td>
-            </tr>
-            <tr>
-              <td>HR / Sekretaris Divisi</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="col-md-8">
-        Dikeluarkan di Palu<br>
-        Pada Tanggal : <b>&nbsp;</b> {{ Carbon::parse($stpd->updated_at)->toDateString(); }}	<br>
-        <br><br>
-        <table>
-          <tr>
-            <td>Yang Menugaskan</td>
-            <td width="300">&nbsp;</td>
-            <td>Yang Mengetahui</td>
-          </tr>
-          <tr>
-            <td height="100">
-              <img src="{{ URL::to($stpd->menugaskan->sign->signature_pic) }}" width="100">
-            </td>
-            <td></td>
-            <td>
-              <img src="{{ URL::to($stpd->mengetahui->sign->signature_pic) }}" width="100">
-            </td>
-          </tr>
-          <tr>
-            <td><b><u>{{ $stpd->menugaskan->nama }}</u></b></td>
-            <td></td>
-            <td><b><u>{{ $stpd->mengetahui->nama }}</u></b></td>
-          </tr>
-          <tr>
-            <td><b><u><b>NIK : {{ $stpd->menugaskan->nik }}</b></u></b></td>
-            <td></td>
-            <td><b><u><b>NIK : {{ $stpd->mengetahui->nik }}</b></u></b></td>
-          </tr>
-        </table>
-        <br>
-        </div>
-      </div><!-- /.content -->
-    </div><!-- /.wrap -->
-  </div><!-- /.container -->
-</div>
+			</tr>
+			<tr height="12">
+				<td>&nbsp;</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Bantuan Transportasi Bandara</td>
+				<td></td>
+				<td>Rp {{ number_format($stpd->trans_bandara) }}</td>
+			</tr>
+			<tr>
+				<td>Bantuan Pajak Bandara / Airport Tax</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Bantuan Sambungan Kartu Halo (LN)</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2">Jumlah</td>
+				<td>Rp {{ number_format( $stpd->jumlah+$stpd->trans_bandara )}}</td>
+			</tr>	
+		</table>
+		<table>
+			<tr>
+				<td style="font-size: 12px;"><b>Transportasi & Akomodasi</b></td>
+			</tr>
+		</table>
+		<table id="fifthsection">
+			<tr>
+				<td height="12" class="grey" colspan="2"></td>
+				<td class="grey" colspan="3"></td>
+				<td class="grey" colspan="2"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><b>Transportasi</b></td>
+				<td width="80">&nbsp;</td>
+				<td width="80">&nbsp;</td>
+				<td width="80">&nbsp;</td>
+				<td>Nomor PR</td>
+				<td>Status Tiket/hotel :</td>
+			</tr>
+			<tr>
+				<td colspan="2">Tiket :</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2">Tujuan :</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2">Berangkat :</td>
+				<td colspan="2">Tgl :</td>
+				<td>Jam :</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2">Pulang :</td>
+				<td colspan="2">Tgl :</td>
+				<td>Jam :</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2"><b>Akomodasi</b></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2">Nama Kota :</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2">Check In :</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="2">Out :</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+		<table style="margin-top: 20px;font-size: 12px;">
+			<tr>
+				<td><b>KETRANGAN (apabila ada hal yang tidak tercover dalam formulir ini)</b></td>
+			</tr>
+		</table>
+		<table id="sixthsection">
+			<tr>
+				<td height="50" width="480">&nbsp;</td>
+				<td>
+					<span>Verifikator UHPD</span>
+					<br><br><br>	
+					<span>HR / Sekertaris Divisi</span>
+				</td>
+			</tr>
+		</table>
+		<table id="seventhsection">
+			<tr>
+				<td width="80">Di Keluarkan di Palu</td>
+			</tr>
+			<tr>
+				<td>Pada Tanggal :</td>
+				<td>{{ $stpd->tanggal_berangkat }}</td>
+			</tr>
+			<tr>
+				<td>Yang Menugaskan</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>Mengetahui</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>{{ $stpd->mengetahui->jabatan }}</td>
+			</tr>
+			<tr>
+				@if($stpd->menugaskan->need_signature)
+					<td><img src="{{ URL::to($stpd->menugaskan->sign->signature_pic) }}" width="100"></td>
+				@else
+					<td height="100">&nbsp;</td>
+				@endif
+			</tr>
+			<tr>
+				<td><b style="text-decoration: underline;">{{ $stpd->menugaskan->nama }}<b></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><b style="text-decoration: underline;">{{ $stpd->mengetahui->nama }}<b></td>
+			</tr>
+			<tr>
+				<td><b>NIK : {{ $stpd->menugaskan->nik }}<b></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><b>NIK : {{ $stpd->mengetahui->nik }}<b></td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>
