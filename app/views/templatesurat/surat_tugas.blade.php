@@ -79,7 +79,7 @@
        @endforeach
       </table>
       <p>Untuk dapat mengerjakan pekerjaan berikut sesuai dengan jadwal yang telah ditentukan sebagai berikut:</p>
-      <table class="tbl-2">
+      <table class="tbl-2" cellspacing="0">
         <thead>
           <tr>
             <th width="30">No.</th>

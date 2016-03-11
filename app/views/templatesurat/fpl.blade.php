@@ -26,7 +26,7 @@
       height:90px;
       width:300px;
       background-repeat:no-repeat;
-      background-image:url('/surat/tsel.jpg');
+      background-image:url('{{ URL::to('/surat/tsel.jpg')}}');
     }
     .cap {
       padding-top: 40px;
@@ -129,9 +129,14 @@
         <tr>
           <td><strong>Tandatangan</strong></td>
           <!-- <td colspan="3" height="50" class="bg-white">&nbsp;</td> -->
+          @if($tahu->need_signature)  
           <td class="bg-white" colspan="3">
             <img src="{{ URL::to($tahu->sign->signature_pic )}}" width="50" height="50">
           </td>
+          @else
+          <td class="bg-white" colspan="3" height="50">
+          </td>
+          @endif
         </tr>
       @endforeach
       <tr>

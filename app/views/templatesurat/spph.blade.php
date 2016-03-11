@@ -82,7 +82,7 @@
             <p>Demikian disampaikan dan atas kerjasamanya kami ucapkan Terima Kasih.</p>
             <p>Hormat kami</p>
             <p>PT.TELKOMSEL</p>
-            <img src="{{ URL::to('/') }}/habibi.png"><br>
+            <br><br><br><br>  
             <u>Habibi M. Tau</u><br>
             Mgr. Network Service Palu
         </div>

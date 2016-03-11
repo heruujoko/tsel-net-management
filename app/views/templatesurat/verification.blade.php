@@ -453,7 +453,7 @@
         <td></td>
       </tr>
       <tr>
-        <td class="center" width="140" class="underline-text bold center">ARIEYANTI GAU</td>
+        <td width="140" class="underline-text bold center">ARIEYANTI GAU</td>
         <td class="underline-text bold center">ASEP AWALLUDIN</td>
         <td class="underline-text bold center">HABIBI M TAU</td>
         <td class="underline-text bold center">DUANDI D. WIDJAJA</td>

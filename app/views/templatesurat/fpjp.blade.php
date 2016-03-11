@@ -14,7 +14,7 @@
 			background-size:contain;
 			width:300px;
 			background-repeat:no-repeat;
-			background-image:url('/surat/tsel.jpg');
+			background-image:url('{{ URL::to('/surat/tsel.jpg')}}');
 		}
 		.out-wrapper {
 			padding: 8px;
@@ -157,7 +157,10 @@
 						<td height="100" style="border-bottom:none;text-align:center;"></td>
 						<td style="border-bottom:none;text-align:center;"></td>
 						<td style="border-bottom:none;text-align:center;">
-							<img src="{{ URL::to($fpjp->mengetahui->sign->signature_pic) }}" width="100" height="100">
+							@if($fpjp->mengetahui->need_signature)
+								<img src="{{ URL::to($fpjp->mengetahui->sign->signature_pic) }}" width="100" height="100">
+							@else
+							@endif	
 						</td>
 						<td rowspan="3"></td>
 					</tr>

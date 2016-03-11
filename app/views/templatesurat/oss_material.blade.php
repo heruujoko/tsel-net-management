@@ -24,7 +24,7 @@
 			background-size:contain;
 			width:300px;
 			background-repeat:no-repeat;
-			background-image:url('/surat/tsel.jpg');
+			background-image:url('{{ URL::to('/surat/tsel.jpg')}}');
 		}
 		.kop-kanan {
 			position: fixed;
@@ -281,7 +281,7 @@
 				</table><!-- /.tbl  -->
 			</div><!-- /.row -->
 			<div class="row">
-				<table class="tbl-2" border="1" cellpadding="0">
+				<table class="tbl-2" border="1" cellpadding="0" cellspacing="0">
 					<thead>
 						<tr>
 							<th width="20%">Permasalahan</th>
@@ -338,7 +338,10 @@
 									<tr>
 										<td height="65"><img src="" height="100%"></td>
 										<td>
-											<img src="{{ URL::to($oss->mengetahui->sign->signature_pic) }}" width="65" height="65">
+											@if($oss->mengetahui->need_signature)
+												<img src="{{ URL::to($oss->mengetahui->sign->signature_pic) }}" width="65" height="65">
+											@else
+											@endif		
 										</td>
 									</tr>
 									<tr>
@@ -394,17 +397,28 @@
 							@if(count($oss->menyetujui) == 2)
 							<tr>
 								<td valign="top" height="">
-									<img src="{{ URL::to($oss->menyetujui[0]->sign->signature_pic) }}" width="80" height="80">
+									@if($oss->menyetujui[0]->need_signature)
+										<img src="{{ URL::to($oss->menyetujui[0]->sign->signature_pic) }}" width="80" height="80">
+									@else
+									@endif
 								</td>
 								<td valign="top" height="">
-									<img src="{{ URL::to($oss->menyetujui[1]->sign->signature_pic) }}" width="80" height="80">
+									@if($oss->menyetujui[1]->need_signature)
+										<img src="{{ URL::to($oss->menyetujui[1]->sign->signature_pic) }}" width="80" height="80">
+									@else
+									@endif	
 								</td>
 							</tr>
 							@else
 							<tr>
-								<td valign="top" height="">
-									<img src="{{ URL::to($oss->menyetujui[0]->sign->signature_pic) }}" width="80" height="80">
-								</td>
+									@if($oss->menyetujui[0]->need_signature)
+										<td valign="top">
+											<img src="{{ URL::to($oss->menyetujui[0]->sign->signature_pic) }}" width="80" height="80">
+										</td>	
+									@else
+										<td valign="top" height="65">
+										</td>
+									@endif
 							</tr>
 							@endif
 							<tr>

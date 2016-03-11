@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration {
 			$table->string('no_rekening');
 			$table->string('no_hp');
 			$table->string('remember_token');
+			$table->boolean('need_signature');
 			$table->timestamps();
 		});
 	}

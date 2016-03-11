@@ -25,7 +25,7 @@
 			background-size:contain;
 			width:300px;
 			background-repeat:no-repeat;
-			background-image:url('/surat/tsel.jpg');
+			background-image:url('{{ URL::to('/surat/tsel.jpg')}}');
 		}
 		.kop-kanan {
 			position: fixed;
@@ -90,14 +90,13 @@
 		.signature {
 			width: 100%;
 			min-height: 100px;
-			@if(count($oss->shoplists) > 2)
+			@if(count($oss->shoplists) >= 2)
 				@if(count($oss->shoplists) > 3)
 					page-break-before: always;
 				@else
 					margin-top: 10px;
 					page-break-after: always;
 				@endif
-
 			@else
 
 				margin-top: 10px;
@@ -288,7 +287,7 @@
 					</table><!-- /.tbl  -->
 				</div><!-- /.row -->
 				<div class="row">
-					<table class="tbl-2" border="1">
+					<table class="tbl-2" border="1" cellspacing="0">
 						<thead>
 							<tr>
 								<th width="20%">Permasalahan</th>
@@ -337,7 +336,7 @@
 								@endif
 							@endfor
 							<tr>
-								<td colspan="4">Jumlah</td>
+								<td colspan="2">Jumlah</td>
 								<td>Rp. {{ number_format($oss->harga) }}</td>
 							</tr>
 						</tbody>
@@ -364,7 +363,10 @@
 									<tr>
 										<td height="65"><img src="" height="100%"></td>
 										<td>
-											<img src="{{ URL::to($oss->mengetahui->sign->signature_pic) }}" width="65" height="65">
+											@if($oss->mengetahui->need_signature)
+												<img src="{{ URL::to($oss->mengetahui->sign->signature_pic) }}" width="65" height="65">
+											@else	
+											@endif	
 										</td>
 									</tr>
 									<tr>
@@ -419,16 +421,25 @@
 							@if(count($oss->menyetujui) == 2 )
 							<tr>
 								<td valign="top" height="">
-									<img src="{{ URL::to($oss->menyetujui[0]->sign->signature_pic) }}" width="80" height="80">
+									@if($oss->menyetujui[0]->need_signature)
+										<img src="{{ URL::to($oss->menyetujui[0]->sign->signature_pic) }}" width="80" height="80">
+									@else	
+									@endif	
 								</td>
 								<td valign="top" height="">
-									<img src="{{ URL::to($oss->menyetujui[1]->sign->signature_pic) }}" width="80" height="80">
+									@if($oss->menyetujui[1]->need_signature)
+										<img src="{{ URL::to($oss->menyetujui[1]->sign->signature_pic) }}" width="80" height="80">
+									@else	
+									@endif
 								</td>
 							</tr>
 							@else
 							<tr>
 								<td valign="top" height="">
-									<img src="{{ URL::to($oss->menyetujui[0]->sign->signature_pic) }}" width="80" height="80">
+									@if($oss->menyetujui[0]->need_signature)
+										<img src="{{ URL::to($oss->menyetujui[0]->sign->signature_pic) }}" width="80" height="80">
+									@else	
+									@endif
 								</td>
 							</tr>
 							@endif
@@ -456,7 +467,11 @@
 					<div class="confirm-signature confirm-blank">
 						<table border="0">
 							<tr>
-								<td valign="top" height="175">Diketahui</td>
+								@if($oss->menyetujui[0]->need_signature)
+									<td valign="top" height="175">Diketahui</td>
+								@else
+									<td valign="top" height="115">Diketahui</td>
+								@endif
 							</tr>
 						</table>
 					</div>

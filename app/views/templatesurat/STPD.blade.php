@@ -47,14 +47,15 @@
       margin-bottom: 10px;
       font-size: 10px;
       width: 700px;
-      border: 2px solid black;
+      border: 1px solid black;
+      border-spacing: 0px;
     }
     .tbl tbody tr {
       text-align: center;
       border: 1px solid black;
     }
     .tbl thead tr {
-      border: 2px solid black;
+      border: 1px solid black;
     }
     .tbl thead tr th{
       border-right: 2px solid black;

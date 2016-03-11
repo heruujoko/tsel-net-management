@@ -309,7 +309,7 @@
 				$stj->save();
 			}
 			Session::flash('success' , 'Data telah diperbarui.');
-			return Redirect::to('/admin/oss/material/'.$id.'/edit');
+			return Redirect::to('/admin/oss/material/');
 		}
 
 		public function deletematerial($id){
