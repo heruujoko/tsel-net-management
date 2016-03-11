@@ -17,7 +17,7 @@ class SetupTableSeeder extends Seeder {
         	  'role' => 'admin',
             'lokasi_kerja_id' => 1,
             'need_signature' => false,
-            'mitra' = 1,
+            'mitra' => 1,
             'nik' => '7802211',
             'bank' => 'Mandiri Cab. Sorong',
             'no_rekening' => '154-000-528-6053',
@@ -39,7 +39,7 @@ class SetupTableSeeder extends Seeder {
           'no_rekening' => '154-000-528-6053',
           'no_hp' => '0811400005',
           'need_signature' => false,
-          'mitra' = 1
+          'mitra' => 1
         ));
 
         User::create(array(
@@ -57,7 +57,7 @@ class SetupTableSeeder extends Seeder {
           'no_rekening' => '0085638331',
           'no_hp' => '0811470000',
           'need_signature' => false,
-          'mitra' = 1
+          'mitra' => 1
         ));
 
         User::create(array(
@@ -75,7 +75,7 @@ class SetupTableSeeder extends Seeder {
           'no_rekening' => '0081771773',
           'no_hp' => '0811451007',
           'need_signature' => false,
-          'mitra' = 1
+          'mitra' => 1
         ));
 
         User::create(array(
@@ -93,7 +93,7 @@ class SetupTableSeeder extends Seeder {
           'no_rekening' => '0085639196',
           'no_hp' => '0811468458',
           'need_signature' => true,
-          'mitra' = 1
+          'mitra' => 1
         ));
 
         User::create(array(
@@ -111,7 +111,7 @@ class SetupTableSeeder extends Seeder {
           'no_rekening' => '0154733317',
           'no_hp' => '08114510154',
           'need_signature' => false,
-          'mitra' = 1
+          'mitra' => 1
         ));
 
         User::create(array(
@@ -129,7 +129,7 @@ class SetupTableSeeder extends Seeder {
           'no_rekening' => '0266525334',
           'no_hp' => '08111818883',
           'need_signature' => false,
-          'mitra' = 1
+          'mitra' => 1
         ));
 
         User::create(array(
@@ -147,7 +147,7 @@ class SetupTableSeeder extends Seeder {
           'no_rekening' => '0081984873',
           'no_hp' => '0811458880',
           'need_signature' => true,
-          'mitra' = 1
+          'mitra' => 1
         ));
 
         User::create(array(
@@ -165,7 +165,7 @@ class SetupTableSeeder extends Seeder {
           'no_rekening' => '0159.4792.29',
           'no_hp' => '0811363111',
           'need_signature' => true,
-          'mitra' = 1
+          'mitra' => 1
         ));
 
         User::create(array(
@@ -183,7 +183,7 @@ class SetupTableSeeder extends Seeder {
           'no_rekening' => '',
           'no_hp' => '08118035470',
           'need_signature' => false,
-          'mitra' = 1
+          'mitra' => 1
         ));
 
         // user TTD
@@ -203,7 +203,7 @@ class SetupTableSeeder extends Seeder {
           'no_rekening' => '',
           'no_hp' => '',
           'need_signature' => false,
-          'mitra' = 1
+          'mitra' => 1
         ));
 
         User::create(array(
@@ -221,7 +221,7 @@ class SetupTableSeeder extends Seeder {
           'no_rekening' => '',
           'no_hp' => '',
           'need_signature' => false,
-          'mitra' = 1
+          'mitra' => 1
         ));
 
         User::create(array(
@@ -239,7 +239,7 @@ class SetupTableSeeder extends Seeder {
           'no_rekening' => '',
           'no_hp' => '',
           'need_signature' => false,
-          'mitra' = 1
+          'mitra' => 1
         ));
 
         User::create(array(
@@ -257,7 +257,7 @@ class SetupTableSeeder extends Seeder {
           'no_rekening' => '',
           'no_hp' => '',
           'need_signature' => false,
-          'mitra' = 1
+          'mitra' => 1
         ));
 
         User::create(array(
@@ -275,7 +275,7 @@ class SetupTableSeeder extends Seeder {
           'no_rekening' => '',
           'no_hp' => '',
           'need_signature' => false,
-          'mitra' = 1
+          'mitra' => 1
         ));
 
         User::create(array(
@@ -293,7 +293,7 @@ class SetupTableSeeder extends Seeder {
           'no_rekening' => '',
           'no_hp' => '',
           'need_signature' => false,
-          'mitra' = 1
+          'mitra' => 1
         ));
 
         Mitra::create(array(
