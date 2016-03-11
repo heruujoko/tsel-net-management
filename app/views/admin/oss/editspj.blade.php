@@ -56,9 +56,9 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="namasite">Nama Site</label>
                                 <div class="col-md-6">
-                                    <select class="chosen" name="namasite" id="namasite">
+                                    <select class="chosen" name="namasite[]" id="namasite" multiple>
                                         @foreach($sites as $site)
-                                            <option value="{{ $site->id }}">{{ $site->sitelocation }}</option>
+                                            <option value="{{$site->id}}" @foreach($oss->banteksites as $bs) @if($site->id == $bs->id)selected="selected"@endif @endforeach>{{$site->sitelocation}}</option>
                                         @endforeach
                                     </select>
 

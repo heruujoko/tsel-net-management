@@ -459,7 +459,6 @@
 
 		public function storespj(){
 			$oss = new OSS;
-			$oss->site = Input::get('namasite');
 			$oss->oss_type = "spj";
 			$oss->user_id = Auth::user()->id;
 			$oss->tanggal = Carbon::parse(Input::get('tanggal'));
@@ -474,6 +473,15 @@
 			$oss->user_mengerjakan = Input::get('mengerjakan');
 			$oss->user_mengetahui = Input::get('mengetahui');
 			$oss->save();
+
+			$list_site = Input::get('namasite');
+
+			for ($si=0; $si < count($list_site); $si++) { 
+				$ns = new OSSBantekSite;
+				$ns->oss_id = $oss->id;
+				$ns->site_id = $list_site[$si];
+				$ns->save();
+			}
 
 			$shopping_list = Input::get('shoplist');
 			$harga = 0;
@@ -599,7 +607,6 @@
 
 		public function updatespj($id){
 			$oss = OSS::find($id);
-			$oss->site = Input::get('namasite');
 			$oss->oss_type = "spj";
 			$oss->tanggal = Carbon::parse(Input::get('tanggal'));
 			$oss->bantek = Input::get('bantek');
@@ -613,6 +620,17 @@
 			$oss->user_mengerjakan = Input::get('mengerjakan');
 			$oss->user_mengetahui = Input::get('mengetahui');
 			$oss->save();
+
+			$list_site = Input::get('namasite');
+
+			$oldsites = OSSBantekSite::where('oss_id','=',$oss->id)->delete();
+
+			for ($si=0; $si < count($list_site); $si++) { 
+				$ns = new OSSBantekSite;
+				$ns->oss_id = $oss->id;
+				$ns->site_id = $list_site[$si];
+				$ns->save();
+			}
 
 			$transport = '';
 			foreach ($oss->shoplists as $sl) {

@@ -31,6 +31,10 @@
 		public function menyetujui(){
 			return $this->BelongsToMany('User', 'menyetujui_oss', 'oss_id' , 'user_id');
 		}
+
+		public function banteksites(){
+			return $this->BelongsToMany('Mastertp' , 'ossbantek_sites' , 'oss_id', 'site_id');
+		}
 	}
 
 ?>

@@ -90,8 +90,8 @@
 		.signature {
 			width: 100%;
 			min-height: 100px;
-			@if(count($oss->shoplists) >= 2)
-				@if(count($oss->shoplists) > 3)
+			@if(count($oss->shoplists) >= 2 || count($oss->banteksites) >= 5)
+				@if(count($oss->shoplists) > 3 || count($oss->banteksites) >= 5)
 					page-break-before: always;
 				@else
 					margin-top: 10px;
@@ -223,13 +223,35 @@
 				</div>
 				<div class"row">
 					<table class="tbl">
+						@if(count($oss->banteksites) == 1)
 						<tr>
 							<td width="149">Nama Site</td>
 							<td width="3">:</td>
-							<td width="195">{{ $oss->sites->sitelocation }}</td>
+							<td width="195">{{ $oss->banteksites[0]->sitelocation }}</td>
 							<td width="80">ID Site  </td>
-							<td width="125">: {{ $oss->sites->btsname }}</td>
+							<td width="125">: {{ $oss->banteksites[0]->btsname }}</td>
 						</tr>
+						@else
+							@for($ii = 0; $ii < count($oss->banteksites); $ii++)
+							@if($ii == 0)	
+								<tr>
+									<td width="149">Nama Site</td>
+									<td width="3">:</td>
+									<td width="195">{{ $oss->banteksites[$ii]->sitelocation }}</td>
+									<td width="80">ID Site  </td>
+									<td width="125">: {{ $oss->banteksites[$ii]->btsname }}</td>
+								</tr>
+							@else
+								<tr>
+									<td width="149"></td>
+									<td width="3"></td>
+									<td width="195">{{ $oss->banteksites[$ii]->sitelocation }}</td>
+									<td width="80"></td>
+									<td width="125">{{ $oss->banteksites[$ii]->btsname }}</td>
+								</tr>
+							@endif	
+							@endfor
+						@endif
 						<tr>
 							<td>Request Dari</td>
 							<td>:</td>
@@ -337,7 +359,7 @@
 							@endfor
 							<tr>
 								<td colspan="2">Jumlah</td>
-								<td>Rp. {{ number_format($oss->harga) }}</td>
+								<td colspan="3" style="text-align: right">Rp. {{ number_format($oss->harga) }}</td>
 							</tr>
 						</tbody>
 					</table>
