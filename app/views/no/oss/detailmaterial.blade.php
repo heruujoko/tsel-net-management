@@ -77,6 +77,32 @@
                         </div>
                     </form>
                 </div>
+                <div class="row">
+                    <div class="col-md-offset-2">
+                        <h3 class="">Rincian</h3>        
+                        <table class="table table-stripped">
+                           <thead>
+                                <th>Kode Shopping List</th>
+                                <th>Deskripsi</th>
+                                <th>Harga</th>
+                           </thead> 
+                           <tbody>
+                               @foreach($oss->shoplists as $sl)
+                                <tr>
+                                  <td>{{ $sl->kode }}</td>  
+                                  <td>{{ $sl->deskripsi }}</td>
+                                  <td>Rp. {{ number_format($sl->harga) }}</td>
+                                </tr>  
+                               @endforeach
+                               <tr>
+                                   <td>Jumlah</td>
+                                   <td></td>
+                                   <td>Rp. {{ number_format($oss->harga )}}</td>
+                               </tr>
+                           </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

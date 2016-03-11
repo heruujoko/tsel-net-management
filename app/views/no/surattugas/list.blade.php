@@ -71,10 +71,18 @@
                                     <td>{{ $st->id }}</td>
                                     <td>{{ $st->no_surat }}</td>
                                     <td>{{ $st->tempat_tanggal }}</td>
-                                    <td>{{ $st->banteks[0]->perusahaan }}</td>
+                                    @if(count($st->banteks) > 0)
+                                        <td>{{ $st->banteks[0]->perusahaan }}</td>
+                                    @else
+                                        <td></td>
+                                    @endif
+                                    @if(count($st->activities) > 0)
                                     <td>{{ $st->activities[0]->sites->sitelocation }}</td>
                                     <td>{{ $st->activities[0]->activity }}</td>
                                     <td>{{ $st->activities[0]->mulai }}</td>
+                                    @else
+                                    <td></td><td></td><td></td>
+                                    @endif
                                     <td>
                                         <div class="btn-group">
                                         <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -96,7 +104,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="bantek">Bantek</label>
                                 <div class="col-md-6">
-                                    <select multiple class="chosen form-control" name="bantek[]">
+                                    <select multiple class="chosen form-control" name="bantek[]" required>
                                         @foreach($bantek as $b)
                                             <option value="{{ $b->id }}">{{ $b->nama }} - {{ $b->perusahaan }}</option>
                                         @endforeach
@@ -110,7 +118,7 @@
                                 <label class="control-label col-md-3" for="perihal">Activity</label>
                                 <div class="col-md-6">
                                     <div id="list-activity"></div>
-                                    <input type="hidden" name="activity" id="activity">
+                                    <input type="hidden" name="activity" id="activity" required>
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal7">
                                     Tambah activity baru
                                     </button>

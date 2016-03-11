@@ -20,7 +20,6 @@
 			$fpl->periode_trx_id = Carbon::parse("01-".Input::get('periode_trx_id'));
 			$fpl->no_acc = Input::get('no_acc');
 			$fpl->jumlah_dan_estimasi = Input::get('jumlah_estimasi');
-			$fpl->user_menyetujui = Input::get('menyetujui');
 			$fpl->save();
 
 			$listperbaikan = Input::get('ids_perbaikan');
@@ -124,7 +123,6 @@
 			$fpl->periode_trx_id = Carbon::parse("01-".Input::get('periode_trx_id'));
 			$fpl->no_acc = Input::get('no_acc');
 			$fpl->jumlah_dan_estimasi = Input::get('jumlah_estimasi');
-			$fpl->user_menyetujui = Input::get('menyetujui');
 			$fpl->save();
 
 			$listperbaikan = Input::get('ids_perbaikan');

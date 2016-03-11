@@ -226,16 +226,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">Menyetujui</label>
-                                <div class="col-md-6">
-                                    <select class="chosen form-control" name="menyetujui">
-                                        @foreach($user_no as $no)
-                                            <option value="{{ $no->id }}">{{ $no->nama }} - {{ $no->jabatan }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
                               {{ Form::submit('Save', array('class'=>'btn btn-primary col-md-offset-3')) }}
                             </div>
                         </div>

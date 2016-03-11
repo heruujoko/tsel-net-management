@@ -453,6 +453,13 @@
 
 			}
 			$data['br'] = $br;
+			$data['is_transport'] = false;
+			foreach ($oss->shoplists as $shopl) {
+				if($shopl->type == 'transport'){
+					$data['is_transport'] = true;
+				}
+			}
+
 			$pdf = PDF::loadView('templatesurat.oss_bantek_2' , $data);
 			return $pdf->setPaper('a4')->stream();
 		}

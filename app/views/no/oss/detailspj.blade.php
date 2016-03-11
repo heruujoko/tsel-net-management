@@ -50,7 +50,11 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">Site</label>
                             <div class="col-md-8">
-                                <p>{{ $oss->sites->sitelocation }} - {{ $oss->sites->btsname }}</p>
+                                <p>
+                                @foreach($oss->banteksites as $site)
+                                    {{ $site->sitelocation }} - {{ $site->btsname }} ,
+                                @endforeach
+                                </p>
                             </div>
                         </div>
                         <div class="form-group">

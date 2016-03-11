@@ -323,8 +323,13 @@
 							@for($i=0;$i<count($oss->shoplists);$i++)
 								@if($i==0)
 									<tr>
+										@if($is_transport)
 										<td rowspan="{{ count($oss->shoplists)+2 }}">{{ $oss->permasalahan }}</td>
 										<td rowspan="{{ count($oss->shoplists)+2 }}">{{ $oss->action }}</td>
+										@else
+										<td rowspan="{{ count($oss->shoplists)+1 }}">{{ $oss->permasalahan }}</td>
+										<td rowspan="{{ count($oss->shoplists)+1 }}">{{ $oss->action }}</td>	
+										@endif
 										<td>{{ $oss->deskripsi_rks }}</td>
 										<td>{{ $oss->kode_rks }}</td>
 										<td><span class="pull-left">Rp.</span> <span class="pull-right">{{ number_format($oss->harga_rks) }}</span></td>

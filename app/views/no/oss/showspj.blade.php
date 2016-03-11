@@ -79,7 +79,11 @@
                                   <td>{{ $ossd->id }}</td>
                                   <td>{{ $ossd->no_oss }}</td>
                                   <td>{{ $ossd->tanggal }}</td>
-                                  <td>{{ $ossd->sites->sitelocation }}</td>
+                                  <td>
+                                        @foreach($ossd->banteksites as $site)
+                                            {{ $site->sitelocation }},
+                                        @endforeach
+                                    </td>
                                   <td>{{ $ossd->permasalahan }}</td>
                                   <td>{{ $ossd->banteks->nama }}</td>
                                   <td class="price">{{ $ossd->harga }}</td>
@@ -104,7 +108,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="namasite">Nama Site</label>
                                 <div class="col-md-6">
-                                    <select class="chosen" name="namasite" id="namasite">
+                                    <select class="chosen" name="namasite[]" id="namasite" multiple>
                                         @foreach($sites as $site)
                                             <option value="{{ $site->id }}">{{ $site->sitelocation }}</option>
                                         @endforeach
