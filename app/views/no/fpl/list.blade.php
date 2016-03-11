@@ -80,18 +80,22 @@
                                     <td>{{ $fp->no_acc }}</td>
                                     <td>{{ $fp->periode_trx_id }}</td>
                                     <td>
-                                        @if(Carbon::parse($fp->periode_trx_id)->diffInMonths(Carbon::now()) <= 2)
-                                        <script type="application/javascript">
-                                        var myCountdown1 = new Countdown({
-                                            time: 86400 * {{ Carbon::parse($fp->periode_trx_id)->addMonth(2)->diffInDays(Carbon::now()) }}, // 86400 seconds = 1 day
-                                            width:80,
-                                            height:40,
-                                            rangeHi:"day",
-                                            rangeLo:"hour",
-                                            style:"flip"    // <- no comma on last item!
-                                        });
-                                        </script>
+                                        @if($fp->periode_trx_id != null)
+                                            @if(Carbon::parse($fp->periode_trx_id)->diffInMonths(Carbon::now()) <= 2)
+                                            <script type="application/javascript">
+                                            var myCountdown1 = new Countdown({
+                                                time: 86400 * {{ Carbon::parse($fp->periode_trx_id)->addMonth(2)->diffInDays(Carbon::now()) }}, // 86400 seconds = 1 day
+                                                width:80,
+                                                height:40,
+                                                rangeHi:"day",
+                                                rangeLo:"hour",
+                                                style:"flip"    // <- no comma on last item!
+                                            });
+                                            </script>
+                                            @else
+                                            @endif
                                         @else
+                                            
                                         @endif
                                     </td>
                                     <td>

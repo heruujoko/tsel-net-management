@@ -115,7 +115,7 @@
 
 				$berangkat = Carbon::parse(Input::get('pergi'));
 				$kembali = Carbon::parse(Input::get('kembali'));
-				$day = $kembali->diffInDays($berangkat);
+				$day = $kembali->diffInDays($berangkat)+1;
 				$jumlah = ($harian * $day) + $stpd->trans_bandara;
 				$stpd->jumlah = $jumlah;
 				$stpd->save();
@@ -148,8 +148,8 @@
 
 				//Biaya UHPD
 				$ur = new FPJPUraian;
-				$ur->uraian = 'UHPD '.$stpd->jenis_uhpd.' '.$day.' x Rp. '.number_format($harian);
-				$ur->jumlah = $day*$harian;
+				$ur->uraian = 'Total STPD';
+				$ur->jumlah = $pj->stpd->jumlah;
 				$ur->fpjp_id = $fpjp->id;
 				$ur->save();
 
@@ -158,15 +158,6 @@
 					$ur = new FPJPUraian;
 					$ur->uraian = 'Biaya tiket pesawat ke '.$pj->tujuan_pesawat;
 					$ur->jumlah = $pj->biaya_pesawat;
-					$ur->fpjp_id = $fpjp->id;
-					$ur->save();
-				}
-
-				//Trans Bandara
-				if($pj->transport_bandara !=0 ){
-					$ur = new FPJPUraian;
-					$ur->uraian = 'Transport bandara '.$pj->transport_bandara;
-					$ur->jumlah = $pj->transport_bandara;
 					$ur->fpjp_id = $fpjp->id;
 					$ur->save();
 				}
@@ -253,7 +244,7 @@
 			}
 			$berangkat = Carbon::parse($data['pj']->tanggal_berangkat);
 			$kembali = Carbon::parse($data['pj']->tanggal_kembali);
-			$day = $kembali->diffInDays($berangkat);
+			$day = $kembali->diffInDays($berangkat)+1;
 			$data['day'] = $day;
 			$data['harian'] = $harian;
 			return View::make(Auth::user()->role.'.pj.details' , $data);

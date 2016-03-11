@@ -56,7 +56,7 @@
 
 			$berangkat = Carbon::parse(Input::get('tanggal_berangkat'));
 			$kembali = Carbon::parse(Input::get('tanggal_kembali'));
-			$day = $kembali->diffInDays($berangkat);
+			$day = $kembali->diffInDays($berangkat)+1;
 			$jumlah = ($harian * $day) + $stpd->trans_bandara;
 			$stpd->jumlah = $jumlah;
 			$stpd->save();
@@ -120,7 +120,7 @@
 
 			$berangkat = Carbon::parse(Input::get('tanggal_berangkat'));
 			$kembali = Carbon::parse(Input::get('tanggal_kembali'));
-			$day = $kembali->diffInDays($berangkat);
+			$day = $kembali->diffInDays($berangkat)+1;
 			$jumlah = ($harian * $day) + $stpd->trans_bandara;
 			$stpd->jumlah = $jumlah;
 			$stpd->save();

@@ -120,7 +120,7 @@
                                         <div class="form form-horizontal">
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">Kembali</label>
-                                                <label class="control-label">{{ $pj->stpd->tanggal_berangkat }}</label>
+                                                <label class="control-label">{{ $pj->stpd->tanggal_kembali }}</label>
                                             </div>
                                         </div>
                                         <div class="form form-horizontal">
@@ -139,6 +139,12 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">Jenis UHPD</label>
                                                 <label class="control-label">{{ $day }} hari x Rp {{ number_format($harian) }} = Rp {{ number_format($day*$harian) }}</label>
+                                            </div>
+                                        </div>
+                                        <div class="form form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Total STPD</label>
+                                                <label class="control-label">Rp {{ number_format($pj->stpd->jumlah) }}</label>
                                             </div>
                                         </div>
                                     </form>

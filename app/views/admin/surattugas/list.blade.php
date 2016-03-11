@@ -71,10 +71,18 @@
                                     <td>{{ $st->id }}</td>
                                     <td>{{ $st->no_surat }}</td>
                                     <td>{{ $st->tempat_tanggal }}</td>
-                                    <td>{{ $st->banteks[0]->perusahaan }}</td>
+                                    @if(count($st->banteks) > 0)
+                                        <td>{{ $st->banteks[0]->perusahaan }}</td>
+                                    @else
+                                        <td></td>
+                                    @endif
+                                    @if(count($st->activities) > 0)
                                     <td>{{ $st->activities[0]->sites->sitelocation }}</td>
                                     <td>{{ $st->activities[0]->activity }}</td>
                                     <td>{{ $st->activities[0]->mulai }}</td>
+                                    @else
+                                    <td></td><td></td><td></td>
+                                    @endif
                                     <td>
                                         <div class="btn-group">
                                         <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

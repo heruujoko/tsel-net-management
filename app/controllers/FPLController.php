@@ -17,7 +17,9 @@
 			$fpl->no_ref_ga = Input::get('ref_ga');
 			$fpl->pic = Input::get('pic');
 			$fpl->trx_id = Input::get('trx_id');
-			$fpl->periode_trx_id = Carbon::parse("01-".Input::get('periode_trx_id'));
+			if(Input::get('periode_trx_id') != null){
+				$fpl->periode_trx_id = Carbon::parse("01-".Input::get('periode_trx_id'));
+			}
 			$fpl->no_acc = Input::get('no_acc');
 			$fpl->jumlah_dan_estimasi = Input::get('jumlah_estimasi');
 			$fpl->save();
