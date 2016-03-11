@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>OSS BANTEK Dengan Biaya Transport</title>
+	<title>{{ $oss->no_oss }}</title>
 	<style type="text/css">
 		.wrap {
 			margin:0 auto;
@@ -206,9 +206,9 @@
 			<div class="kop">
 				<div class="kop-kiri pull-left"></div>
 				@if($oss->request->mitranya->id == 1)
-					<div class="kop-kanan pull-right"> No. OSS : {{ $oss->id }}/KISEL-TLI/IV/{{ $year }} </div>
+					<div class="kop-kanan pull-right"> No. OSS : {{ $oss->id }}/KISEL-TLI/{{ $roman }}/{{ $year }} </div>
 				@else
-					<div class="kop-kanan pull-right"> No. OSS : {{ $oss->id }}/PRIMATAMA-LWK/IV/{{ $year }} </div>
+					<div class="kop-kanan pull-right"> No. OSS : {{ $oss->id }}/PRIMATAMA-LWK/{{ $roman }}/{{ $year }} </div>
 				@endif
 			</div>
 			<div class="border">

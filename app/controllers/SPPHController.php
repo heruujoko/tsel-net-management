@@ -53,7 +53,23 @@
 					$bulan = '';
 					break;
 			}
-			$spph->no_surat = ' / TC.01 / RO-43 / X / '.$now->year;
+			$romans = array(
+				0 => '',
+				1 => 'I',
+				2 => 'II',
+				3 => 'III',
+				4 => 'IV',
+				5 => 'V',
+				6 => 'VI',
+				7 => 'VII',
+				8 => 'VIII',
+				9 => 'IX',
+				10 => 'X',
+				11 => 'XI',
+				12 => 'XII'
+			);
+
+			$spph->no_surat = ' / TC.01 / RO-43 / '.$romans[$now->month].' / '.$now->year;
 			$spph->tempat_tanggal = 'Palu, '.$now->day.' '.$bulan.' '.$now->year;
 			$spph->kepada = Input::get('kepada');
 			$spph->perihal = Input::get('perihal');

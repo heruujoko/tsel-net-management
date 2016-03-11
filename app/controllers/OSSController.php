@@ -170,10 +170,27 @@
 			$day = Carbon::parse($oss->tanggal);
 			$year = $day->year;
 			$noss = '';
+
+			$romans = array(
+				0 => '',
+				1 => 'I',
+				2 => 'II',
+				3 => 'III',
+				4 => 'IV',
+				5 => 'V',
+				6 => 'VI',
+				7 => 'VII',
+				8 => 'VIII',
+				9 => 'IX',
+				10 => 'X',
+				11 => 'XI',
+				12 => 'XII'
+			);
+
 			if(Auth::user()->mitra == 1 ){
-				$noss = $oss->id.'/KISEL-TLI/VII/'.$year;
+				$noss = $oss->id.'/KISEL-TLI/'.$romans[$day->month].'/'.$year;
 			} else {
-				$noss = $oss->id.'/PRIMATAMA-LWK/VII/'.$year;
+				$noss = $oss->id.'/PRIMATAMA-LWK/'.$romans[$day->month].'/'.$year;
 			}
 			$oss->no_oss = $noss;
 			$oss->save();
@@ -231,11 +248,29 @@
 			} elseif ($day->month == 2) {
 				$data['bulan'] = 'Desember';
 			} else {}
+
+			$romans = array(
+				0 => '',
+				1 => 'I',
+				2 => 'II',
+				3 => 'III',
+				4 => 'IV',
+				5 => 'V',
+				6 => 'VI',
+				7 => 'VII',
+				8 => 'VIII',
+				9 => 'IX',
+				10 => 'X',
+				11 => 'XI',
+				12 => 'XII'
+			);
+
 			$sum = 0;
 			foreach ($oss->shoplists as $sl) {
 				$sum = $sum + $sl->harga;
 			}
 			$data['year'] = $day->year;
+			$data['roman'] = $romans[$day->month];
 			$data['sum'] = $sum;
 			$data['day'] = $day->toDateString();
 			$data['tanggal'] = $this->convert_number_to_words($day->day);
@@ -380,7 +415,25 @@
 			} elseif ($day->month == 2) {
 				$data['bulan'] = 'Desember';
 			} else {}
+
+			$romans = array(
+				0 => '',
+				1 => 'I',
+				2 => 'II',
+				3 => 'III',
+				4 => 'IV',
+				5 => 'V',
+				6 => 'VI',
+				7 => 'VII',
+				8 => 'VIII',
+				9 => 'IX',
+				10 => 'X',
+				11 => 'XI',
+				12 => 'XII'
+			);
+
 			$data['year'] = $day->year;
+			$data['roman'] = $romans[$day->month];
 			$data['day'] = $day->toDateString();
 			$data['tanggal'] = $this->convert_number_to_words($day->day);
 			$data['tahun'] = $this->convert_number_to_words($day->year);
@@ -493,10 +546,27 @@
 			$day = Carbon::parse($oss->tanggal);
 			$year = $day->year;
 			$noss = '';
+
+			$romans = array(
+				0 => '',
+				1 => 'I',
+				2 => 'II',
+				3 => 'III',
+				4 => 'IV',
+				5 => 'V',
+				6 => 'VI',
+				7 => 'VII',
+				8 => 'VIII',
+				9 => 'IX',
+				10 => 'X',
+				11 => 'XI',
+				12 => 'XII'
+			);
+
 			if(Auth::user()->mitra == 1 ){
-				$noss = $oss->id.'/KISEL-TLI/VII/'.$year;
+				$noss = $oss->id.'/KISEL-TLI/'.$romans[$day->month].'/'.$year;
 			} else {
-				$noss = $oss->id.'/PRIMATAMA-LWK/VII/'.$year;
+				$noss = $oss->id.'/PRIMATAMA-LWK/'.$romans[$day->month].'/'.$year;
 			}
 			$oss->no_oss = $noss;
 			$oss->save();
