@@ -43,7 +43,7 @@
         border: 1px solid black;
         margin-bottom: 10px;
       }
-      .tbl-2 tr td {
+      .tbl-2 thead tr th {
         border: 1px solid black;
         text-align: center;
 
@@ -73,12 +73,15 @@
       </table>
       <p>Untuk dapat mengerjakan pekerjaan berikut sesuai dengan jadwal yang telah ditentukan sebagai berikut:</p>
       <table class="tbl-2" cellspacing="0">
+        <thead>
           <tr>
-            <td width="30">No.</td>
-            <td>Site</td>
-            <td>Time</td>
-            <td>Activity</td>
+            <th width="30">No.</th>
+            <th>Site</th>
+            <th>Time</th>
+            <th>Activity</th>
           </tr>
+        </thead>
+        <tbody>
           @for( $i=0; $i < count($surat->activities); $i++ )
             @if($i == 0)
               <?php $row1 = 1; $rowac = 1;?>
@@ -98,8 +101,8 @@
               <tr>
                 <td>{{ $no++ }}</td>
                 <td>{{ $surat->activities[$i]->sites->sitelocation }}</td>
-                <td rowspan="{{ $row1 }}">{{ Carbon::parse($surat->activities[0]->mulai)->indonesianFormat() }} s/d {{ Carbon::parse($surat->activities[0]->selesai)->indonesianFormat() }}</td>
-                <td rowspan="{{ $rowac }}">{{ $surat->activities[$i]->activity }}</td>
+                <td >{{ Carbon::parse($surat->activities[0]->mulai)->indonesianFormat() }} s/d {{ Carbon::parse($surat->activities[0]->selesai)->indonesianFormat() }}</td>
+                <td >{{ $surat->activities[$i]->activity }}</td>
               </tr>
             @else
               @if(($surat->activities[$i]->mulai == $surat->activities[$i-1]->mulai) && ($surat->activities[$i]->selesai == $surat->activities[$i-1]->selesai) && ($surat->activities[$i]->activity == $surat->activities[$i-1]->activity)) 
@@ -131,12 +134,13 @@
                 <tr>
                   <td>{{ $no++ }}</td>
                   <td>{{ $surat->activities[$i]->sites->sitelocation }}</td>
-                  <td rowspan="{{ $row2 }}">{{ Carbon::parse($surat->activities[$i]->mulai)->indonesianFormat() }} s/d {{ Carbon::parse($surat->activities[$i]->selesai)->indonesianFormat() }}</td>
-                  <td rowspan="{{ $rowac }}">{{ $surat->activities[$i]->activity }}</td>
+                  <td >{{ Carbon::parse($surat->activities[$i]->mulai)->indonesianFormat() }} s/d {{ Carbon::parse($surat->activities[$i]->selesai)->indonesianFormat() }}</td>
+                  <td >{{ $surat->activities[$i]->activity }}</td>
                 </tr>
               @endif
             @endif
           @endfor
+        </tbody>
       </table>
       </div>
       <div class="disetuju">
