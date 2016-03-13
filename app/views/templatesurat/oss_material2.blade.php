@@ -193,41 +193,6 @@
 		    top: -1px;
 		    *overflow: hidden;
 		}
-
-		.black-bg {
-			background: black;
-			color: white;
-		}
-		.center {
-			text-align: center;
-		}
-		.small-txt {
-			font-size: 11px;
-		}
-		#telkomsel-sign1 {
-			border: 2px solid black;
-			border-spacing: 0px;
-			padding-bottom: 8px;
-		}
-		#telkomsel-sign2 {
-			border: 2px solid black;
-			border-spacing: 0px;
-			padding-bottom: 8px;
-		}
-		#mitra-sign1 {
-			border: 2px solid black;
-			border-spacing: 0px;
-			padding-bottom: 8px;	
-		}
-		#mitra-sign2 {
-			border: 2px solid black;
-			border-spacing: 0px;
-			padding-bottom: 8px;	
-		}
-		#signature-wrapper {
-			/*border: 1px solid black;*/
-			margin-left: -4px;
-		}
 	</style>
 	<title>OSS MATERIAL</title>
 </head>
@@ -354,146 +319,138 @@
 				<p class="keterangan">	Status/Kondisi Akhir : OK/NOK     Ket. :</p>
 			</div><!-- /.row -->
 		</div><!-- /.border -->
-		<div class="pbreak"></div>
-		<div id="signature-wrapper" class="signatur">
-				
-				<table>
-					<tr>
-						<td>
-							<table id="telkomsel-sign1">
-								<tr>
-									<td width="350" colspan="3" class="center black-bg">PT. TELKOMSEL</td>
-								</tr>
-								<tr>
-									<td class="center">Direquest Oleh</td>
-									<td></td>
-									<td class="center">Diketahui</td>
-								</tr>
-								<tr>
-									@if($oss->mengetahui->need_signature)
-										<td align="center" height="55"> 	
-											<img src="{{ URL::to($oss->mengetahui->sign->signature_pic) }}" width="50" height="50">
+			<div class="pbreak"></div>
+			<div class="signature">
+				<div class="row">
+				<div class="col-lg-8 tsel">
+					<table class="tbl-signature" border="1">
+						<thead>
+							<tr>
+								<th colspan="2">PT. TELKOMSEL</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<table width="100%" class="content-signature">
+									<tr>
+										<td><b>Direquest Oleh</b></td>
+										<td><b>Diketahui</b></td>
+									</tr>
+									<tr>
+										<td height="65"><img src="" height="100%"></td>
+										<td>
+											@if($oss->mengetahui->need_signature)
+												<img src="{{ URL::to($oss->mengetahui->sign->signature_pic) }}" width="65" height="65">
+											@else
+											@endif		
+										</td>
+									</tr>
+									<tr>
+										<td height="0"><b><u>{{ $oss->dikerjakan->nama }}</u></b></td>
+										<td><b><u>{{ $oss->mengetahui->nama }}</u></b></td>
+									</tr>
+									<tr>
+										<td height="0">{{ $oss->dikerjakan->jabatan }}</td>
+										<td>{{ $oss->mengetahui->jabatan }}</td>
+									</tr>
+								</table>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-lg-4 oleh">
+					<table class="tbl-signature-oleh" border="1">
+						<thead>
+							<tr>
+								<th colspan="2">{{ $oss->request->mitranya->nama }}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<table width="100%" class="content-signature-oleh">
+									<tr>
+										<td>Dikerjakan Oleh</td>
+									</tr>
+									<tr>
+										<td height="65">&nbsp;</td>
+									</tr>
+									<tr>
+										<td height=""><u><b>{{ $oss->request->mitranya->pic }}</b></u></td>
+									</tr>
+									<tr>
+										<td height="">Koordinator</td>
+									</tr>
+								</table>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div><!-- /.signature -->
+		<div class="row" style="clear:both;">
+			<div class="col-lg-8 confirm-wrapper">
+					<div class="confirm-signature confirm">
+						<table border="0">
+							<tr>
+								<!-- <td valign="top" height="80" colspan="{{count($oss->menyetujui)}}">Disetujui</td> -->
+								<td valign="top" height="" colspan="{{count($oss->menyetujui)}}">Disetujui</td>
+							</tr>
+							@if(count($oss->menyetujui) == 2)
+							<tr>
+								<td valign="top" height="">
+									@if($oss->menyetujui[0]->need_signature)
+										<img src="{{ URL::to($oss->menyetujui[0]->sign->signature_pic) }}" width="80" height="80">
+									@else
+									@endif
+								</td>
+								<td valign="top" height="">
+									@if($oss->menyetujui[1]->need_signature)
+										<img src="{{ URL::to($oss->menyetujui[1]->sign->signature_pic) }}" width="80" height="80">
+									@else
+									@endif	
+								</td>
+							</tr>
+							@else
+							<tr>
+									@if($oss->menyetujui[0]->need_signature)
+										<td valign="top">
+											<img src="{{ URL::to($oss->menyetujui[0]->sign->signature_pic) }}" width="80" height="80">
 										</td>	
 									@else
-										<td height="55"></td>
+										<td valign="top" height="65">
+										</td>
 									@endif
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="center"><b><u>{{ $oss->dikerjakan->nama }}</u></b></td>
-									<td></td>
-									<td class="center"><b><u>{{ $oss->mengetahui->nama }}</u></b></td>
-								</tr>
-								<tr>
-									<td class="center small-txt">{{ $oss->dikerjakan->jabatan }}</td>
-									<td></td>
-									<td class="center small-txt">{{ $oss->mengetahui->jabatan }}</td>
-								</tr>
-							</table>
-						</td>
-						<td></td>
-						<td>
-							<table id="mitra-sign1">
-								<tr>
-									<td class="black-bg center" width="163">{{ $oss->request->mitranya->nama }}</td>
-								</tr>
-								<tr>
-									<td class="center">Dikerjakan Oleh</td>
-								</tr>
-								<tr>
-									<td height="55"></td>
-								</tr>
-								<tr>
-									<td class="center"><u><b>{{ $oss->request->mitranya->pic  }}</b></u></td>
-								</tr>
-								<tr>
-									<td class="center small-txt">Koordinator</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<table id="telkomsel-sign2">
-								<tr>
-									@if(count($oss->menyetujui) == 1)
-										<td class="center" width="350">Disetujui</td>
-									@else
-										<td class="center" colspan="3" width="350">Disetujui</td>
-									@endif
-								</tr>
-								<tr>
-									@if(count($oss->menyetujui) == 1)
-										@if($oss->menyetujui[0]->need_signature)
-											<td>
-												<img src="{{ URL::to($oss->menyetujui[0]->sign->signature_pic) }}" width="50" height="50">
-											</td>
-										@else
-											<td height="60"></td>
-										@endif
-									@else
-										@if($oss->menyetujui[0]->need_signature && $oss->menyetujui[1]->need_signature)
-											<td height="60" align="center">
-												<img src="{{ URL::to($oss->menyetujui[0]->sign->signature_pic) }}" width="50" height="50">
-											</td>
-											<td></td>
-											<td align="center">
-												<img src="{{ URL::to($oss->menyetujui[1]->sign->signature_pic) }}" width="50" height="50">
-											</td>
-										@elseif(!$oss->menyetujui[0]->need_signature && $oss->menyetujui[1]->need_signature)
-											<td height="60"></td>
-											<td></td>
-											<td align="center">
-												<img src="{{ URL::to($oss->menyetujui[1]->sign->signature_pic) }}" width="50" height="50">
-											</td>
-										@elseif($oss->menyetujui[0]->need_signature && !$oss->menyetujui[1]->need_signature)
-											<td height="60" align="center">
-												<img src="{{ URL::to($oss->menyetujui[0]->sign->signature_pic) }}" width="50" height="50">
-											</td>
-											<td></td>
-											<td></td>
-										@else
-											<td height="60"></td>
-											<td></td>
-											<td></td>
-										@endif
-									@endif
-								</tr>
-								<tr>
-									@if(count($oss->menyetujui) == 1)
-										<td class="center"><b><u>{{ $oss->menyetujui[0]->nama}}</u></b></td>
-									@else
-										<td class="center"><b><u>{{ $oss->menyetujui[0]->nama}}</u></b></td>
-										<td></td>
-										<td class="center"><b><u>{{ $oss->menyetujui[1]->nama}}</u></b></td>
-									@endif
-								</tr>
-								<tr>
-									@if(count($oss->menyetujui) == 1)
-										<td class="center small-txt">{{ $oss->menyetujui[0]->jabatan}}</td>
-									@else
-										<td class="center small-txt">{{ $oss->menyetujui[0]->jabatan}}</td>
-										<td></td>
-										<td class="center small-txt">{{ $oss->menyetujui[1]->jabatan}}</td>
-									@endif
-								</tr>
-							</table>
-						</td>
-						<td></td>
-						<td>
-							<table id="mitra-sign2">
-								<tr>
-									<td class="center" width="163">Diketahui</td>
-								</tr>
-								<tr>
-									<td height="87"></td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-				</table>		
-
+							</tr>
+							@endif
+							<tr>
+								@if(count($oss->menyetujui) == 2)
+								<td class="text-left">
+									<p class="text-capitalize"><u>{{ $oss->menyetujui[0]->nama }}</u></p>
+									<p class="text-capitalize">{{ $oss->menyetujui[0]->jabatan }}</p>
+								</td>
+								<td class="text-left">
+									<p class="text-capitalize"><u>{{ $oss->menyetujui[1]->nama }}</u></p>
+									<p class="text-capitalize">{{ $oss->menyetujui[1]->jabatan }}</p>
+								</td>
+								@else
+								<td class="text-left" style="">
+									<p class="text-capitalize"><u>{{ $oss->menyetujui[0]->nama }}</u></p>
+									<p class="text-capitalize">{{ $oss->menyetujui[0]->jabatan }}</p>
+								</td>
+								@endif
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="col-lg-4 blank-confirm">
+					<div class="confirm-signature">
+						<table border="0">
+							<tr>
+								<td valign="top" height="112">Diketahui</td>
+							</tr>
+						</table>
+					</div>
+				</div>
 			</div>
 	</div><!-- /.wrap -->
 </body>

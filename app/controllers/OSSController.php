@@ -460,7 +460,7 @@
 				}
 			}
 
-			$pdf = PDF::loadView('templatesurat.oss_bantek_2' , $data);
+			$pdf = PDF::loadView('templatesurat.oss_bantek' , $data);
 			return $pdf->setPaper('a4')->stream();
 		}
 

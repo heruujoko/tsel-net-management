@@ -120,7 +120,7 @@
                                 <label class="control-label col-md-3">Nama Pemohon</label>
                                 <div class="col-md-8">
                                     <label class="control-label">{{ Auth::user()->nama }}</label>
-                                    <input type="hidden" name="pemohon" value="{{ Auth::user()->id }}">
+                                    <input type="text" name="pemohon" value="{{ Auth::user()->id }}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -223,16 +223,6 @@
                                 <label class="control-label col-md-3">Mengetahui</label>
                                 <div class="col-md-6">
                                     <select multiple class="chosen form-control" name="mengetahui[]">
-                                        @foreach($user_no as $no)
-                                            <option value="{{ $no->id }}">{{ $no->nama }} - {{ $no->jabatan }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3">Menyetujui</label>
-                                <div class="col-md-6">
-                                    <select class="chosen form-control" name="menyetujui">
                                         @foreach($user_no as $no)
                                             <option value="{{ $no->id }}">{{ $no->nama }} - {{ $no->jabatan }}</option>
                                         @endforeach

@@ -22,7 +22,7 @@
                         <h2>Detail FPL</h2>
                     </div>
                     <div class="col-md-2 pull-right">
-                        <a href="{{ URL::to('/')}}/admin/fpl/{{ $fpl->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                        <a href="{{ URL::to('/')}}/no/fpl/{{ $fpl->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
                     </div>
                 </div>
                 <div class="row">
@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">Nama Pemohon</label>
                             <div class="col-md-8">
-                                <label class="control-label">Prasanthy Ganty</label>
+                                <label class="control-label">{{ $fpl->pemohon->nama }}</label>
                             </div>
                         </div>
                         <div class="form-group">

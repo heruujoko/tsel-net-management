@@ -30,10 +30,10 @@
 		.kop-kanan {
 			position: fixed;
 			top: 8px;
-			height:40px;
+			height:20px;
 			margin-left: 400px;
 			background-size:contain;
-			width:300px;
+			width:285px;
 			border:solid 1px #000000;
 			color: black;
 			padding: 7px;
@@ -382,7 +382,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<table width="100%" class="content-signature">
+								<table width="100%" class="content-signature" cellspacing="0">
 									<tr>
 										<td><b>Direquest Oleh</b></td>
 										<td><b>Diketahui</b></td>
@@ -410,7 +410,7 @@
 					</table>
 				</div>
 				<div class="col-lg-4 oleh">
-					<table class="tbl-signature-oleh" border="1">
+					<table class="tbl-signature-oleh" border="1" cellspacing="0">
 						<thead>
 							<tr>
 								<th colspan="2">{{ $oss->request->mitranya->nama }}</th>
@@ -426,10 +426,10 @@
 										<td height="65">&nbsp;</td>
 									</tr>
 									<tr>
-										<td height=""><u><b>{{ $oss->dikerjakan->nama }}</b></u></td>
+										<td height=""><u><b>{{ $oss->request->mitranya->pic  }}</b></u></td>
 									</tr>
 									<tr>
-										<td height="">{{ $oss->dikerjakan->jabatan }}</td>
+										<td height="">Koordinator</td>
 									</tr>
 								</table>
 							</tr>
