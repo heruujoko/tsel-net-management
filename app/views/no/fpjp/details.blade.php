@@ -45,7 +45,7 @@
                         <div class="pull-right">
                             <div class="">
                                 @if($fpjp->user_mengetahui != '')
-                                <a href="/no/fpjp/{{ $fpjp->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                                <a href="{{ URL::to('/') }}/no/fpjp/{{ $fpjp->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
                                 @endif
                             </div>
                         </div>

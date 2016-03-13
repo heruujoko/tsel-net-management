@@ -123,7 +123,7 @@
 				//Buat Versheet
 
 				$vs = new Versheet;
-				$vs->user_id = Auth::user()->id;
+				$vs->user_id = Input::get('nama');
 				$vs->untuk_pembayaran = Input::get('kegiatan');
 				$vs->jumlah_pembayaran = $stpd->jumlah;
 				$vs->kepada_nama = $pj->user->nama;
@@ -140,9 +140,9 @@
 				//Buat FPJP
 
 				$fpjp = new FPJP;
-				$fpjp->user_id = Auth::user()->id;
+				$fpjp->user_id = Input::get('nama');
 				$fpjp->pd_id = $pj->id;
-				$fpjp->tanggal = Carbon::parse(Input::get('pergi'));
+				$fpjp->tanggal = Carbon::parse(Input::get('kembali'));
 				$fpjp->user_mengetahui = Input::get('mengetahui');
 				$fpjp->save();
 

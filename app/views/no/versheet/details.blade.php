@@ -36,70 +36,30 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="panel-body">
-                        @if($vs->user_mengetahui == '')
-                        <div class="alert alert-danger alert-dismissable">
-                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                            Sebagian data Versheet masih belum lengkap, silahkan edit terlebih dahulu sebelum print
-                        </div>
-                        @endif
                         <div class="pull-right">
                             <div class="">
-                                @if($vs->user_mengetahui != '')
-                                <a href="/no/versheet/{{ $vs->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
-                                @endif
+                                <a href="{{ URL::to('/') }}/no/versheet/{{ $vs->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
                             </div>
                         </div>
                         <form class="form form-horizontal">
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">User</label>
-                                <label class="control-label">{{ $vs->user->nama }}</label>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">No Invoice</label>
-                                <label class="control-label">{{ $vs->no_invoice }}</label>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Untuk Pembayaran</label>
-                                <label class="control-label">{{ $vs->untuk_pembayaran }}</label>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Jumlah Pembayaran</label>
-                                <label class="control-label">{{ $vs->jumlah }}</label>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Kelengkapan Dokumen</label>
-                                @foreach($vs->docs as $doc)
-                                  <label class="control-label">{{ $doc->docs }}</label><br>
-                                @endforeach
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">TRX ID</label>
-                                <label class="control-label">{{ $vs->trxid }}</label>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Cost Centre</label>
-                                <label class="control-label">{{ $vs->cost_centre }}</label>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Budget Account</label>
-                                <label class="control-label">{{ $vs->budget_account }}</label>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Activity Code</label>
-                                <label class="control-label">{{ $vs->activity_code }}</label>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Kepada</label>
-                                <label class="control-label">{{ $vs->kepada_nama }}</label>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Bank</label>
-                                <label class="control-label">{{ $vs->kepada_bank }}</label>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">No Rekening</label>
-                                <label class="control-label">{{ $vs->kepada_rekening }}</label>
-                            </div>
+                                        <div class="form form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Untuk Pembayaran</label>
+                                                <label class="control-label">{{ $vs->untuk_pembayaran }}</label>
+                                            </div>
+                                        </div>
+                                        <div class="form form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Jumlah Pembayaran</label>
+                                                <label class="control-label">Rp. {{ number_format($vs->jumlah_pembayaran) }}</label>
+                                            </div>
+                                        </div>
+                                        <div class="form form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Kepada</label>
+                                                <label class="control-label">{{ $vs->kepada_bank }} {{ $vs->kepada_rekening }} {{ $vs->kepada_nama }}</label>
+                                            </div>
+                                        </div>
                         </form>
                     </div>
                 </div>

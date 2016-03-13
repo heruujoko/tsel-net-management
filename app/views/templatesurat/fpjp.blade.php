@@ -64,6 +64,9 @@
 		.section3 {
 			margin-top: 10px;
 		}
+		.small-txt {
+			font-size: 12px;
+		}
 	</style>
 </head>
 <body>
@@ -143,36 +146,44 @@
 			<div class="section4">
 				<table class="tbl">
 					<tr>
-						<td style="border-bottom:none;text-align:center;" width="123">Diajukan Oleh</td>
-						<td style="border-bottom:none;text-align:center;" width="123">Diperiksa Oleh</td>
-						<td style="border-bottom:none;text-align:center;" width="123">Diketahui Oleh</td>
-						<td style="border-bottom:none;text-align:center;" width="123" rowspan="2">Diterima Oleh</td>
+						<td class="small-txt" style="border-bottom:none;text-align:center;" width="123">Diajukan Oleh</td>
+						<td class="small-txt" style="border-bottom:none;text-align:center;" width="123">Diperiksa Oleh</td>
+						<td class="small-txt" style="border-bottom:none;text-align:center;" width="123">Diketahui Oleh</td>
+						<td class="small-txt" style="border-bottom:none;text-align:center;" width="123" rowspan="2">Diterima Oleh</td>
 					</tr>
 					<tr>
-						<td style="border-top:none;text-align:center;" width="123">{{ $fpjp->user->jabatan }}</td>
-						<td style="border-top:none;text-align:center;" width="123">SPV FA Branch Palu</td>
-						<td style="border-top:none;text-align:center;" width="123">{{ $fpjp->mengetahui->jabatan }}</td>
+						<td class="small-txt" style="border-top:none;text-align:center;" width="123">{{ $fpjp->user->jabatan }}</td>
+						<td class="small-txt" style="border-top:none;text-align:center;" width="123">SPV FA Branch Palu</td>
+						@if($fpjp->user->is_manager_utama)
+							<td class="small-txt" style="border-top:none;text-align:center;" width="123">GM. ICT Operation Region Sulawesi</td>
+						@else
+							<td class="small-txt" style="border-top:none;text-align:center;" width="123">{{ $fpjp->mengetahui->jabatan }}</td>
+						@endif
 					</tr>
 					<tr>
 						<td height="100" style="border-bottom:none;text-align:center;"></td>
 						<td style="border-bottom:none;text-align:center;"></td>
-						<td style="border-bottom:none;text-align:center;">
-							@if($fpjp->mengetahui->need_signature)
-								<img src="{{ URL::to($fpjp->mengetahui->sign->signature_pic) }}" width="100" height="100">
-							@else
-							@endif	
+						<td style="border-bottom:none;text-align:center;">	
 						</td>
 						<td rowspan="3"></td>
 					</tr>
 					<tr>
-						<td style="border-top:none;text-align:center;">{{ $fpjp->user->nama }}</td>
-						<td style="border-top:none;text-align:center;">Asep Awalludin</td>
-						<td style="border-top:none;text-align:center;">{{ $fpjp->mengetahui->nama }}</td>
+						<td class="small-txt" style="border-top:none;text-align:center;">{{ $fpjp->user->nama }}</td>
+						<td class="small-txt" style="border-top:none;text-align:center;">Asep Awalludin</td>
+						@if($fpjp->user->is_manager_utama)
+							<td class="small-txt" style="border-top:none;text-align:center;">Noviandri</td>
+						@else
+							<td class="small-txt" style="border-top:none;text-align:center;">Habibi M Tau.</td>
+						@endif
 					</tr>
 					<tr>
-						<td style="text-align:center;">NIK. 78022</td>
-						<td style="text-align:center;">NIK. 78022</td>
-						<td style="text-align:center;">NIK. 78022</td>
+						<td class="small-txt" style="text-align:center;">NIK. {{ $fpjp->user->nik }}</td>
+						<td class="small-txt" style="text-align:center;">NIK. 82273</td>
+						@if($fpjp->user->is_manager_utama)
+							<td class="small-txt" style="text-align:center;">NIK. 67002</td>
+						@else
+							<td class="small-txt" style="text-align:center;">NIK 78022</td>
+						@endif
 					</tr>
 				</table>
 			</div>

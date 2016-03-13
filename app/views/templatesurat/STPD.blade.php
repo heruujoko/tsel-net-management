@@ -111,14 +111,14 @@
 			</tr>
 			<tr>
 				<td colspan="2" width="80">NAMA</td>
-				<td>: {{ $stpd->user->nama }}</td>
+				<td width="180">: {{ $stpd->user->nama }}</td>
 			</tr>
 			<tr>
 				<td colspan="2" width="30">NIK</td>
 				<td>: {{ $stpd->user->nik }}</td>
 			</tr>
 			<tr>
-				<td colspan="2" width="30">JABATAN</td>
+				<td colspan="2" width="40">JABATAN</td>
 				<td>: {{ $stpd->user->jabatan }}</td>
 			</tr>
 			<tr>
@@ -356,7 +356,7 @@
 			</tr>
 			<tr>
 				<td>Pada Tanggal :</td>
-				<td>{{ $stpd->tanggal_berangkat }}</td>
+				<td>{{ Carbon::parse($stpd->tanggal_berangkat)->indonesianFormat() }}</td>
 			</tr>
 			<tr>
 				<td>Yang Menugaskan</td>

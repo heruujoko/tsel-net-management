@@ -45,7 +45,7 @@
                         <div class="pull-right">
                             <div class="">
                                 @if($stpd->user_mengetahui != '')
-                                  <a href="/no/stpd/{{ $stpd->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
+                                  <a href="{{ URL::to('/') }}/no/stpd/{{ $stpd->id }}/print" class="btn btn-primary"><i class="fa fa-print"></i> Print Document</a>
                                 @endif
                             </div>
                         </div>
