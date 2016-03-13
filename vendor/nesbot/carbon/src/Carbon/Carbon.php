@@ -802,6 +802,25 @@ class Carbon extends DateTime
         return strftime($format, strtotime($this));
     }
 
+    public function indonesianFormat(){
+        $months = array(
+            0 => '',
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'Spetember',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember'
+        );
+        return $this->day.' '.$months[$this->month].' '.$this->year;
+    }
+
     /**
      * Reset the format used to the default when type juggling a Carbon instance to a string
      *

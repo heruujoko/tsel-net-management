@@ -53,13 +53,6 @@
         padding: 3px;
         border: 1px solid black;
       }
-      .disetuju {
-        @if(count($surat->activities) > 9))
-        page-break-before: always;
-        @else
-        margin-top:250px;
-        @endif
-      }
   </style>
 </head>
 <body>
@@ -91,39 +84,59 @@
         <tbody>
           @for( $i=0; $i < count($surat->activities); $i++ )
             @if($i == 0)
-              <?php $row1 = 1; ?>
+              <?php $row1 = 1; $rowac = 1;?>
               @for( $j=0; $j < count($surat->activities)-1; $j++ )
                 @if(($surat->activities[0]->selesai == $surat->activities[$j+1]->selesai) && ($surat->activities[0]->mulai == $surat->activities[$j+1]->mulai) )
                   <?php $row1++; ?>
                 @else
                 @endif
               @endfor
+
+              @for( $j=0; $j < count($surat->activities)-1; $j++ )
+                @if($surat->activities[0]->activity == $surat->activities[$j+1]->activity)
+                  <?php $rowac++; ?>
+                @else
+                @endif
+              @endfor
               <tr>
                 <td>{{ $no++ }}</td>
                 <td>{{ $surat->activities[$i]->sites->sitelocation }}</td>
-                <td rowspan="{{ $row1; }}">{{ Carbon::parse($surat->activities[0]->mulai)->toFormattedDateString() }} s/d {{ Carbon::parse($surat->activities[0]->selesai)->toFormattedDateString() }}</td>
-                <td>{{ $surat->activities[$i]->activity }}</td>
+                <td rowspan="{{ $row1; }}">{{ Carbon::parse($surat->activities[0]->mulai)->indonesianFormat() }} s/d {{ Carbon::parse($surat->activities[0]->selesai)->indonesianFormat() }}</td>
+                <td rowspan="{{ $rowac }}">{{ $surat->activities[$i]->activity }}</td>
               </tr>
             @else
-              @if(($surat->activities[$i]->mulai == $surat->activities[$i-1]->mulai) && ($surat->activities[$i]->selesai == $surat->activities[$i-1]->selesai))
+              @if(($surat->activities[$i]->mulai == $surat->activities[$i-1]->mulai) && ($surat->activities[$i]->selesai == $surat->activities[$i-1]->selesai) && ($surat->activities[$i]->activity == $surat->activities[$i-1]->activity)) 
+                <tr>
+                  <td>{{ $no++ }}</td>
+                  <td>{{ $surat->activities[$i]->sites->sitelocation }}</td>
+                </tr>
+              @elseif(($surat->activities[$i]->mulai == $surat->activities[$i-1]->mulai) && ($surat->activities[$i]->selesai == $surat->activities[$i-1]->selesai))
                 <tr>
                   <td>{{ $no++ }}</td>
                   <td>{{ $surat->activities[$i]->sites->sitelocation }}</td>
                   <td>{{ $surat->activities[$i]->activity }}</td>
                 </tr>
               @else
-                <?php $row2= 1;?>
+                <?php $row2= 1; $rowac = 1;?>
                 @for($k = $i+1 ; $k < count($surat->activities);$k++)
                   @if(($surat->activities[$k]->mulai == $surat->activities[$k-1]->mulai) && ($surat->activities[$k]->selesai == $surat->activities[$k-1]->selesai))
                     <?php $row2++; ?>
                   @else
                   @endif
                 @endfor
+
+                @for( $l=$i+1; $l < count($surat->activities); $l++ )
+                  @if($surat->activities[$l]->activity == $surat->activities[$l-1]->activity)
+                    <?php $rowac++; ?>
+                  @else
+                  @endif
+                @endfor
                 <tr>
                   <td>{{ $no++ }}</td>
                   <td>{{ $surat->activities[$i]->sites->sitelocation }}</td>
-                  <td rowspan="{{ $row2; }}">{{ Carbon::parse($surat->activities[$i]->mulai)->toFormattedDateString() }} s/d {{ Carbon::parse($surat->activities[$i]->selesai)->toFormattedDateString() }}</td>
-                  <td>{{ $surat->activities[$i]->activity }}</td>
+                  <?php setlocale(LC_TIME, 'id_ID');; ?>
+                  <td rowspan="{{ $row2; }}">{{ Carbon::parse($surat->activities[$i]->mulai)->indonesianFormat() }} s/d {{ Carbon::parse($surat->activities[$i]->selesai)->indonesianFormat() }}</td>
+                  <td rowspan="{{ $rowac; }}">{{ $surat->activities[$i]->activity }}</td>
                 </tr>
               @endif
             @endif
@@ -134,10 +147,14 @@
       <div class="disetuju">
         <p>Demikian surat tugas ini dibuat sebagaimana mestinya.</p>
         <p>
-          Palu, {{ Carbon::parse($surat->tempat_tanggal)->toFormattedDateString() }} <br>
+          Palu, {{ Carbon::parse($surat->tempat_tanggal)->indonesianFormat() }} <br>
           Hormat kami
         </p>
-        <img src="{{ URL::to($surat->setuju->sign->signature_pic) }}" width="80" height="80">
+        @if($surat->setuju->need_signature)  
+          <img src="{{ URL::to($surat->setuju->sign->signature_pic) }}" width="80" height="80">
+        @else
+          <br><br><br>
+        @endif  
         <br>
         <strong><u>{{ $surat->setuju->nama }}</u></strong><br>
         <strong>{{ $surat->setuju->jabatan }}</strong>

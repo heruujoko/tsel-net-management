@@ -16,8 +16,25 @@
 			$st->tempat_tanggal = Carbon::now();
 			$st->menyetujui = Input::get('menyetujui');
 			$st->save();
+
+			$romans = array(
+				0 => '',
+				1 => 'I',
+				2 => 'II',
+				3 => 'III',
+				4 => 'IV',
+				5 => 'V',
+				6 => 'VI',
+				7 => 'VII',
+				8 => 'VIII',
+				9 => 'IX',
+				10 => 'X',
+				11 => 'XI',
+				12 => 'XII'
+			);
+
 			$day = Carbon::now();
-			$st->no_surat = $st->id.'/TC.01'.'/RO-43'.'/XI'.'/'.$day->year;
+			$st->no_surat = $st->id.'/TC.01'.'/RO-43'.'/'.$romans[$day->month].'/'.$day->year;
 			$st->save();
 			$banteks = Input::get('bantek');
 			for ($i=0; $i < count($banteks); $i++) {
